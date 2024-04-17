@@ -174,7 +174,7 @@ CREATE TABLE tratamientos_animales (
   id_tratamiento INTEGER NOT NULL,
   id_animal INTEGER NOT NULL,
   fecha_tratamiento_animal DATE NOT NULL,
-  observaciones_lote VARCHAR(255),
+  observaciones_animal VARCHAR(255),
   FOREIGN KEY (id_tratamiento) REFERENCES tratamientos (id_tratamiento),
   FOREIGN KEY (id_animal) REFERENCES inventario_animales (id_animal)
 );
