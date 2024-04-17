@@ -1,5 +1,4 @@
 Django==4.2.6
-django-compressor==4.4
 psycopg2==2.9.9
 python-decouple
 sqlparse==0.4.2
