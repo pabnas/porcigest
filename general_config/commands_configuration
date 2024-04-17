@@ -1,0 +1,55 @@
+-------------------------------------------------------Conection raspberry----------------------------------------------------------
+
+https://www.zerotier.com/download/                                1. install vpn
+
+sudo zerotier-cli join 856127940c3d7a2b                           2.run on terminal
+
+ssh pi@10.147.17.190                                              3.run on terminal after point 2 
+071930
+
+
+--------------------------------------------------------- interface conection raspberry ----------------------------------------------
+vncserver                                                       ---- >   add new configuration of vnc on the card
+
+https://www.realvnc.com/es/connect/download/viewer/linux/         1. install
+10.147.17.190                                                     2. address
+
+user: pi
+clave: 071930
+
+
+------------------------------------------------------ Configurar ssh para una conexion mas directa a la ras-----------------------------
+gedit .ssh/config                                                 1. en home del linux ejecutar
+
+Host rpi
+  HostName 10.147.17.190                                           ---> pegar en el archivo con los mismas identaciones, guardar y cerrar
+  User pi
+
+
+ssh-copy-id rpi                                                    2. Ejecutar y agregar contraseña 071930
+
+ssh rpi                                                            3. Ejecutar para conectarse
+
+
+
+------------------------------------------------------Copiar archivos del local a la rasberry---------------------------
+
+scp -p -r ~/porcigest rpi:/home/pi/porcigest
+
+
+------------------------------------------Docker ----------------------------------
+docker run --name postgres-db -p 5432:5432 --env-file .env-postgres -d postgres             Montar contenedor de la db
+docker start postgres-db                                                                    Iniciar contenedor de la db
+docker stop postgres-db                                                                     Detener contenedor de la db                              
+
+
+---------------------------------------Ejecucion de Django-------------------------
+sudo ./configure.sh                                                                         Lanzar aplicativo
+
+
+
+
+
+
+
+
