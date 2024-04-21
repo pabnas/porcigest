@@ -4,7 +4,7 @@ https://www.zerotier.com/download/                                1. install vpn
 
 sudo zerotier-cli join 856127940c3d7a2b                           2.run on terminal
 
-ssh pi@10.147.17.190                                              3.run on terminal after point 2 
+ssh pi@10.147.17.190                                              3.run on terminal after point 2
 071930
 
 
@@ -40,12 +40,15 @@ scp -p -r ~/porcigest rpi:/home/pi/porcigest
 ------------------------------------------Docker ----------------------------------
 docker run --name postgres-db -p 5432:5432 --env-file .env-postgres -d postgres             Montar contenedor de la db
 docker start postgres-db                                                                    Iniciar contenedor de la db
-docker stop postgres-db                                                                     Detener contenedor de la db                              
+docker stop postgres-db                                                                     Detener contenedor de la db
 
 
----------------------------------------Ejecucion de Django-------------------------
+---------------------------------------Django-------------------------
 sudo ./configure.sh                                                                         Lanzar aplicativo
-
+docker exec -it porcigest-django-1 /bin/bash                                                Ejecutar interactive shell
+python3 manage.py migrate                                                                   Crea tabla de usuarios django en la db
+python3 manage.py createsuperuser                                                           Crea el super user
+http://0.0.0.0:8000/admin/                                                                  Pagina admin Django
 
 
 
