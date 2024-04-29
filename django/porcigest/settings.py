@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-hba=si@xwt#$hik54q5fhr6%z^o4*#+if(gx#yo6^82!m!sq$g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,7 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login'
+    'apps.login',
+    'apps.bioseguridad',
+    'apps.control_sanitario',
+    'apps.dashboard',
+    'apps.gestion_alimentaria',
+    'apps.gestion_animales',
+    'apps.gestion_financiera',
 ]
 
 MIDDLEWARE = [
@@ -56,9 +63,7 @@ ROOT_URLCONF = 'porcigest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'templates'
-        ],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,12 +130,18 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static'),
+]
 
-# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Setup compressor
-# COMPRESS_ROOT = BASE_DIR / 'static'
-# COMPRESS_ENABLED = True
-# STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+EMAIL_HOST = 'mail.smtp2go.com'
+EMAIL_HOST_USER = 'pabnas'
+EMAIL_HOST_PASSWORD = 'yQdskDBposXP'
+EMAIL_PORT = 2525
+EMAIL_USE_TLS = True
