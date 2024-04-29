@@ -3,12 +3,12 @@
         <h1 class="my-0 font-weight-normal text-white font-weight-bold">PorciGest</h1>
         <nav class="ml-auto mr-0 px-3 container">
             <div class="row">
-                <a class="col-sm text-uppercase p-2 text-white" href="/">Home</a>
+                <a class="col-sm text-uppercase p-2 text-white" href={% url 'index'%}>Home</a>
                 <a class="col-sm text-uppercase p-2 text-white" href="#">Sobre Nosotros</a>
                 <a class="col-sm text-uppercase p-2 text-white" href="#">Servicios</a>
-                <a class="col-sm text-uppercase p-2 text-white" href="contactanos">Contactanos</a>
+                <a class="col-sm text-uppercase p-2 text-white" href={% url 'contactenos'%}>Contactanos</a>
                 <div class="col-sm">
-                    <a class="bg-info btn btn-outline-info text-uppercase p-2 text-white" href="#">Ingresar</a>
+                    <a class="bg-info btn btn-outline-info text-uppercase p-2 text-white" href={% url 'login'%}>Ingresar</a>
                 </div>
             </div>
         </nav>

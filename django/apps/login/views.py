@@ -6,3 +6,6 @@ def index(request):
 
 def contactanos_page(request):
     return render(request, 'contactanos.html')
+
+def login_form(request):
+    return render(request, 'login.html')
