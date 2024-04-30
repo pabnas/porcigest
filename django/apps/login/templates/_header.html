@@ -1,14 +1,14 @@
 <header>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom shadow-sm">
-        <h1 class="my-0 mr-md-auto font-weight-normal text-white">Porcigest</h1>
-        <nav class="container my-2 my-md-0 mr-md-3">
-            <div class="row gx-5">
-                <a class="col text-capitalize p-2 text-white" href="/">Home</a>
-                <a class="col text-capitalize p-2 text-white" href="#">Sobre Nosotros</a>
-                <a class="col text-capitalize p-2 text-white" href="#">Servicios</a>
-                <a class="col text-capitalize p-2 text-white" href="contactanos">Contactanos</a>
-                <div class="col">
-                    <a class="bg-info btn btn-outline-info text-capitalize p-2 text-white" href="#">Ingresar</a>
+    <div class="d-flex flex-column flex-md-row py-3 px-5 bg-primary border-bottom shadow-sm">
+        <h1 class="my-0 font-weight-normal text-white font-weight-bold">PorciGest</h1>
+        <nav class="ml-auto mr-0 px-3 container">
+            <div class="row">
+                <a class="col-sm text-uppercase p-2 text-white" href={% url 'index'%}>Home</a>
+                <a class="col-sm text-uppercase p-2 text-white" href="#">Sobre Nosotros</a>
+                <a class="col-sm text-uppercase p-2 text-white" href="#">Servicios</a>
+                <a class="col-sm text-uppercase p-2 text-white" href={% url 'contactenos'%}>Contactanos</a>
+                <div class="col-sm">
+                    <a class="bg-info btn btn-outline-info text-uppercase p-2 text-white" href={% url 'login'%}>Ingresar</a>
                 </div>
             </div>
         </nav>

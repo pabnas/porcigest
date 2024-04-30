@@ -2,47 +2,74 @@
 <html lang="en">
   {% include '_head.html' %}
   {% load static %}
-  <body style="background-image: url('{% static 'fondo_login.png' %}');">
+  <body style="background-image: url('{% static 'imagenes/fondo_login.png' %}');">
     {% include '_header.html' %}
 
-    <div class="container">
+    <div class="mr-5 mt-5 container bg-pink py-5 px-5" style="width: fit-content">
       <div class="row">
         <div class="col">
-          <h1 class="text-center">Contactanos</h1>
+          <h1 class="text-center text-black mb-5 font-weight-bold">Contactanos</h1>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <form action="" method="post">
+          <form action="" method="post" class="text-black">
             {% csrf_token %}
-            <div class="form-group">
-              <label for="nombre completo">Nombre completo:</label>
-              <input type="text" class="form-control" id="nombre completo" name="nombre completo" placeholder="Nombre Completo" required>
+            <div class="row">
+              <div class="col form-group">
+                <label for="nombre completo">Nombre completo:</label>
+                <input type="text" class="form-control" id="nombre completo" name="nombre completo" placeholder="Nombre Completo" required>
+              </div>
+              <div class="col form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo" required>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="correo">Correo:</label>
-              <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo" required>
-            </div>
-            <div class="form-group">
-              <label for="direccion">Direccion:</label>
-              <textarea class="form-control" id="direccion" name="direccion" placeholder="Direccion" required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="telefono">Telefono:</label>
-              <textarea class="form-control" id="telefono" name="telefono" placeholder="Telefono" required></textarea>
+            <div class="row">
+              <div class="col form-group">
+                <label for="direccion">Direccion:</label>
+                <textarea class="form-control" id="direccion" name="direccion" placeholder="Direccion" required></textarea>
+              </div>
+              <div class="col form-group">
+                <label for="telefono">Telefono:</label>
+                <textarea class="form-control" id="telefono" name="telefono" placeholder="Telefono" required></textarea>
+              </div>
             </div>
             <div class="form-group">
               <label for="mensaje">Mensaje:</label>
-              <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Mensaje" required></textarea>
+              <textarea class="form-control" style="height: 20vh" id="mensaje" name="mensaje" placeholder="Mensaje" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-            <label>
-                ¿Ya tienes cuenta?
-            </label>
-            <a href="/login">Iniciar Sesión</a>
+            <div class="row">
+              <button type="submit" class="col btn btn-primary">Enviar</button>
+            </div>
+
+            <div class="row">
+              <div class="col text-center pt-2">
+                <label>
+                    ¿Ya tienes cuenta?
+                </label>
+                <a href={%url 'login'%} class="font-weight-bold">Iniciar Sesión</a>
+              </div>
             </form>
         </div>
+        
+        <div class="modal fade" id="mensaje_enviado_modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title mx-auto">Mensaje enviado</h5>
+              </div>
+              <div class="modal-body">
+                <p class="text-center text-primary my-auto">Pronto el administrador se pondrá en contacto con usted</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary mx-auto">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
+    
 
     {% include '_footer.html' %}
   </body>
