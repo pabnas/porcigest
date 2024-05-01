@@ -45,8 +45,8 @@ CREATE TABLE registro_partos (
   fecha_parto DATE NOT NULL,
   nacidos_vivos INTEGER NOT NULL,
   nacidos_muertos INTEGER NOT NULL,
-  vivos_48h INTEGER NOT NULL,
-  vivos_destete INTEGER NOT NULL,
+  vivos_48h INTEGER NULL,
+  vivos_destete INTEGER NULL,
   observaciones VARCHAR(255),
   FOREIGN KEY (id_animal) REFERENCES inventario_animales (id_animal)
 );
