@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include '_head.html' %}
+  {% load static %}
+  <body style="background-image: url('{% static 'imagenes/fondo_login.png' %}');">
+    {% include '_header.html' %}
+
+    <div style="height: 80vh;display: flex;align-items: center;">
+        <div class="mr-5 container bg-pink py-5 px-5" style="width: 600px">
+            <div class="row">
+            <div class="col">
+                <h1 class="text-center text-black mb-5 font-weight-bold">Ingresar</h1>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col">
+                <form id="login_form" action={% url 'login_request' %} method="POST" class="text-black">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col form-group">
+                        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col form-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="password" required></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="col btn btn-primary">Enviar</button>
+                </div>
+    
+                <div class="row">
+                    <div class="col text-center pt-2">
+                    <label>
+                        ¿No tienes cuenta?
+                    </label>
+                    <a href={% url 'contactenos'%} class="font-weight-bold">Contactanos</a>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal fade" id="mensaje_enviado_modal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title mx-auto">Error</h5>
+                    </div>
+                    <div class="modal-body">
+                    <p class="text-center text-primary my-auto"></p>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-primary mx-auto">OK</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    {% include '_footer.html' %}
+    <script type="text/javascript">
+        /* Login Form AJAX */
+        $('#login_form').submit(function(e){
+          var submitBtn = $(this).find('input[type=submit]');
+          submitBtn.prop('disabled', true);
+          e.preventDefault();
+          $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function(data){
+              if(data.msg != 'success'){
+                var modal = $('#mensaje_enviado_modal');
+                var modal_msg = modal.find('.modal-body').find('p');
+                modal_msg.text(data.msg);
+                modal.modal('show');
+              }
+              else{
+                window.location.href = data.url;
+              }
+            },
+            error: function(data) {
+                console.error(data);
+            }
+          });/*./ajax*/
+        });
+        /*End of loin form AJAX */
+    </script>
+  </body>
+  
+</html>
