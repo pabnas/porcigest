@@ -194,28 +194,13 @@ CREATE TABLE ingreso_vehiculos (
   observaciones VARCHAR(255)
 );
 
-
----pagina web
-
---17
-CREATE TABLE roles (
-  id_rol SERIAL PRIMARY KEY,
-  nombre_rol VARCHAR(50) NOT NULL UNIQUE,
-  descripcion_rol VARCHAR(255) NOT NULL
+-- Crear la tabla monitoreo_agua
+CREATE TABLE monitoreo_agua (
+  id_monitoreo serial PRIMARY KEY,
+  fecha_hora timestamp NOT NULL,
+  nivel_agua_porcentaje numeric(3,1) NOT NULL CHECK (nivel_agua_porcentaje BETWEEN 0.0 AND 100.0),
+  flujo_agua_litros_hora numeric(10,2) NOT NULL
 );
-
---18
-CREATE TABLE usuarios (
-  id_usuario SERIAL PRIMARY KEY,
-  nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
-  correo_electronico VARCHAR(100) NOT NULL UNIQUE,
-  contrasena VARCHAR(255) NOT NULL,
-  id_rol INTEGER NOT NULL,
-  fecha_creacion DATE NOT NULL DEFAULT CURRENT_DATE,
-  estado_usuario VARCHAR(8) NOT NULL DEFAULT 'activo' CHECK (estado_usuario IN ('activo', 'inactivo')),
-  FOREIGN KEY (id_rol) REFERENCES roles (id_rol)
-);
-
 
 
 
