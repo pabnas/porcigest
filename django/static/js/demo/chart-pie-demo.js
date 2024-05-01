@@ -1,34 +1,33 @@
 // Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#858796';
+Chart.defaults.font.family = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.font.defaultFontColor = '#858796';
 
-// Pie Chart Example
+// Pie Chart 
+
 var ctx = document.getElementById("myPieChart");
+var data = {
+  labels: ["Nivel del agua", "Restante"],
+  datasets: [{
+    data: [80,20],
+    backgroundColor: ['#3C8DBC','#EEEEEE'],
+    hoverBackgroundColor: ['#3C8DBC','#EEEEEE'],
+    hoverBorderColor: "rgba(234, 236, 244, 1)",
+  }],
+};
+
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
-  data: {
-    labels: ["Direct", "Referral", "Social"],
-    datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
-  },
+  data: data,
   options: {
+    responsive: true,
     maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
-    },
-    legend: {
-      display: false
+    plugins: {
+        legend: {
+            display: false
+        },
+        tooltips: {
+           enabled: false
+        },
     },
     cutoutPercentage: 80,
   },

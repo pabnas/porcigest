@@ -22,6 +22,8 @@
   --orange: #fd7e14;
   --yellow: #f6c23e;
   --green: #1cc88a;
+  --green-bg: #28A745;
+  --green-bg-shadow: #24963E;
   --teal: #20c9a6;
   --cyan: #36b9cc;
   --white: #fff;
@@ -4900,6 +4902,13 @@ input[type="button"].btn-block {
   padding: 1.25rem;
 }
 
+.card-footer {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
 .card-title {
   margin-bottom: 0.75rem;
 }
@@ -6913,6 +6922,14 @@ a.close.disabled {
 
 .bg-primary {
   background-color: var(--main_color) !important;
+}
+
+.bg-green {
+  background-color: var(--green-bg) !important;
+}
+
+.bg-green-shadow {
+  background-color: var(--green-bg-shadow) !important;
 }
 
 .bg-pink {
@@ -10374,6 +10391,10 @@ button.bg-dark:focus {
 
 .text-primary {
   color: var(--main_color) !important;
+}
+
+.text-green-shadow {
+  color: var(--green-bg-shadow) !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
