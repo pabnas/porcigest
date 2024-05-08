@@ -4333,7 +4333,7 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0rem;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -8323,7 +8323,7 @@ button.bg-dark:focus {
 }
 
 .fixed-bottom {
-  position: fixed;
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
@@ -11096,7 +11096,13 @@ a:focus {
 
 .sidebar {
   width: 6.5rem;
+
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+
   min-height: 100vh;
+  z-index: 1040;
 }
 
 .sidebar .nav-item {
@@ -11222,7 +11228,6 @@ a:focus {
 }
 
 .sidebar .sidebar-brand {
-  height: 4.375rem;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 800;
@@ -11250,6 +11255,12 @@ a:focus {
   padding: 0 1rem;
   font-weight: 800;
   font-size: 0.65rem;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    max-height: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -11282,7 +11293,7 @@ a:focus {
     display: block;
     width: 100%;
     text-align: left;
-    padding: 1rem;
+    /* padding: 1rem; */
     width: 14rem;
   }
   .sidebar .nav-item .nav-link i {

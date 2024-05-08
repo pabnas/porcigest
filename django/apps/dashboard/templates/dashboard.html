@@ -5,7 +5,7 @@
   <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
   <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
   <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
-  <body style="padding-bottom: 60px;">
+  <body>
     <div id="wrapper">
         {% include '_sidebar.html' %}
         <div id="content-wrapper" class="d-flex flex-column">
@@ -13,6 +13,7 @@
             <!-- Main Content -->
             <div id="content">
                 {% include '_topbar.html' %}
+
                 <div class="container-fluid mt-5">
 
                     <!-- Page Heading -->
@@ -164,6 +165,8 @@
                     </div>
 
                 </div>
+
+                {% include '_footer.html' %}
             </div>
             
         </div>
@@ -171,7 +174,5 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
-    {% include '_footer.html' %}
   </body>
 </html>
