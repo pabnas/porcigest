@@ -7,15 +7,13 @@
     </div>
 
     <div class="d-sm-flex mb-4 bg-primary nav-tabs">
-        {% url 'gestacion_resumen' as gestacion_resumen%}
-        <a class="nav-link h3 my-0 text-center text-white {% if request.resolver_match.kwargs.navbar == 'gestacion_resumen' %}active{% endif %}" href={{ gestacion_resumen }}>
+        <a class="nav-link h3 my-0 text-center text-white {% if request.resolver_match.kwargs.navbar == 'gestacion_resumen' %}active{% endif %}" href={% url 'gestion_animales:gestacion_resumen' %}>
             <div class="my-3 mx-4">
                 Resumen
             </div>
         </a>
 
-        {% url 'gestacion_registrar' as gestacion_registrar%}
-        <a class="nav-link h3 my-0 text-center text-white {% if request.resolver_match.kwargs.navbar == 'gestacion_registrar' %}active{% endif %}" href={{ gestacion_registrar }}>
+        <a class="nav-link h3 my-0 text-center text-white {% if request.resolver_match.kwargs.navbar == 'gestacion_registrar' %}active{% endif %}" href={% url 'gestion_animales:gestacion_registrar' %}>
             <div class="my-3 mx-4">
                 Reg. Servicio
             </div>
