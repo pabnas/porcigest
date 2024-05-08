@@ -6,157 +6,171 @@
   <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
   <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
   <body style="padding-bottom: 60px;">
-    <div class="container-fluid mt-5">
+    <div id="wrapper">
+        {% include '_sidebar.html' %}
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black">Dashboard</h1>
-        </div>
+            <!-- Main Content -->
+            <div id="content">
+                {% include '_topbar.html' %}
+                <div class="container-fluid mt-5">
 
-        <!-- Content Row -->
-        <div class="row">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-black">Dashboard</h1>
+                    </div>
 
-            <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card h-100 bg-green">
-                    <div class="card-body bg-green">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2 text-center">
-                                <div class="h1 mb-0 font-weight-bold text-white">40</div>
-                                <div class="text-md font-weight-bold text-white text-uppercase mb-1">
-                                    Cerdos
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card h-100 bg-green">
+                                <div class="card-body bg-green">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2 text-center">
+                                            <div class="h1 mb-0 font-weight-bold text-white">40</div>
+                                            <div class="text-md font-weight-bold text-white text-uppercase mb-1">
+                                                Cerdos
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body bg-green-shadow">
+                                    <div class="row no-gutters bg-green-shadow">
+                                        <div class="col text-center">
+                                            <a class="h5 mb-0 font-weight-bold text-white" href="#">
+                                                Mas Informacion
+                                                <i class="fa-solid fa-circle-arrow-right text-white"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card h-100 bg-green">
+                                <div class="card-body bg-green">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2 text-left">
+                                            <div class="h1 mb-0 font-weight-bold text-white">8</div>
+                                            <div class="text-md font-weight-bold text-white text-uppercase mb-1">
+                                                Cerdos en lactancia
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-chart-simple fa-5x text-green-shadow"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body bg-green-shadow">
+                                    <div class="row no-gutters bg-green-shadow">
+                                        <div class="col text-center">
+                                            <a class="h5 mb-0 font-weight-bold text-white" href="#">
+                                                Mas Informacion
+                                                <i class="fa-solid fa-circle-arrow-right text-white"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card h-100 bg-green">
+                                <div class="card-body bg-green">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2 text-left">
+                                            <div class="h1 mb-0 font-weight-bold text-white">85</div>
+                                            <div class="text-md font-weight-bold text-white text-uppercase mb-1">
+                                                Lotes de lechones
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-chart-simple fa-5x text-green-shadow"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body bg-green-shadow">
+                                    <div class="row no-gutters bg-green-shadow">
+                                        <div class="col text-center">
+                                            <a class="h5 mb-0 font-weight-bold text-white" href="#">
+                                                Mas Informacion
+                                                <i class="fa-solid fa-circle-arrow-right text-white"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Content Row -->
+
+                    <div class="row justify-content-md-center align-items-center">
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">% Nivel del agua</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas id="myPieChart" style="display: block; height: 208px; width: 384px;" width="768" height="416" class="chartjs-render-monitor"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Flujo de agua L/H</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas id="myAreaChart" style="display: block; height: 160px; width: 384px;" width="768" height="320" class="chartjs-render-monitor"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body bg-green-shadow">
-                        <div class="row no-gutters bg-green-shadow">
-                            <div class="col text-center">
-                                <a class="h5 mb-0 font-weight-bold text-white" href="#">
-                                    Mas Informacion
-                                    <i class="fa-solid fa-circle-arrow-right text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card h-100 bg-green">
-                    <div class="card-body bg-green">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2 text-left">
-                                <div class="h1 mb-0 font-weight-bold text-white">8</div>
-                                <div class="text-md font-weight-bold text-white text-uppercase mb-1">
-                                    Cerdos en lactancia
+                    
+                    <!-- Content Row -->
+                    
+                    <div class="row justify-content-md-center">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Nacimientos</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas id="myAreaChart2" style="display: block; height: 160px; width: 384px;" width="768" height="320" class="chartjs-render-monitor"></canvas>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <i class="fa-solid fa-chart-simple fa-5x text-green-shadow"></i>
-                            </div>
                         </div>
                     </div>
-                    <div class="card-body bg-green-shadow">
-                        <div class="row no-gutters bg-green-shadow">
-                            <div class="col text-center">
-                                <a class="h5 mb-0 font-weight-bold text-white" href="#">
-                                    Mas Informacion
-                                    <i class="fa-solid fa-circle-arrow-right text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-
-
-            <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card h-100 bg-green">
-                    <div class="card-body bg-green">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2 text-left">
-                                <div class="h1 mb-0 font-weight-bold text-white">85</div>
-                                <div class="text-md font-weight-bold text-white text-uppercase mb-1">
-                                    Lotes de lechones
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fa-solid fa-chart-simple fa-5x text-green-shadow"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body bg-green-shadow">
-                        <div class="row no-gutters bg-green-shadow">
-                            <div class="col text-center">
-                                <a class="h5 mb-0 font-weight-bold text-white" href="#">
-                                    Mas Informacion
-                                    <i class="fa-solid fa-circle-arrow-right text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            
         </div>
-
-        <!-- Content Row -->
-
-        <div class="row justify-content-md-center align-items-center">
-            <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">% Nivel del agua</h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                            <canvas id="myPieChart" style="display: block; height: 208px; width: 384px;" width="768" height="416" class="chartjs-render-monitor"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Flujo de agua L/H</h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                            <canvas id="myAreaChart" style="display: block; height: 160px; width: 384px;" width="768" height="320" class="chartjs-render-monitor"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <!-- Content Row -->
-        
-        <div class="row justify-content-md-center">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Nacimientos</h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                            <canvas id="myAreaChart2" style="display: block; height: 160px; width: 384px;" width="768" height="320" class="chartjs-render-monitor"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- End of Content Wrapper -->
 
     </div>
+    <!-- End of Page Wrapper -->
 
     {% include '_footer.html' %}
   </body>

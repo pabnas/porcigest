@@ -190,17 +190,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  function Salir() {
-    document.cookie = "user=; path=/;";
-    document.cookie = "pass=; path=/;";
-    window.location = "{% url 'login' %}";
-  }
-
-  $( document ).ready(function() {
-    if(getCookie("user") == ""){
-      window.location = "/";
-    }
-  });
-</script>
