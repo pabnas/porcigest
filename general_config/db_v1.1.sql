@@ -19,9 +19,9 @@ CREATE TABLE inventario_animales (
   id_corral INTEGER NOT NULL,
   raza VARCHAR(50) NOT NULL,
   sexo VARCHAR(1) NOT NULL,
-  fecha_nacimiento DATE NOT NULL,
-  peso DECIMAL(10,2) NOT NULL,
-  estado_salud VARCHAR(50) NOT NULL,
+  edad INTEGER NOT NULL,
+  peso DECIMAL(10,2) NOT NULL,                                        --dentro del estado vendido tambien se contempla cuando es muerte
+  estado_productivo VARCHAR(50) NOT NULL CHECK (estado_productivo IN ('lactancia', 'gestacion', 'remplazo', 'engorde', 'vendido')),
   origen VARCHAR(1) NOT NULL CHECK (origen IN ('I', 'E')),
   FOREIGN KEY (id_corral) REFERENCES corrales (num_corral)
 );
@@ -70,9 +70,7 @@ CREATE TABLE origen_externo (
   fecha_compra DATE NOT NULL,
   fecha_ingreso DATE NOT NULL,
   finalidad_compra VARCHAR(50) NOT NULL,
-  etapa_productiva VARCHAR(50) NOT NULL,
-  granja_origen VARCHAR(255) NOT NULL,
-  edad INTEGER NOT NULL,
+  etapa_productiva_ingreso VARCHAR(50) NOT NULL,
   vendedor VARCHAR(255),
   peso_compra DECIMAL(10,2),
   observaciones VARCHAR(255),
@@ -84,7 +82,7 @@ CREATE TABLE origen_interno (
   id_origen_interno SERIAL PRIMARY KEY,
   fecha_cambio_etapa DATE NOT NULL,
   finalidad VARCHAR(50) NOT NULL,
-  etapa_productiva VARCHAR(50) NOT NULL,
+  etapa_productiva_ingreso VARCHAR(50) NOT NULL,
   id_madre INTEGER NOT NULL,
   id_padre INTEGER,
   observaciones VARCHAR(255),
@@ -98,7 +96,7 @@ CREATE TABLE lotes_lechones (
   id_corral INTEGER NOT NULL,
   cantidad_lechones INTEGER NOT NULL,
   fecha_ingreso_lote DATE NOT NULL,
-  dias_precebo INTEGER,
+  dias_precebo INTEGER, --Eliminar
   observaciones VARCHAR(255),
   FOREIGN KEY (id_corral) REFERENCES corrales (num_corral)
 );
@@ -121,12 +119,14 @@ CREATE TABLE venta_unidad (
   id_venta_unidad SERIAL PRIMARY KEY,
   fecha_venta DATE NOT NULL,
   id_lote INTEGER NOT NULL,
-  peso_lechon NUMERIC(5,2) NOT NULL,
+  id_animal INTEGER NOT NULL,
+  peso NUMERIC(5,2) NOT NULL,
   precio_unidad NUMERIC(10,2) NOT NULL,
   destino VARCHAR(50) NOT NULL,
   comprador VARCHAR(50) NOT NULL,
   observaciones VARCHAR(255),
-  FOREIGN KEY (id_lote) REFERENCES lotes_lechones (id_lote)
+  FOREIGN KEY (id_lote) REFERENCES lotes_lechones (id_lote),
+  FOREIGN KEY (id_ANIMAL) REFERENCES inventario_animales (id_animal)
 );
 
 --12
@@ -157,7 +157,7 @@ CREATE TABLE tratamientos (
 );
 
 --14
-CREATE TABLE lotes_tratamientos (
+CREATE TABLE tratamiento_lotes (
   id_lote_tratamiento SERIAL PRIMARY KEY,
   id_tratamiento INTEGER NOT NULL,
   id_lote INTEGER NOT NULL,
