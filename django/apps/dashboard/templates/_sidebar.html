@@ -12,7 +12,7 @@
 
     <div class="flex-grow-1">
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'dashboard' %}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -25,12 +25,12 @@
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Gestación</a>
-                    <a class="collapse-item" href="#">Lactancia</a>
-                    <a class="collapse-item" href="#">Precebos</a>
-                    <a class="collapse-item" href="#">Movimientos</a>
-                    <a class="collapse-item" href="#">Inventario</a>
-                    <a class="collapse-item" href="#">Ficha cerdos</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:gestacion' %}">Gestación</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:lactancia' %}">Lactancia</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:precebos' %}">Precebos</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:movimientos' %}">Movimientos</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:inventario' %}">Inventario</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:ficha_cerdos' %}">Ficha cerdos</a>
                 </div>
             </div>
         </li>

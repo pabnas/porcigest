@@ -1,17 +1,35 @@
-<!DOCTYPE html>
 <html lang="en">
   {% include '_head.html' %}
-  <body style="padding-bottom: 60px;">
+  {% load static %}
+  <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
+  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
+  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
+  <body>
+    <div id="wrapper">
+        {% include '_sidebar.html' %}
+        <div id="content-wrapper" class="d-flex flex-column">
 
-    <div class="container-fluid mt-5">
-        {% include 'gestion_animales/nav_bar.html' %}
+            <!-- Main Content -->
+            <div id="content">
+                {% include '_topbar.html' %}
 
-        <!-- Content Row -->
-        <div class="row">
-          
+                <div class="container-fluid mt-5">
+                  {% include 'gestion_animales/precebos/nav_bar.html' %}
+
+                  <!-- Content Row -->
+                  <div class="row">
+                    
+                  </div>
+
+                </div>
+
+                {% include '_footer.html' %}
+            </div>
+            
         </div>
-    </div>
+        <!-- End of Content Wrapper -->
 
-    {% include '_footer.html' %}
+    </div>
+    <!-- End of Page Wrapper -->
   </body>
 </html>

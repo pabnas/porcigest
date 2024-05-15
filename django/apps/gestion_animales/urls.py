@@ -33,5 +33,4 @@ urlpatterns = [
     # ficha_cerdos
     path('ficha_cerdos/', views.ficha_cerdos_index, name='ficha_cerdos'),
     path('ficha_cerdos/resumen', views.ficha_cerdos_resumen, name='ficha_cerdos_resumen', kwargs={'navbar': 'ficha_cerdos_resumen'}),
-    path('ficha_cerdos/registrar', views.ficha_cerdos_register, name='ficha_cerdos_registrar', kwargs={'navbar': 'ficha_cerdos_registrar'}),
 ]
