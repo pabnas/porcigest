@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
 
 # Create your views here.
 def index(request):
@@ -37,3 +38,6 @@ def login_request(request):
         data['msg'] = str(e)
     return JsonResponse(data)
 
+def logout_request(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('login'))
