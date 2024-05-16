@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("__reload__/", include("django_browser_reload.urls")),
     # path('admin/login', 'django.contrib.auth.views.login', {"next_page": 'dashboard'}),
     # path('admin/logout', 'django.contrib.auth.views.logout', {"next_page": "/"}),
     

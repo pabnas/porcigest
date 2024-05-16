@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
+    'tailwind',
+    'theme',
+    'django_browser_reload',
     'apps.login',
     'apps.bioseguridad',
     'apps.control_sanitario',
@@ -56,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware'
 ]
 
 ROOT_URLCONF = 'porcigest.urls'
@@ -145,3 +150,16 @@ EMAIL_HOST_USER = 'pabnas'
 EMAIL_HOST_PASSWORD = 'yQdskDBposXP'
 EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Setup compressor
+COMPRESS_ROOT = BASE_DIR / 'static'
+COMPRESS_ENABLED = True
+STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+
+# Setup tailwind
+TAILWIND_APP_NAME = 'theme'
