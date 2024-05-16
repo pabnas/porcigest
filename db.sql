@@ -201,31 +201,3 @@ CREATE TABLE monitoreo_agua (
   nivel_agua_porcentaje numeric(3,1) NOT NULL CHECK (nivel_agua_porcentaje BETWEEN 0.0 AND 100.0),
   flujo_agua_litros_hora numeric(10,2) NOT NULL
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

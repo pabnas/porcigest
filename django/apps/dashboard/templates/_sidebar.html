@@ -1,0 +1,101 @@
+{% load static %}
+<!-- Sidebar -->
+
+<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand flex-column align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="sidebar-brand-text">User</div>
+    </a>
+
+    <div class="flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Gestión de Animales</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{% url 'gestion_animales:gestacion' %}">Gestación</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:lactancia' %}">Lactancia</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:precebos' %}">Precebos</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:movimientos' %}">Movimientos</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:inventario' %}">Inventario</a>
+                    <a class="collapse-item" href="{% url 'gestion_animales:ficha_cerdos' %}">Ficha cerdos</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
+                aria-expanded="true" aria-controls="collapsePages2">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Gestión Alimentaria</span>
+            </a>
+            <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="#">Inventario</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
+                aria-expanded="true" aria-controls="collapsePages3">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Control Sanitario</span>
+            </a>
+            <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="#">Inventario</a>
+                    <a class="collapse-item" href="#">Vacunación</a>
+                    <a class="collapse-item" href="#">Tratamientos</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4"
+                aria-expanded="true" aria-controls="collapsePages4">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Bioseguridad</span>
+            </a>
+            <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="#">Ingreso de Personas</a>
+                </div>
+            </div>
+        </li>
+
+    </div>
+    
+    <div>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-calculator"></i>
+                <span>Gestión financiera</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:index' %}">
+                <i class="fas fa-fw fa-users-cog"></i>
+                <span>Administrar Usuarios</span></a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                <span>Cerrar Sesion</span></a>
+        </li>
+    </div>
+</ul>

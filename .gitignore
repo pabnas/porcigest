@@ -1,4 +1,6 @@
 .env
+commands.txt
+general_config/commands_configuration
 /django/porcigest/.env
 
 ### Django ###
