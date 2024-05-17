@@ -43,9 +43,7 @@ INSTALLED_APPS = [
     'apps.bioseguridad',
     'apps.control_sanitario',
     'apps.dashboard',
-    'apps.gestion_alimentaria',
     'apps.gestion_animales',
-    'apps.gestion_financiera',
 ]
 
 MIDDLEWARE = [
