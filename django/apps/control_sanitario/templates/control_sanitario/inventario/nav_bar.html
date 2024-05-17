@@ -1,0 +1,29 @@
+<!-- app nav bar -->
+<div>
+    <div class="d-sm-flex mb-4 bg-green">
+        <h1 class="flex-grow-1 h3 my-3 text-white font-weight-bold text-center">
+            Inventario Productos Biologicos
+        </h1>
+    </div>
+
+    <div class="d-sm-flex mb-4 bg-primary nav-tabs">
+        <a class="nav-link h3 my-0 text-center text-white {% if request.resolver_match.kwargs.navbar == 'inventario_resumen' %}active{% endif %}" href={% url 'control_sanitario:inventario_resumen' %}>
+            <div class="my-3 mx-4">
+                Inventario actual
+            </div>
+        </a>
+
+        <a class="nav-link h3 my-0 text-center text-white {% if request.resolver_match.kwargs.navbar == 'inventario_registrar' %}active{% endif %}" href={% url 'control_sanitario:inventario_registrar' %}>
+            <div class="my-3 mx-4">
+                Agr. Pedido
+            </div>
+        </a>
+
+        <a class="nav-link h3 my-0 text-center text-white {% if request.resolver_match.kwargs.navbar == 'inventario_salida' %}active{% endif %}" href={% url 'control_sanitario:inventario_salida' %}>
+            <div class="my-3 mx-4">
+                Salida
+            </div>
+        </a>
+    </div>
+
+</div>

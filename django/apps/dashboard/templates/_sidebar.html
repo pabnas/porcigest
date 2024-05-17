@@ -36,19 +36,6 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
-                aria-expanded="true" aria-controls="collapsePages2">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Gestión Alimentaria</span>
-            </a>
-            <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Inventario</a>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
                 aria-expanded="true" aria-controls="collapsePages3">
                 <i class="fas fa-fw fa-folder"></i>
@@ -56,9 +43,9 @@
             </a>
             <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Inventario</a>
-                    <a class="collapse-item" href="#">Vacunación</a>
-                    <a class="collapse-item" href="#">Tratamientos</a>
+                    <a class="collapse-item" href="{% url 'control_sanitario:inventario' %}">Inventario</a>
+                    <a class="collapse-item" href="{% url 'control_sanitario:vacunacion' %}">Vacunación</a>
+                    <a class="collapse-item" href="{% url 'control_sanitario:tratamientos' %}">Tratamientos</a>
                 </div>
             </div>
         </li>
@@ -71,20 +58,14 @@
             </a>
             <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Ingreso de Personas</a>
+                    <a class="collapse-item" href="{% url 'bioseguridad:ingreso_personas' %}">Ingreso de Personas</a>
                 </div>
             </div>
         </li>
 
     </div>
-    
-    <div>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-calculator"></i>
-                <span>Gestión financiera</span></a>
-        </li>
 
+    <div>
         <li class="nav-item">
             <a class="nav-link" href="{% url 'admin:index' %}">
                 <i class="fas fa-fw fa-users-cog"></i>

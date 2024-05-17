@@ -26,14 +26,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('admin/login', 'django.contrib.auth.views.login', {"next_page": 'dashboard'}),
     # path('admin/logout', 'django.contrib.auth.views.logout', {"next_page": "/"}),
-    
+
     path('', include('apps.login.urls')),
-    path('', include('apps.bioseguridad.urls')),
-    path('', include('apps.control_sanitario.urls')),
     path('', include('apps.dashboard.urls')),
-    path('gestion_alimentaria/', include(('apps.gestion_alimentaria.urls', 'gestion_alimentaria'))),
+    path('bioseguridad/', include(('apps.bioseguridad.urls', 'bioseguridad'))),
+    path('control_sanitario/', include(('apps.control_sanitario.urls', 'control_sanitario'))),
     path('gestion_animales/', include(('apps.gestion_animales.urls', 'gestion_animales'))),
-    path('gestion_financiera/', include(('apps.gestion_financiera.urls', 'gestion_financiera'))),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
