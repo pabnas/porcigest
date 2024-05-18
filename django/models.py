@@ -13,74 +13,9 @@ class Areas(models.Model):
     nombre_area = models.CharField(max_length=50)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'areas'
-
-
-class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group'
-
-
-class AuthGroupPermissions(models.Model):
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
-
-
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
-
-
-class AuthUser(models.Model):
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.BooleanField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
-    is_staff = models.BooleanField()
-    is_active = models.BooleanField()
-    date_joined = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user'
-
-
-class AuthUserGroups(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
-
-
-class AuthUserUserPermissions(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
 
 
 class Corrales(models.Model):
@@ -90,52 +25,9 @@ class Corrales(models.Model):
     cantidad_dentro = models.IntegerField()
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'corrales'
-
-
-class DjangoAdminLog(models.Model):
-    action_time = models.DateTimeField()
-    object_id = models.TextField(blank=True, null=True)
-    object_repr = models.CharField(max_length=200)
-    action_flag = models.SmallIntegerField()
-    change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'django_admin_log'
-
-
-class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100)
-    model = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
-
-
-class DjangoMigrations(models.Model):
-    app = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    applied = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
-
-
-class DjangoSession(models.Model):
-    session_key = models.CharField(primary_key=True, max_length=40)
-    session_data = models.TextField()
-    expire_date = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_session'
 
 
 class IngresoVehiculos(models.Model):
@@ -152,6 +44,7 @@ class IngresoVehiculos(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'ingreso_vehiculos'
 
@@ -161,12 +54,13 @@ class InventarioAnimales(models.Model):
     id_corral = models.ForeignKey(Corrales, models.DO_NOTHING, db_column='id_corral')
     raza = models.CharField(max_length=50)
     sexo = models.CharField(max_length=1)
-    fecha_nacimiento = models.DateField()
+    edad = models.IntegerField()
     peso = models.DecimalField(max_digits=10, decimal_places=2)
-    estado_salud = models.CharField(max_length=50)
+    estado_productivo = models.CharField(max_length=50)
     origen = models.CharField(max_length=1)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'inventario_animales'
 
@@ -180,21 +74,9 @@ class LotesLechones(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'lotes_lechones'
-
-
-class LotesTratamientos(models.Model):
-    id_lote_tratamiento = models.AutoField(primary_key=True)
-    id_tratamiento = models.ForeignKey('Tratamientos', models.DO_NOTHING, db_column='id_tratamiento')
-    id_lote = models.ForeignKey(LotesLechones, models.DO_NOTHING, db_column='id_lote')
-    fecha_aplicacion_lote = models.DateField()
-    dosis_lote = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    observaciones_lote = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'lotes_tratamientos'
 
 
 class Medicamentos(models.Model):
@@ -212,6 +94,7 @@ class Medicamentos(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'medicamentos'
 
@@ -223,6 +106,7 @@ class MonitoreoAgua(models.Model):
     flujo_agua_litros_hora = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'monitoreo_agua'
 
@@ -235,6 +119,7 @@ class Movimientos(models.Model):
     area_destino = models.ForeignKey(Areas, models.DO_NOTHING, db_column='area_destino', related_name='movimientos_area_destino_set')
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'movimientos'
 
@@ -245,14 +130,13 @@ class OrigenExterno(models.Model):
     fecha_compra = models.DateField()
     fecha_ingreso = models.DateField()
     finalidad_compra = models.CharField(max_length=50)
-    etapa_productiva = models.CharField(max_length=50)
-    granja_origen = models.CharField(max_length=255)
-    edad = models.IntegerField()
+    etapa_productiva_ingreso = models.CharField(max_length=50)
     vendedor = models.CharField(max_length=255, blank=True, null=True)
     peso_compra = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'origen_externo'
 
@@ -261,12 +145,13 @@ class OrigenInterno(models.Model):
     id_origen_interno = models.AutoField(primary_key=True)
     fecha_cambio_etapa = models.DateField()
     finalidad = models.CharField(max_length=50)
-    etapa_productiva = models.CharField(max_length=50)
+    etapa_productiva_ingreso = models.CharField(max_length=50)
     id_madre = models.ForeignKey(InventarioAnimales, models.DO_NOTHING, db_column='id_madre')
     id_padre = models.ForeignKey(InventarioAnimales, models.DO_NOTHING, db_column='id_padre', related_name='origeninterno_id_padre_set', blank=True, null=True)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'origen_interno'
 
@@ -280,6 +165,7 @@ class RegistroInseminaciones(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'registro_inseminaciones'
 
@@ -295,8 +181,23 @@ class RegistroPartos(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'registro_partos'
+
+
+class TratamientoLotes(models.Model):
+    id_lote_tratamiento = models.AutoField(primary_key=True)
+    id_tratamiento = models.ForeignKey('Tratamientos', models.DO_NOTHING, db_column='id_tratamiento')
+    id_lote = models.ForeignKey(LotesLechones, models.DO_NOTHING, db_column='id_lote')
+    fecha_aplicacion_lote = models.DateField()
+    dosis_lote = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    observaciones_lote = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        app_label = 'gestion_animales'
+        managed = False
+        db_table = 'tratamiento_lotes'
 
 
 class Tratamientos(models.Model):
@@ -308,6 +209,7 @@ class Tratamientos(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'tratamientos'
 
@@ -320,6 +222,7 @@ class TratamientosAnimales(models.Model):
     observaciones_animal = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'tratamientos_animales'
 
@@ -335,6 +238,7 @@ class VentaLotes(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'venta_lotes'
 
@@ -343,12 +247,14 @@ class VentaUnidad(models.Model):
     id_venta_unidad = models.AutoField(primary_key=True)
     fecha_venta = models.DateField()
     id_lote = models.ForeignKey(LotesLechones, models.DO_NOTHING, db_column='id_lote')
-    peso_lechon = models.DecimalField(max_digits=5, decimal_places=2)
+    id_animal = models.ForeignKey(InventarioAnimales, models.DO_NOTHING, db_column='id_animal')
+    peso = models.DecimalField(max_digits=5, decimal_places=2)
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2)
     destino = models.CharField(max_length=50)
     comprador = models.CharField(max_length=50)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        app_label = 'gestion_animales'
         managed = False
         db_table = 'venta_unidad'
