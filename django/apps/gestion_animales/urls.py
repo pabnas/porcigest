@@ -13,7 +13,8 @@ urlpatterns = [
     # inventario
     path('inventario/', views.inventario_index, name='inventario'),
     path('inventario/resumen', views.inventario_resumen, name='inventario_resumen', kwargs={'navbar': 'inventario_resumen'}),
-    path('inventario/registrar', views.inventario_register, name='inventario_registrar', kwargs={'navbar': 'inventario_registrar'}),
+    path('inventario/registrar_ingreso', views.inventario_register_ingreso, name='inventario_registrar_ingreso', kwargs={'navbar': 'inventario_registrar_ingreso'}),
+    path('inventario/registrar_salida', views.inventario_register_salida, name='inventario_registrar_salida', kwargs={'navbar': 'inventario_registrar_salida'}),
 
     # lactancia
     path('lactancia/', views.lactancia_index, name='lactancia'),
@@ -28,9 +29,6 @@ urlpatterns = [
     # precebos
     path('precebos/', views.precebos_index, name='precebos'),
     path('precebos/resumen', views.precebos_resumen, name='precebos_resumen', kwargs={'navbar': 'precebos_resumen'}),
-    path('precebos/registrar', views.precebos_register, name='precebos_registrar', kwargs={'navbar': 'precebos_registrar'}),
-
-    # ficha_cerdos
-    path('ficha_cerdos/', views.ficha_cerdos_index, name='ficha_cerdos'),
-    path('ficha_cerdos/resumen', views.ficha_cerdos_resumen, name='ficha_cerdos_resumen', kwargs={'navbar': 'ficha_cerdos_resumen'}),
+    path('precebos/registrar_ingreso', views.precebos_register_ingreso, name='precebos_registrar_ingreso', kwargs={'navbar': 'precebos_registrar_ingreso'}),
+    path('precebos/registrar_salida', views.precebos_register_salida, name='precebos_registrar_salida', kwargs={'navbar': 'precebos_registrar_salida'}),
 ]
