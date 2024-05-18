@@ -4,6 +4,7 @@
   <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
   <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
   <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css">
   <body>
     <div id="wrapper">
         {% include '_sidebar.html' %}
@@ -14,23 +15,52 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-            
+
                     {% include 'gestion_animales/gestacion/nav_bar.html' %}
 
                     <!-- Content Row -->
                     <div class="row">
-                      
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table">
+                              <caption>Resumen de la gestación</caption>
+                              <thead>
+                                <tr>
+                                  <th class="centered">Id</th>
+                                  <th class="centered">Fecha de Inseminación</th>
+                                  <th class="centered">Id Padre</th>
+                                  <th class="centered">Tipo inseminacion</th>
+                                  <th class="centered">Observaciones</th>
+                                  <th class="centered">Fecha de parto estimada</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody_gestacion"></tbody>
+                            </table>
+                        </div>
+                      </div>
                     </div>
-
                 </div>
 
                 {% include '_footer.html' %}
             </div>
-            
+
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+
+    <style>
+      .centered {
+        text-align: center !important;
+        vertical-align: middle !important;
+      }
+    </style>
+    <script>
+      
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
   </body>
 </html>
+

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.models import InventarioAnimales
 
 # index
 @login_required(login_url='/login', redirect_field_name=None)
@@ -17,6 +18,10 @@ def gestacion_index(request):
 def gestacion_resumen(request, **kwargs):
     return render(request, 'gestion_animales/gestacion/resumen.html')
 
+def list_gestacion(_request):
+    gestacion = list(InventarioAnimales.objects.values())
+    data = {'gestacion': gestacion}
+    return JsonResponse(data)
 
 @login_required(login_url='/login', redirect_field_name=None)
 def gestacion_register(request, **kwargs):

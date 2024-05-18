@@ -17,17 +17,18 @@ VALUES
   (5, 3, 40, 25);
 
 --3
-INSERT INTO inventario_animales (id_corral, raza, sexo, edad, peso, estado_productivo, origen) VALUES
-(1, 'Angus', 'M', 3, 350.50, 'engorde', 'I'),
-(2, 'Holstein', 'F', 2, 450.30, 'lactancia', 'E'),
-(3, 'Hereford', 'M', 4, 380.75, 'engorde', 'I'),
-(4, 'Jersey', 'F', 3, 320.40, 'gestacion', 'E'),
-(1, 'Brahman', 'M', 5, 500.00, 'vendido', 'I'),
-(2, 'Charolais', 'F', 1, 250.25, 'remplazo', 'E'),
-(3, 'Limousin', 'M', 3, 360.60, 'engorde', 'I'),
-(4, 'Simmental', 'F', 4, 420.50, 'lactancia', 'E'),
-(1, 'Gyr', 'M', 2, 310.80, 'remplazo', 'I'),
-(2, 'Brangus', 'F', 2, 340.90, 'gestacion', 'E');
+INSERT INTO inventario_animales (id_corral, raza, sexo, edad, peso, estado_productivo, origen)
+VALUES
+  (1, 'Duroc', 'H', 6, 120.50, 'engorde', 'I'),
+  (1, 'Pietrain', 'H', 5, 105.25, 'engorde', 'E'),
+  (2, 'Landrace', 'H', 4, 87.75, 'engorde', 'I'),
+  (2, 'Yorkshire', 'H', 4, 85.00, 'engorde', 'E'),
+  (3, 'Berkshire', 'H', 7, 142.00, 'engorde', 'I'),
+  (3, 'Tamworth', 'M', 7, 135.75, 'engorde', 'E'),
+  (4, 'Hampshire', 'M', 5, 110.50, 'gestacion', 'I'),
+  (4, 'Poland China', 'M', 5, 108.25, 'gestacion', 'E'),
+  (5, 'Chester White', 'M', 3, 67.00, 'lactancia', 'I'),
+  (5, 'Mulefoot', 'M', 3, 65.75, 'lactancia', 'E');
 
 
 --4
