@@ -138,8 +138,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-EMAIL_HOST = 'mail.smtp2go.com'
-EMAIL_HOST_USER = 'pabnas'
-EMAIL_HOST_PASSWORD = 'yQdskDBposXP'
-EMAIL_PORT = 2525
-EMAIL_USE_TLS = True
+# https://app.sendgrid.com/guide?from=profile&integrate=true
+# https://mc.sendgrid.com/dynamic-templates
+SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+SENDGRID_TEMPLATE_CONTACT_ID = config('SENDGRID_TEMPLATE_CONTACT_ID')
