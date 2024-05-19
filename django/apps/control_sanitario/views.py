@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
+from apps.control_sanitario.forms import MedicamentosForm
+
 # index
 @login_required(login_url='/login', redirect_field_name=None)
 def index(request):
@@ -20,7 +22,16 @@ def inventario_resumen(request, **kwargs):
 
 @login_required(login_url='/login', redirect_field_name=None)
 def inventario_register(request, **kwargs):
-    return render(request, 'control_sanitario/inventario/register.html')
+    mydict={}
+    if request.method == 'POST':
+        form=MedicamentosForm(request.POST or None , request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return redirect('control_sanitario:inventario_registrar')
+    else:
+        form=MedicamentosForm()
+    mydict['form']=form
+    return render(request, 'control_sanitario/inventario/register.html', mydict)
 
 
 @login_required(login_url='/login', redirect_field_name=None)

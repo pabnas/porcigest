@@ -17,8 +17,85 @@
                   {% include 'control_sanitario/inventario/nav_bar.html' %}
 
                   <!-- Content Row -->
-                  <div class="row">
+                  
+                  <div class="row bg-gray-300">
+                    <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.nombre_medicamento.errors }}
+                            {{ form.nombre_medicamento.label_tag }} 
+                            {{ form.nombre_medicamento }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.principio_activo.errors }}
+                            {{ form.principio_activo.label_tag }}
+                            {{ form.principio_activo }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.laboratorio.errors }}
+                            {{ form.laboratorio.label_tag }}
+                            {{ form.laboratorio }}
+                          </div>
+                        </div>
 
+                        <div class="row">
+                          <div class="col-4 text-black h4">
+                            {{ form.presentacion.errors }}
+                            {{ form.presentacion.label_tag }}
+                            {{ form.presentacion }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.fecha_vencimiento.errors }}
+                            {{ form.fecha_vencimiento.label_tag }}
+                            {{ form.fecha_vencimiento }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.stock.errors }}
+                            {{ form.stock.label_tag }}
+                            {{ form.stock }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-4 text-black h4">
+                            {{ form.lote_medicamento.errors }}
+                            {{ form.lote_medicamento.label_tag }}
+                            {{ form.lote_medicamento }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.vendedor_medicamento.errors }}
+                            {{ form.vendedor_medicamento.label_tag }}
+                            {{ form.vendedor_medicamento }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.precio_unidad.errors }}
+                            {{ form.precio_unidad.label_tag }}
+                            {{ form.precio_unidad }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-6 text-black h4">
+                            {{ form.fecha_compra.errors }}
+                            {{ form.fecha_compra.label_tag }}
+                            {{ form.fecha_compra }}
+                          </div>
+                          <div class="col-6 text-black h4">
+                            {{ form.observaciones.errors }}
+                            {{ form.observaciones.label_tag }}
+                            {{ form.observaciones }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                          </div>
+                        </div>
+                      </div>
+                      {% csrf_token %}
+                    </form>
                   </div>
 
                 </div>
