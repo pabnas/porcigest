@@ -1,0 +1,107 @@
+<html lang="en">
+  {% include '_head.html' %}
+  {% load static %}
+  <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
+  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
+  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
+  <body>
+    <div id="wrapper">
+        {% include '_sidebar.html' %}
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                {% include '_topbar.html' %}
+
+                <div class="container-fluid mt-5">
+                  {% include 'bioseguridad/ingreso_vehiculos/nav_bar.html' %}
+
+                  <!-- Content Row -->
+                  
+                  <div class="row bg-gray-300">
+                    <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.fecha_ingreso.errors }}
+                            {{ form.fecha_ingreso.label_tag }} 
+                            {{ form.fecha_ingreso }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.hora_ingreso.errors }}
+                            {{ form.hora_ingreso.label_tag }}
+                            {{ form.hora_ingreso }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.placa_vehiculo.errors }}
+                            {{ form.placa_vehiculo.label_tag }}
+                            {{ form.placa_vehiculo }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-4 text-black h4">
+                            {{ form.nombre_conductor.errors }}
+                            {{ form.nombre_conductor.label_tag }}
+                            {{ form.nombre_conductor }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.telefono_conductor.errors }}
+                            {{ form.telefono_conductor.label_tag }}
+                            {{ form.telefono_conductor }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.empresa_transportista.errors }}
+                            {{ form.empresa_transportista.label_tag }}
+                            {{ form.empresa_transportista }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-4 text-black h4">
+                            {{ form.tipo_vehiculo.errors }}
+                            {{ form.tipo_vehiculo.label_tag }}
+                            {{ form.tipo_vehiculo }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.motivo_ingreso.errors }}
+                            {{ form.motivo_ingreso.label_tag }}
+                            {{ form.motivo_ingreso }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.ultimo_predio_visitado.errors }}
+                            {{ form.ultimo_predio_visitado.label_tag }}
+                            {{ form.ultimo_predio_visitado }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-12 text-black h4">
+                            {{ form.observaciones.errors }}
+                            {{ form.observaciones.label_tag }}
+                            {{ form.observaciones }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                          </div>
+                        </div>
+                      </div>
+                      {% csrf_token %}
+                    </form>
+                  </div>
+
+                </div>
+
+                {% include '_footer.html' %}
+            </div>
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+  </body>
+</html>
