@@ -1,0 +1,87 @@
+<html lang="en">
+  {% include '_head.html' %}
+  {% load static %}
+  <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
+  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
+  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
+  <body>
+    <div id="wrapper">
+        {% include '_sidebar.html' %}
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                {% include '_topbar.html' %}
+
+                <div class="container-fluid mt-5">
+                  {% include 'gestion_animales/precebos/nav_bar.html' %}
+
+                  <!-- Content Row -->
+                  <div class="row bg-gray-300">
+                    <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.id_lote.errors }}
+                            {{ form.id_lote.label_tag }} 
+                            {{ form.id_lote }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.fecha_venta.errors }}
+                            {{ form.fecha_venta.label_tag }}
+                            {{ form.fecha_venta }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.peso_promedio.errors }}
+                            {{ form.peso_promedio.label_tag }}
+                            {{ form.peso_promedio }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-4 text-black h4">
+                            {{ form.precio_lote.errors }}
+                            {{ form.precio_lote.label_tag }}
+                            {{ form.precio_lote }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.destino.errors }}
+                            {{ form.destino.label_tag }}
+                            {{ form.destino }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.comprador.errors }}
+                            {{ form.comprador.label_tag }}
+                            {{ form.comprador }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-12 text-black h4">
+                            {{ form.observaciones.errors }}
+                            {{ form.observaciones.label_tag }}
+                            {{ form.observaciones }}
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                          </div>
+                        </div>
+                      </div>
+                      {% csrf_token %}
+                    </form>
+                  </div>
+
+                </div>
+
+                {% include '_footer.html' %}
+            </div>
+            
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+  </body>
+</html>
