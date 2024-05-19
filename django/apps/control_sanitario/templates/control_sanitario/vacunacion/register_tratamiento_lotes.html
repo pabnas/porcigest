@@ -1,0 +1,75 @@
+<html lang="en">
+  {% include '_head.html' %}
+  {% load static %}
+  <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
+  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
+  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
+  <body>
+    <div id="wrapper">
+        {% include '_sidebar.html' %}
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                {% include '_topbar.html' %}
+
+                <div class="container-fluid mt-5">
+                  {% include 'control_sanitario/vacunacion/nav_bar.html' %}
+
+                  <!-- Content Row -->
+                  <div class="row bg-gray-300">
+                    <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.id_tratamiento.errors }}
+                            {{ form.id_tratamiento.label_tag }} 
+                            {{ form.id_tratamiento }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.id_lote.errors }}
+                            {{ form.id_lote.label_tag }}
+                            {{ form.id_lote }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.fecha_aplicacion_lote.errors }}
+                            {{ form.fecha_aplicacion_lote.label_tag }}
+                            {{ form.fecha_aplicacion_lote }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-6 text-black h4">
+                            {{ form.dosis_lote.errors }}
+                            {{ form.dosis_lote.label_tag }}
+                            {{ form.dosis_lote }}
+                          </div>
+                          <div class="col-6 text-black h4">
+                            {{ form.observaciones_lote.errors }}
+                            {{ form.observaciones_lote.label_tag }}
+                            {{ form.observaciones_lote }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                          </div>
+                        </div>
+                      </div>
+                      {% csrf_token %}
+                    </form>
+                  </div>
+
+                </div>
+
+                {% include '_footer.html' %}
+            </div>
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+  </body>
+</html>
