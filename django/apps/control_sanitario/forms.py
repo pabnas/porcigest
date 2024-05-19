@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelChoiceField
 from django.utils import timezone
+from django.db.models import Q
 
 from apps.gestion_animales.forms import InventarioAnimalesChoiceField, LotesLechonesChoiceField
 from models import InventarioAnimales, LotesLechones, Medicamentos, TratamientoLotes, Tratamientos, TratamientosAnimales
@@ -8,12 +9,12 @@ from models import InventarioAnimales, LotesLechones, Medicamentos, TratamientoL
 class TratamientosChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         if obj.id_medicamento is not None:
-            return f"Tratamiento {obj.tipo_tratamiento}/{obj.id_medicamento.nombre_medicamento}"
-        return f"Tratamiento {obj.tipo_tratamiento}"
+            return f"Tratamiento id:{obj.id_tratamiento}/{obj.tipo_tratamiento}/{obj.id_medicamento.nombre_medicamento}"
+        return f"Tratamiento id:{obj.id_tratamiento}/{obj.tipo_tratamiento}"
 
 class MedicamentosChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"Medicamento {obj.nombre_medicamento}/{obj.laboratorio}"
+        return f"Medicamento id:{obj.id_medicamento}/{obj.nombre_medicamento}/{obj.laboratorio}"
 
 class MedicamentosForm(forms.ModelForm):
     class Meta:
@@ -78,8 +79,13 @@ class TratamientosAnimalesForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(TratamientosAnimalesForm, self).__init__(*args, **kwargs)
-        
-    id_tratamiento = TratamientosChoiceField(queryset=Tratamientos.objects.all())
+    
+    current_date = timezone.now().date()
+    valid_tratamientos = Tratamientos.objects.filter(
+        Q(id_medicamento__fecha_vencimiento__gte=current_date) | Q(id_medicamento__isnull=True)
+    )
+    
+    id_tratamiento = TratamientosChoiceField(queryset=valid_tratamientos)
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all())
     fecha_tratamiento_animal = forms.DateField(widget = forms.SelectDateWidget)
     observaciones_animal = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
@@ -98,8 +104,13 @@ class TratamientoLotesForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(TratamientoLotesForm, self).__init__(*args, **kwargs)
+        
+    current_date = timezone.now().date()
+    valid_tratamientos = Tratamientos.objects.filter(
+        Q(id_medicamento__fecha_vencimiento__gte=current_date) | Q(id_medicamento__isnull=True)
+    )
     
-    id_tratamiento = TratamientosChoiceField(queryset=Tratamientos.objects.all())
+    id_tratamiento = TratamientosChoiceField(queryset=valid_tratamientos)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
     fecha_aplicacion_lote = forms.DateField(widget = forms.SelectDateWidget)
     dosis_lote = forms.IntegerField()
