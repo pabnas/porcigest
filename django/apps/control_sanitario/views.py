@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
+from apps.control_sanitario.forms import MedicamentosForm, MedicamentosSalidaForm, TratamientoLotesForm, TratamientosAnimalesForm, TratamientosForm
+
 # index
 @login_required(login_url='/login', redirect_field_name=None)
 def index(request):
@@ -20,12 +22,30 @@ def inventario_resumen(request, **kwargs):
 
 @login_required(login_url='/login', redirect_field_name=None)
 def inventario_register(request, **kwargs):
-    return render(request, 'control_sanitario/inventario/register.html')
+    mydict={}
+    if request.method == 'POST':
+        form=MedicamentosForm(request.POST or None , request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return redirect('control_sanitario:inventario_registrar')
+    else:
+        form=MedicamentosForm()
+    mydict['form']=form
+    return render(request, 'control_sanitario/inventario/register.html', mydict)
 
 
 @login_required(login_url='/login', redirect_field_name=None)
 def inventario_salida(request, **kwargs):
-    return render(request, 'control_sanitario/inventario/salida.html')
+    mydict={}
+    if request.method == 'POST':
+        form=MedicamentosSalidaForm(request.POST or None , request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return redirect('control_sanitario:vacunacion_registrar_tratamiento_animal')
+    else:
+        form=MedicamentosSalidaForm()
+    mydict['form']=form
+    return render(request, 'control_sanitario/inventario/salida.html', mydict)
 
 
 # tratamientos
@@ -41,7 +61,16 @@ def tratamientos_resumen(request, **kwargs):
 
 @login_required(login_url='/login', redirect_field_name=None)
 def tratamientos_register(request, **kwargs):
-    return render(request, 'control_sanitario/tratamientos/register.html')
+    mydict={}
+    if request.method == 'POST':
+        form=TratamientosForm(request.POST or None , request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return redirect('control_sanitario:vacunacion_registrar_tratamiento_animal')
+    else:
+        form=TratamientosForm()
+    mydict['form']=form
+    return render(request, 'control_sanitario/tratamientos/register.html', mydict)
 
 
 # vacunacion
@@ -54,7 +83,28 @@ def vacunacion_index(request):
 def vacunacion_resumen(request, **kwargs):
     return render(request, 'control_sanitario/vacunacion/resumen.html')
 
+@login_required(login_url='/login', redirect_field_name=None)
+def vacunacion_register_tratamiento_animal(request, **kwargs):
+    mydict={}
+    if request.method == 'POST':
+        form=TratamientosAnimalesForm(request.POST or None , request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return redirect('control_sanitario:vacunacion_registrar_tratamiento_animal')
+    else:
+        form=TratamientosAnimalesForm()
+    mydict['form']=form
+    return render(request, 'control_sanitario/vacunacion/register_tratamiento_animal.html', mydict)
 
 @login_required(login_url='/login', redirect_field_name=None)
-def vacunacion_register(request, **kwargs):
-    return render(request, 'control_sanitario/vacunacion/register.html')
+def vacunacion_register_tratamiento_lotes(request, **kwargs):
+    mydict={}
+    if request.method == 'POST':
+        form=TratamientoLotesForm(request.POST or None , request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return redirect('control_sanitario:vacunacion_registrar_tratamiento_lotes')
+    else:
+        form=TratamientoLotesForm()
+    mydict['form']=form
+    return render(request, 'control_sanitario/vacunacion/register_tratamiento_lotes.html', mydict)
