@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
-from apps.control_sanitario.forms import MedicamentosForm, TratamientoLotesForm, TratamientosAnimalesForm
+from apps.control_sanitario.forms import MedicamentosForm, TratamientoLotesForm, TratamientosAnimalesForm, TratamientosForm
 
 # index
 @login_required(login_url='/login', redirect_field_name=None)
@@ -52,7 +52,16 @@ def tratamientos_resumen(request, **kwargs):
 
 @login_required(login_url='/login', redirect_field_name=None)
 def tratamientos_register(request, **kwargs):
-    return render(request, 'control_sanitario/tratamientos/register.html')
+    mydict={}
+    if request.method == 'POST':
+        form=TratamientosForm(request.POST or None , request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return redirect('control_sanitario:vacunacion_registrar_tratamiento_animal')
+    else:
+        form=TratamientosForm()
+    mydict['form']=form
+    return render(request, 'control_sanitario/tratamientos/register.html', mydict)
 
 
 # vacunacion

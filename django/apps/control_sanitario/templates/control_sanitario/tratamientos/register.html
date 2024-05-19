@@ -17,8 +17,49 @@
                   {% include 'control_sanitario/tratamientos/nav_bar.html' %}
 
                   <!-- Content Row -->
-                  <div class="row">
+                  
+                  <div class="row bg-gray-300">
+                    <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.tipo_tratamiento.errors }}
+                            {{ form.tipo_tratamiento.label_tag }} 
+                            {{ form.tipo_tratamiento }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.detalle_tratamiento.errors }}
+                            {{ form.detalle_tratamiento.label_tag }}
+                            {{ form.detalle_tratamiento }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.id_medicamento.errors }}
+                            {{ form.id_medicamento.label_tag }}
+                            {{ form.id_medicamento }}
+                          </div>
+                        </div>
 
+                        <div class="row">
+                          <div class="col-6 text-black h4">
+                            {{ form.dosis.errors }}
+                            {{ form.dosis.label_tag }}
+                            {{ form.dosis }}
+                          </div>
+                          <div class="col-6 text-black h4">
+                            {{ form.observaciones.errors }}
+                            {{ form.observaciones.label_tag }}
+                            {{ form.observaciones }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                          </div>
+                        </div>
+                      </div>
+                      {% csrf_token %}
+                    </form>
                   </div>
 
                 </div>
