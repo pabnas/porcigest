@@ -3,11 +3,11 @@ from django.forms import ModelChoiceField
 from django.utils import timezone
 from django.db.models import Q
 
-import logging
-logger = logging.getLogger(__name__)
-
 from apps.gestion_animales.forms import InventarioAnimalesChoiceField, LotesLechonesChoiceField
 from models import InventarioAnimales, LotesLechones, Medicamentos, TratamientoLotes, Tratamientos, TratamientosAnimales
+
+class DatePickerInput(forms.DateInput):
+        input_type = 'date'
 
 class TratamientosChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
@@ -43,12 +43,12 @@ class MedicamentosForm(forms.ModelForm):
     principio_activo = forms.CharField(max_length=50)
     laboratorio = forms.CharField(max_length=50)
     presentacion = forms.CharField(max_length=50)
-    fecha_vencimiento = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_vencimiento = forms.DateField(widget = DatePickerInput)
     stock = forms.IntegerField()
     lote_medicamento = forms.CharField(max_length=50)
     vendedor_medicamento = forms.CharField(max_length=50)
     precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2)
-    fecha_compra = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_compra = forms.DateField(widget = DatePickerInput)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 class MedicamentosSalidaForm(forms.ModelForm):
@@ -98,7 +98,7 @@ class TratamientosAnimalesForm(forms.ModelForm):
     
     id_tratamiento = TratamientosChoiceField(queryset=valid_tratamientos)
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all())
-    fecha_tratamiento_animal = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_tratamiento_animal = forms.DateField(widget = DatePickerInput)
     observaciones_animal = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 
@@ -123,7 +123,7 @@ class TratamientoLotesForm(forms.ModelForm):
     
     id_tratamiento = TratamientosChoiceField(queryset=valid_tratamientos)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
-    fecha_aplicacion_lote = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_aplicacion_lote = forms.DateField(widget = DatePickerInput)
     dosis_lote = forms.IntegerField()
     observaciones_lote = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 

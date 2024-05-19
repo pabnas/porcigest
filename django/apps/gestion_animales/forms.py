@@ -4,6 +4,8 @@ from django.forms import ModelChoiceField
 from models import Areas, Corrales, InventarioAnimales, LotesLechones, Movimientos, OrigenExterno, OrigenInterno, VentaUnidad
 from models import RegistroInseminaciones, RegistroPartos, VentaLotes
 
+class DatePickerInput(forms.DateInput):
+        input_type = 'date'
 
 class InventarioAnimalesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
@@ -69,7 +71,7 @@ class RegistroInseminacionesForm(forms.ModelForm):
 
     id_madre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='F'))
     id_padre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='M'))
-    fecha_inseminacion = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_inseminacion = forms.DateField(widget = DatePickerInput)
     tipo_inseminacion = forms.ChoiceField(choices=TIPO_INSEMINACION)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False) 
 
@@ -91,7 +93,7 @@ class RegistroPartosForm(forms.ModelForm):
         super(RegistroPartosForm, self).__init__(*args, **kwargs)
     
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='F'))
-    fecha_parto = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_parto = forms.DateField(widget = DatePickerInput)
     nacidos_vivos = forms.IntegerField()
     nacidos_muertos = forms.IntegerField()
     vivos_48h = forms.IntegerField()
@@ -114,7 +116,7 @@ class LotesLechonesForm(forms.ModelForm):
     
     id_corral = CorralesChoiceField(queryset=Corrales.objects.all())
     cantidad_lechones = forms.IntegerField()
-    fecha_ingreso_lote = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_ingreso_lote = forms.DateField(widget = DatePickerInput)
     dias_precebo = forms.IntegerField()
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
@@ -135,7 +137,7 @@ class VentaLotesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(VentaLotesForm, self).__init__(*args, **kwargs)
     
-    fecha_venta = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_venta = forms.DateField(widget = DatePickerInput)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
     peso_promedio = forms.DecimalField(max_digits=5, decimal_places=2)
     precio_lote = forms.DecimalField(max_digits=10, decimal_places=2)
@@ -158,7 +160,7 @@ class MovimientosForm(forms.ModelForm):
         super(MovimientosForm, self).__init__(*args, **kwargs)
 
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all())
-    fecha = forms.DateField(widget = forms.SelectDateWidget)
+    fecha = forms.DateField(widget = DatePickerInput)
     area_origen = AreasChoiceField(queryset=Areas.objects.all())
     area_destino = AreasChoiceField(queryset=Areas.objects.all())
 
@@ -178,7 +180,7 @@ class OrigenInternoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(OrigenInternoForm, self).__init__(*args, **kwargs)
     
-    fecha_cambio_etapa = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_cambio_etapa = forms.DateField(widget = DatePickerInput)
     finalidad = forms.CharField(max_length=50)
     etapa_productiva_ingreso = forms.CharField(max_length=50)
     id_madre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='F'))
@@ -202,8 +204,8 @@ class OrigenExternoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(OrigenExternoForm, self).__init__(*args, **kwargs)
     
-    fecha_compra = forms.DateField(widget = forms.SelectDateWidget)
-    fecha_ingreso = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_compra = forms.DateField(widget = DatePickerInput)
+    fecha_ingreso = forms.DateField(widget = DatePickerInput)
     finalidad_compra = forms.CharField(max_length=50)
     etapa_productiva_ingreso = forms.CharField(max_length=50)
     vendedor = forms.CharField(max_length=50)
@@ -259,7 +261,7 @@ class VentaUnidadForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(VentaUnidadForm, self).__init__(*args, **kwargs)
     
-    fecha_venta = forms.DateField(widget = forms.SelectDateWidget)
+    fecha_venta = forms.DateField(widget = DatePickerInput)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all())
     peso = forms.DecimalField(max_digits=5, decimal_places=2)

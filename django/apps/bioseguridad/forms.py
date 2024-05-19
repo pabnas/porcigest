@@ -2,6 +2,12 @@ from django import forms
 from django.forms import ModelChoiceField
 from models import IngresoVehiculos
 
+class TimePickerInput(forms.TimeInput):
+        input_type = 'time'
+        
+class DatePickerInput(forms.DateInput):
+        input_type = 'date'
+
 
 class IngresoVehiculosForm(forms.ModelForm):
     class Meta:
@@ -22,8 +28,8 @@ class IngresoVehiculosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(IngresoVehiculosForm, self).__init__(*args, **kwargs)
     
-    fecha_ingreso = forms.DateField(widget = forms.SelectDateWidget)
-    hora_ingreso = forms.TimeField(widget = forms.TimeInput)
+    fecha_ingreso = forms.DateField(widget = DatePickerInput)
+    hora_ingreso = forms.TimeField(widget = TimePickerInput)
     placa_vehiculo = forms.CharField(max_length=20)
     nombre_conductor = forms.CharField(max_length=50)
     telefono_conductor = forms.CharField(max_length=20, required=False)
