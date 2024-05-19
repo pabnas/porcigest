@@ -138,8 +138,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-EMAIL_HOST = 'mail.smtp2go.com'
-EMAIL_HOST_USER = 'pabnas'
-EMAIL_HOST_PASSWORD = 'yQdskDBposXP'
-EMAIL_PORT = 2525
+# https://stackoverflow.com/questions/6367014/how-to-send-email-via-django
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'youremail@gmail.com'
+EMAIL_HOST_PASSWORD = 'email_password'
+EMAIL_PORT = 587
