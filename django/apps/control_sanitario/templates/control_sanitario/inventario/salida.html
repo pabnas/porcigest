@@ -17,8 +17,33 @@
                   {% include 'control_sanitario/inventario/nav_bar.html' %}
 
                   <!-- Content Row -->
-                  <div class="row">
+                  <div class="row bg-gray-300">
+                    <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-6 col-sm text-black h4">
+                            {{ form.nombre_medicamento.errors }}
+                            {{ form.nombre_medicamento.label_tag }} 
+                            {{ form.nombre_medicamento }}
+                          </div>
+                        </div>
 
+                        <div class="row">
+                          <div class="col-6 text-black h4">
+                            {{ form.stock.errors }}
+                            {{ form.stock.label_tag }}
+                            {{ form.stock }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                          </div>
+                        </div>
+                      </div>
+                      {% csrf_token %}
+                    </form>
                   </div>
 
                 </div>

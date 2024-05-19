@@ -3,6 +3,9 @@ from django.forms import ModelChoiceField
 from django.utils import timezone
 from django.db.models import Q
 
+import logging
+logger = logging.getLogger(__name__)
+
 from apps.gestion_animales.forms import InventarioAnimalesChoiceField, LotesLechonesChoiceField
 from models import InventarioAnimales, LotesLechones, Medicamentos, TratamientoLotes, Tratamientos, TratamientosAnimales
 
@@ -53,18 +56,26 @@ class MedicamentosSalidaForm(forms.ModelForm):
         model = Medicamentos
         fields =[
             'nombre_medicamento',
-            'laboratorio',
-            'presentacion',
             'stock',
         ]
         
     def __init__(self, *args, **kwargs):
         super(MedicamentosSalidaForm, self).__init__(*args, **kwargs)
+        
+    def clean(self):
+        cleaned_data = super().clean()
+        medicamento_obj = cleaned_data.get("nombre_medicamento")
+        stock = cleaned_data.get("stock")
+        
+        if medicamento_obj and stock:
+            if stock > medicamento_obj.stock:
+                self.add_error('stock', f"La cantidad disponible es insuficiente. Stock disponible: {medicamento_obj.stock}")
+        
+        return cleaned_data
     
-    nombre_medicamento = forms.CharField(max_length=50)
-    laboratorio = forms.CharField(max_length=50)
-    presentacion = forms.CharField(max_length=50)
-    stock = forms.IntegerField()
+    current_date = timezone.now().date()
+    nombre_medicamento = MedicamentosChoiceField(queryset=Medicamentos.objects.filter(fecha_vencimiento__gte=current_date))
+    stock = forms.IntegerField(label='Cantidad')
 
 
 class TratamientosAnimalesForm(forms.ModelForm):
@@ -131,6 +142,7 @@ class TratamientosForm(forms.ModelForm):
         super(TratamientosForm, self).__init__(*args, **kwargs)
     
     current_date = timezone.now().date()
+    
     tipo_tratamiento = forms.CharField(max_length=50)
     detalle_tratamiento = forms.CharField(max_length=255)
     id_medicamento = MedicamentosChoiceField(queryset=Medicamentos.objects.filter(fecha_vencimiento__gte=current_date))
