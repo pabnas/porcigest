@@ -3,11 +3,13 @@
 
 <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <a class="sidebar-brand flex-column align-items-center justify-content-center" href="#">
+    <a class="sidebar-brand flex-column align-items-center justify-content-center text-white">
         <div class="sidebar-brand-icon">
             <i class="fas fa-user-circle"></i>
         </div>
-        <div class="sidebar-brand-text">User</div>
+        <div class="sidebar-brand-text">
+            {{ user.first_name|default:user.username }} {{ user.last_name|default:'' }}
+        </div>
     </a>
 
     <div class="flex-grow-1">
