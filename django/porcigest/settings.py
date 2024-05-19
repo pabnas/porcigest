@@ -138,10 +138,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# https://stackoverflow.com/questions/6367014/how-to-send-email-via-django
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'youremail@gmail.com'
-EMAIL_HOST_PASSWORD = 'email_password'
-EMAIL_PORT = 587
+# https://app.sendgrid.com/guide?from=profile&integrate=true
+# https://mc.sendgrid.com/dynamic-templates
+SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+SENDGRID_TEMPLATE_CONTACT_ID = config('SENDGRID_TEMPLATE_CONTACT_ID')
