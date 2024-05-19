@@ -2,8 +2,6 @@
   {% include '_head.html' %}
   {% load static %}
   <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
   <body>
     <div id="wrapper">
         {% include '_sidebar.html' %}
@@ -14,22 +12,92 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'gestion_animales/movimientos/nav_bar.html' %}
 
-                  <!-- Content Row -->
-                  <div class="row">
-                    
-                  </div>
+                    {% include 'gestion_animales/movimientos/nav_bar.html' %}
 
+                    <!-- Content Row -->
+                    <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table">
+                              <thead>
+                                <tr>
+                                  <th class="centered">Id movimiento</th>
+                                  <th class="centered">Id animal</th>
+                                  <th class="centered">Fecha movimiento</th>
+                                  <th class="centered">Id area de origen</th>
+                                  <th class="centered">Id area destino</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody_movimientos"></tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
                 </div>
 
                 {% include '_footer.html' %}
             </div>
-            
+
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+
+    <script>
+    let dataTable;
+    let dataTableIsInitialized = false;
+
+    const dataTableOptions = {
+        columnDefs: [
+          {className: "centered", targets: "_all"},
+          {orderable: false, targets: [0] },
+          {searchable: false, targets: [0] }
+        ],
+        pageLength: 10,
+        destroy: true,
+        order: [[3, 'asc']],
+    };
+
+    const initDataTable = async()=>{
+        if(dataTableIsInitialized){
+            dataTable.destroy();
+        }
+        await listmovimientoss();
+
+    dataTable=$('#dataTable').DataTable(dataTableOptions);
+    dataTableIsInitialized = true;
+    };
+
+    const listmovimientoss=async()=>{
+        try{
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const response=await fetch(`http://${hostname}:${port}/gestion_animales/movimientos/list_movimientos`);
+            const data=await response.json();
+            console.log(data);
+            let content = ``;
+            data.movimientos.forEach((movimientos, index) => {
+                content += `
+                <tr>
+                    <td>${movimientos.id_movimiento}</td>
+                    <td>${movimientos.id_animal_id}</td>
+                    <td>${movimientos.fecha}</td>
+                    <td>${movimientos.area_origen_id}</td>
+                    <td>${movimientos.area_destino_id}</td>
+                </tr>
+                `;
+            });
+            tableBody_movimientos.innerHTML = content;
+        } catch(ex) {
+          alert(ex);
+        }
+    };
+
+    window.addEventListener('load',async()=>{
+        await initDataTable();
+    });
+    </script>
   </body>
 </html>
+

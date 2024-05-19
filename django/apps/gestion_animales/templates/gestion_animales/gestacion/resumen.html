@@ -2,9 +2,6 @@
   {% include '_head.html' %}
   {% load static %}
   <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css">
   <body>
     <div id="wrapper">
         {% include '_sidebar.html' %}
@@ -23,15 +20,15 @@
                       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div class="table-responsive">
                             <table id="dataTable" class="table">
-                              <caption>Resumen de la gestación</caption>
                               <thead>
                                 <tr>
                                   <th class="centered">Id</th>
                                   <th class="centered">Fecha de Inseminación</th>
+                                  <th class="centered">Fecha de parto estimada</th>
                                   <th class="centered">Id Padre</th>
+                                  <th class="centered">Id Madre</th>
                                   <th class="centered">Tipo inseminacion</th>
                                   <th class="centered">Observaciones</th>
-                                  <th class="centered">Fecha de parto estimada</th>
                                 </tr>
                               </thead>
                               <tbody id="tableBody_gestacion"></tbody>
@@ -49,18 +46,62 @@
 
     </div>
 
-    <style>
-      .centered {
-        text-align: center !important;
-        vertical-align: middle !important;
-      }
-    </style>
     <script>
-      
+    let dataTable;
+    let dataTableIsInitialized = false;
+
+    const dataTableOptions = {
+        columnDefs: [
+          {className: "centered", targets: "_all"},
+          {orderable: false, targets: [0] },
+          {searchable: false, targets: [0] }
+        ],
+        pageLength: 10,
+        destroy: true,
+        order: [[3, 'asc']],
+    };
+
+    const initDataTable = async()=>{
+        if(dataTableIsInitialized){
+            dataTable.destroy();
+        }
+        await listgestacions();
+
+    dataTable=$('#dataTable').DataTable(dataTableOptions);
+    dataTableIsInitialized = true;
+    };
+
+    const listgestacions=async()=>{
+        try{
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const response=await fetch(`http://${hostname}:${port}/gestion_animales/gestacion/list_gestacion`);
+            const data=await response.json();
+            console.log(data);
+            let content = ``;
+            data.gestacion.forEach((gestacion, index) => {
+                content += `
+                <tr>
+                    <td>${gestacion.id_inseminacion}</td>
+                    <td>${gestacion.fecha_inseminacion}</td>
+                    <td>${gestacion.fecha_parto_estimada}</td>
+                    <td>${gestacion.id_padre_id}</td>
+                    <td>${gestacion.id_madre_id}</td>
+                    <td>${gestacion.tipo_inseminacion}</td>
+                    <td>${gestacion.observaciones}</td>
+                </tr>
+                `;
+            });
+            tableBody_gestacion.innerHTML = content;
+        } catch(ex) {
+          alert(ex);
+        }
+    };
+
+    window.addEventListener('load',async()=>{
+        await initDataTable();
+    });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
   </body>
 </html>
 

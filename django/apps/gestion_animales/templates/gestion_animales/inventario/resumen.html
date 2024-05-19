@@ -2,8 +2,6 @@
   {% include '_head.html' %}
   {% load static %}
   <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
   <body>
     <div id="wrapper">
         {% include '_sidebar.html' %}
@@ -14,13 +12,31 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'gestion_animales/inventario/nav_bar.html' %}
 
-                  <!-- Content Row -->
-                  <div class="row">
+                    {% include 'gestion_animales/inventario/nav_bar.html' %}
 
-                  </div>
-
+                    <!-- Content Row -->
+                    <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table">
+                              <thead>
+                                <tr>
+                                  <th class="centered">Id animal</th>
+                                  <th class="centered">Id corral</th>
+                                  <th class="centered">Raza</th>
+                                  <th class="centered">Sexo</th>
+                                  <th class="centered">Edad</th>
+                                  <th class="centered">Peso</th>
+                                  <th class="centered">Estado productivo</th>
+                                  <th class="centered">Origen</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody_inventario"></tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
                 </div>
 
                 {% include '_footer.html' %}
@@ -30,6 +46,64 @@
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+
+    <script>
+    let dataTable;
+    let dataTableIsInitialized = false;
+
+    const dataTableOptions = {
+        columnDefs: [
+          {className: "centered", targets: "_all"},
+          {orderable: false, targets: [0] },
+          {searchable: false, targets: [0] }
+        ],
+        pageLength: 10,
+        destroy: true,
+        order: [[3, 'asc']],
+    };
+
+    const initDataTable = async()=>{
+        if(dataTableIsInitialized){
+            dataTable.destroy();
+        }
+        await listinventarios();
+
+    dataTable=$('#dataTable').DataTable(dataTableOptions);
+    dataTableIsInitialized = true;
+    };
+
+    const listinventarios=async()=>{
+        try{
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const response=await fetch(`http://${hostname}:${port}/gestion_animales/inventario/list_inventario`);
+            const data=await response.json();
+            console.log(data);
+            let content = ``;
+            data.inventario.forEach((inventario, index) => {
+                content += `
+                <tr>
+                    <td>${inventario.id_animal}</td>
+                    <td>${inventario.id_corral_id}</td>
+                    <td>${inventario.raza}</td>
+                    <td>${inventario.sexo}</td>
+                    <td>${inventario.edad}</td>
+                    <td>${inventario.peso}</td>
+                    <td>${inventario.estado_productivo}</td>
+                    <td>${inventario.origen}</td>
+                </tr>
+                `;
+            });
+            tableBody_inventario.innerHTML = content;
+        } catch(ex) {
+          alert(ex);
+        }
+    };
+
+    window.addEventListener('load',async()=>{
+        await initDataTable();
+    });
+    </script>
   </body>
 </html>
+

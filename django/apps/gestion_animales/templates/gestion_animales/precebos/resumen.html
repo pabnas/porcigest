@@ -2,8 +2,6 @@
   {% include '_head.html' %}
   {% load static %}
   <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
   <body>
     <div id="wrapper">
         {% include '_sidebar.html' %}
@@ -14,22 +12,94 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'gestion_animales/precebos/nav_bar.html' %}
 
-                  <!-- Content Row -->
-                  <div class="row">
-                    
-                  </div>
+                    {% include 'gestion_animales/precebos/nav_bar.html' %}
 
+                    <!-- Content Row -->
+                    <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table">
+                              <thead>
+                                <tr>
+                                  <th class="centered">Id lote</th>
+                                  <th class="centered">Id corral</th>
+                                  <th class="centered">Cantidad lechones</th>
+                                  <th class="centered">Fecha ingreso lote</th>
+                                  <th class="centered">Dias precebo</th>
+                                  <th class="centered">Observaciones</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody_lotes_lechones"></tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
                 </div>
 
                 {% include '_footer.html' %}
             </div>
-            
+
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+
+    <script>
+    let dataTable;
+    let dataTableIsInitialized = false;
+
+    const dataTableOptions = {
+        columnDefs: [
+          {className: "centered", targets: "_all"},
+          {orderable: false, targets: [0] },
+          {searchable: false, targets: [0] }
+        ],
+        pageLength: 10,
+        destroy: true,
+        order: [[3, 'asc']],
+    };
+
+    const initDataTable = async()=>{
+        if(dataTableIsInitialized){
+            dataTable.destroy();
+        }
+        await listlotes_lechoness();
+
+    dataTable=$('#dataTable').DataTable(dataTableOptions);
+    dataTableIsInitialized = true;
+    };
+
+    const listlotes_lechoness=async()=>{
+        try{
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const response=await fetch(`http://${hostname}:${port}/gestion_animales/precebos/list_lotes_lechones`);
+            const data=await response.json();
+            console.log(data);
+            let content = ``;
+            data.lotes_lechones.forEach((lotes_lechones, index) => {
+                content += `
+                <tr>
+                    <td>${lotes_lechones.id_lote}</td>
+                    <td>${lotes_lechones.id_corral_id}</td>
+                    <td>${lotes_lechones.cantidad_lechones}</td>
+                    <td>${lotes_lechones.fecha_ingreso_lote}</td>
+                    <td>${lotes_lechones.dias_precebo}</td>
+                    <td>${lotes_lechones.observaciones}</td>
+                </tr>
+                `;
+            });
+            tableBody_lotes_lechones.innerHTML = content;
+        } catch(ex) {
+          alert(ex);
+        }
+    };
+
+    window.addEventListener('load',async()=>{
+        await initDataTable();
+    });
+    </script>
   </body>
 </html>
+
