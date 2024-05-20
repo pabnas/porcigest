@@ -8,6 +8,8 @@ from models import TratamientosAnimales
 
 from apps.control_sanitario.forms import MedicamentosForm, MedicamentosSalidaForm, TratamientoLotesForm, TratamientosAnimalesForm, TratamientosForm
 
+from apps.control_sanitario.forms import MedicamentosForm, MedicamentosSalidaForm, TratamientoLotesForm, TratamientosAnimalesForm, TratamientosForm
+
 # index
 @login_required(login_url='/login', redirect_field_name=None)
 def index(request):

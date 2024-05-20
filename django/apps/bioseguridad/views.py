@@ -6,6 +6,8 @@ from models import IngresoVehiculos
 
 from apps.bioseguridad.forms import IngresoVehiculosForm
 
+from apps.bioseguridad.forms import IngresoVehiculosForm
+
 # index
 @login_required(login_url='/login', redirect_field_name=None)
 def index(request):
