@@ -171,7 +171,6 @@ class RegistroInseminaciones(models.Model):
         managed = False
         db_table = 'registro_inseminaciones'
 
-
 class RegistroPartos(models.Model):
     id_parto = models.AutoField(primary_key=True)
     id_animal = models.ForeignKey(InventarioAnimales, models.DO_NOTHING, db_column='id_animal')
