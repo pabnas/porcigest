@@ -12,36 +12,35 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'control_sanitario/tratamientos/nav_bar.html' %}
+                  {% include 'gestion_animales/precebos/nav_bar.html' %}
 
                   <!-- Content Row -->
-                  
                   <div class="row bg-gray-300">
                     <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
                       <div class="container">
                         <div class="row">
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.tipo_tratamiento.errors }}
-                            {{ form.tipo_tratamiento.label_tag }} 
-                            {{ form.tipo_tratamiento }}
+                            {{ form.id_corral.errors }}
+                            {{ form.id_corral.label_tag }} 
+                            {{ form.id_corral }}
                           </div>
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.detalle_tratamiento.errors }}
-                            {{ form.detalle_tratamiento.label_tag }}
-                            {{ form.detalle_tratamiento }}
+                            {{ form.cantidad_lechones.errors }}
+                            {{ form.cantidad_lechones.label_tag }}
+                            {{ form.cantidad_lechones }}
                           </div>
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.id_medicamento.errors }}
-                            {{ form.id_medicamento.label_tag }}
-                            {{ form.id_medicamento }}
+                            {{ form.fecha_ingreso_lote.errors }}
+                            {{ form.fecha_ingreso_lote.label_tag }}
+                            {{ form.fecha_ingreso_lote }}
                           </div>
                         </div>
 
                         <div class="row">
                           <div class="col-6 text-black h4">
-                            {{ form.dosis.errors }}
-                            {{ form.dosis.label_tag }}
-                            {{ form.dosis }}
+                            {{ form.dias_precebo.errors }}
+                            {{ form.dias_precebo.label_tag }}
+                            {{ form.dias_precebo }}
                           </div>
                           <div class="col-6 text-black h4">
                             {{ form.observaciones.errors }}
@@ -64,7 +63,7 @@
 
                 {% include '_footer.html' %}
             </div>
-
+            
         </div>
         <!-- End of Content Wrapper -->
 

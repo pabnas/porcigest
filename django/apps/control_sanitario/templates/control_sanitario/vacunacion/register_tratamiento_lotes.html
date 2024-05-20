@@ -12,41 +12,40 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'control_sanitario/tratamientos/nav_bar.html' %}
+                  {% include 'control_sanitario/vacunacion/nav_bar.html' %}
 
                   <!-- Content Row -->
-                  
                   <div class="row bg-gray-300">
                     <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
                       <div class="container">
                         <div class="row">
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.tipo_tratamiento.errors }}
-                            {{ form.tipo_tratamiento.label_tag }} 
-                            {{ form.tipo_tratamiento }}
+                            {{ form.id_tratamiento.errors }}
+                            {{ form.id_tratamiento.label_tag }} 
+                            {{ form.id_tratamiento }}
                           </div>
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.detalle_tratamiento.errors }}
-                            {{ form.detalle_tratamiento.label_tag }}
-                            {{ form.detalle_tratamiento }}
+                            {{ form.id_lote.errors }}
+                            {{ form.id_lote.label_tag }}
+                            {{ form.id_lote }}
                           </div>
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.id_medicamento.errors }}
-                            {{ form.id_medicamento.label_tag }}
-                            {{ form.id_medicamento }}
+                            {{ form.fecha_aplicacion_lote.errors }}
+                            {{ form.fecha_aplicacion_lote.label_tag }}
+                            {{ form.fecha_aplicacion_lote }}
                           </div>
                         </div>
 
                         <div class="row">
                           <div class="col-6 text-black h4">
-                            {{ form.dosis.errors }}
-                            {{ form.dosis.label_tag }}
-                            {{ form.dosis }}
+                            {{ form.dosis_lote.errors }}
+                            {{ form.dosis_lote.label_tag }}
+                            {{ form.dosis_lote }}
                           </div>
                           <div class="col-6 text-black h4">
-                            {{ form.observaciones.errors }}
-                            {{ form.observaciones.label_tag }}
-                            {{ form.observaciones }}
+                            {{ form.observaciones_lote.errors }}
+                            {{ form.observaciones_lote.label_tag }}
+                            {{ form.observaciones_lote }}
                           </div>
                         </div>
 

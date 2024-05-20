@@ -53,24 +53,31 @@
             </form>
         </div>
         
-        <div class="modal fade" id="mensaje_enviado_modal" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title mx-auto">Mensaje enviado</h5>
-              </div>
-              <div class="modal-body">
-                <p class="text-center text-primary my-auto">Pronto el administrador se pondrá en contacto con usted</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-primary mx-auto">OK</button>
+        {% if msg != '' %}
+          <div class="modal fade show" id="mensaje_enviado_modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                  <h5 class="modal-title mx-auto">Mensaje enviado</h5>
+                </div>
+                <div class="modal-body">
+                  <p class="text-center text-primary my-auto">{{ msg }}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" data-dismiss="modal" class="btn btn-primary mx-auto">OK</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          <script>
+            $(document).ready(function(){
+              if ("{{ msg }}" !== '') {
+                  $('#mensaje_enviado_modal').modal('show');
+              }
+          });
+          </script>
+        {% endif %}
     </div>
-    
-
     {% include '_footer.html' %}
   </body>
 </html>

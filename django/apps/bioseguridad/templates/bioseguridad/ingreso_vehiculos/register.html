@@ -12,7 +12,7 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'control_sanitario/inventario/nav_bar.html' %}
+                  {% include 'bioseguridad/ingreso_vehiculos/nav_bar.html' %}
 
                   <!-- Content Row -->
                   
@@ -21,65 +21,60 @@
                       <div class="container">
                         <div class="row">
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.nombre_medicamento.errors }}
-                            {{ form.nombre_medicamento.label_tag }} 
-                            {{ form.nombre_medicamento }}
+                            {{ form.fecha_ingreso.errors }}
+                            {{ form.fecha_ingreso.label_tag }} 
+                            {{ form.fecha_ingreso }}
                           </div>
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.principio_activo.errors }}
-                            {{ form.principio_activo.label_tag }}
-                            {{ form.principio_activo }}
+                            {{ form.hora_ingreso.errors }}
+                            {{ form.hora_ingreso.label_tag }}
+                            {{ form.hora_ingreso }}
                           </div>
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.laboratorio.errors }}
-                            {{ form.laboratorio.label_tag }}
-                            {{ form.laboratorio }}
+                            {{ form.placa_vehiculo.errors }}
+                            {{ form.placa_vehiculo.label_tag }}
+                            {{ form.placa_vehiculo }}
                           </div>
                         </div>
 
                         <div class="row">
                           <div class="col-4 text-black h4">
-                            {{ form.presentacion.errors }}
-                            {{ form.presentacion.label_tag }}
-                            {{ form.presentacion }}
+                            {{ form.nombre_conductor.errors }}
+                            {{ form.nombre_conductor.label_tag }}
+                            {{ form.nombre_conductor }}
                           </div>
                           <div class="col-4 text-black h4">
-                            {{ form.fecha_vencimiento.errors }}
-                            {{ form.fecha_vencimiento.label_tag }}
-                            {{ form.fecha_vencimiento }}
+                            {{ form.telefono_conductor.errors }}
+                            {{ form.telefono_conductor.label_tag }}
+                            {{ form.telefono_conductor }}
                           </div>
                           <div class="col-4 text-black h4">
-                            {{ form.stock.errors }}
-                            {{ form.stock.label_tag }}
-                            {{ form.stock }}
+                            {{ form.empresa_transportista.errors }}
+                            {{ form.empresa_transportista.label_tag }}
+                            {{ form.empresa_transportista }}
                           </div>
                         </div>
 
                         <div class="row">
                           <div class="col-4 text-black h4">
-                            {{ form.lote_medicamento.errors }}
-                            {{ form.lote_medicamento.label_tag }}
-                            {{ form.lote_medicamento }}
+                            {{ form.tipo_vehiculo.errors }}
+                            {{ form.tipo_vehiculo.label_tag }}
+                            {{ form.tipo_vehiculo }}
                           </div>
                           <div class="col-4 text-black h4">
-                            {{ form.vendedor_medicamento.errors }}
-                            {{ form.vendedor_medicamento.label_tag }}
-                            {{ form.vendedor_medicamento }}
+                            {{ form.motivo_ingreso.errors }}
+                            {{ form.motivo_ingreso.label_tag }}
+                            {{ form.motivo_ingreso }}
                           </div>
                           <div class="col-4 text-black h4">
-                            {{ form.precio_unidad.errors }}
-                            {{ form.precio_unidad.label_tag }}
-                            {{ form.precio_unidad }}
+                            {{ form.ultimo_predio_visitado.errors }}
+                            {{ form.ultimo_predio_visitado.label_tag }}
+                            {{ form.ultimo_predio_visitado }}
                           </div>
                         </div>
 
                         <div class="row">
-                          <div class="col-6 text-black h4">
-                            {{ form.fecha_compra.errors }}
-                            {{ form.fecha_compra.label_tag }}
-                            {{ form.fecha_compra }}
-                          </div>
-                          <div class="col-6 text-black h4">
+                          <div class="col-12 text-black h4">
                             {{ form.observaciones.errors }}
                             {{ form.observaciones.label_tag }}
                             {{ form.observaciones }}

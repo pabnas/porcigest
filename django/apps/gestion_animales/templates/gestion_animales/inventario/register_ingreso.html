@@ -1,0 +1,225 @@
+<html lang="en">
+  {% include '_head.html' %}
+  {% load static %}
+  <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
+  <body>
+    <div id="wrapper">
+        {% include '_sidebar.html' %}
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                {% include '_topbar.html' %}
+
+                <div class="container-fluid mt-5">
+                  {% include 'gestion_animales/inventario/nav_bar.html' %}
+
+                  <!-- Content Row -->
+                  <div class="row bg-gray-300">
+                    <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-3 col-sm text-black h4">
+                            {{ form.id_corral.errors }}
+                            {{ form.id_corral.label_tag }} 
+                            {{ form.id_corral }}
+                          </div>
+                          <div class="col-3 col-sm text-black h4">
+                            {{ form.raza.errors }}
+                            {{ form.raza.label_tag }}
+                            {{ form.raza }}
+                          </div>
+                          <div class="col-3 col-sm text-black h4">
+                            {{ form.sexo.errors }}
+                            {{ form.sexo.label_tag }}
+                            {{ form.sexo }}
+                          </div>
+                          <div class="col-3 col-sm text-black h4">
+                            {{ form.edad.errors }}
+                            {{ form.edad.label_tag }}
+                            {{ form.edad }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-6 text-black h4">
+                            {{ form.peso.errors }}
+                            {{ form.peso.label_tag }}
+                            {{ form.peso }}
+                          </div>
+                          <div class="col-6 text-black h4">
+                            {{ form.estado_productivo.errors }}
+                            {{ form.estado_productivo.label_tag }}
+                            {{ form.estado_productivo }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-12 text-black h4">
+                            {{ form.origen.errors }}
+                            {{ form.origen.label_tag }}
+                            {{ form.origen }}
+                          </div>
+                        </div>
+
+                        <div id="form_origen_externo" class="row my-5">
+                          <div class="col-12">
+                            <div class="row">
+                              <h2 class="text-black">Origen Externo</h2>
+                            </div>
+                          </div>
+
+                          <div class="col-12">
+                            <div class="row">
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_externo.fecha_compra.errors }}
+                                {{ form.origen_externo.fecha_compra.label_tag }}
+                                {{ form.origen_externo.fecha_compra }}
+                              </div>
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_externo.fecha_ingreso.errors }}
+                                {{ form.origen_externo.fecha_ingreso.label_tag }}
+                                {{ form.origen_externo.fecha_ingreso }}
+                              </div>
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_externo.finalidad_compra.errors }}
+                                {{ form.origen_externo.finalidad_compra.label_tag }}
+                                {{ form.origen_externo.finalidad_compra }}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_externo.etapa_productiva_ingreso.errors }}
+                                {{ form.origen_externo.etapa_productiva_ingreso.label_tag }}
+                                {{ form.origen_externo.etapa_productiva_ingreso }}
+                              </div>
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_externo.vendedor.errors }}
+                                {{ form.origen_externo.vendedor.label_tag }}
+                                {{ form.origen_externo.vendedor }}
+                              </div>
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_externo.peso_compra.errors }}
+                                {{ form.origen_externo.peso_compra.label_tag }}
+                                {{ form.origen_externo.peso_compra }}
+                              </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <div id="form_origen_interno" class="row my-5">
+                          <div class="col-12">
+                            <div class="row">
+                              <h2 class="text-black">Origen Interno</h2>
+                            </div>
+                          </div>
+
+                          <div class="col-12">
+                            <div class="row">
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_interno.id_madre.errors }}
+                                {{ form.origen_interno.id_madre.label_tag }}
+                                {{ form.origen_interno.id_madre }}
+                              </div>
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_interno.id_padre.errors }}
+                                {{ form.origen_interno.id_padre.label_tag }}
+                                {{ form.origen_interno.id_padre }}
+                              </div>
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_interno.fecha_cambio_etapa.errors }}
+                                {{ form.origen_interno.fecha_cambio_etapa.label_tag }}
+                                {{ form.origen_interno.fecha_cambio_etapa }}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_interno.etapa_productiva_ingreso.errors }}
+                                {{ form.origen_interno.etapa_productiva_ingreso.label_tag }}
+                                {{ form.origen_interno.etapa_productiva_ingreso }}
+                              </div>
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_interno.finalidad.errors }}
+                                {{ form.origen_interno.finalidad.label_tag }}
+                                {{ form.origen_interno.finalidad }}
+                              </div>
+                              <div class="col-4 text-black h4">
+                                {{ form.origen_interno.observaciones.errors }}
+                                {{ form.origen_interno.observaciones.label_tag }}
+                                {{ form.origen_interno.observaciones }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                          </div>
+                        </div>
+                      </div>
+                      {% csrf_token %}
+                    </form>
+                  </div>
+
+                </div>
+
+                {% include '_footer.html' %}
+            </div>
+            
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+  </body>
+
+  <script>
+    function enable_form(selector, state=false) {
+      var form = document.querySelector(selector);
+      var inputs = form.getElementsByTagName('input');
+      for (var i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = !state;
+      }
+  
+      var selects = form.getElementsByTagName('select');
+      for (var i = 0; i < selects.length; i++) {
+          selects[i].disabled = !state;
+      }
+  
+      var textareas = form.getElementsByTagName('textarea');
+      for (var i = 0; i < textareas.length; i++) {
+          textareas[i].disabled = !state;
+      }
+    }
+
+    $('#id_origen').change(function(){
+        if($(this).val() == 'E'){
+          enable_form('#form_origen_externo', true);
+          enable_form('#form_origen_interno');
+          $('#form_origen_externo').show();
+          $('#form_origen_interno').hide();
+        }
+        else if($(this).val() == 'I'){
+          enable_form('#form_origen_externo');
+          enable_form('#form_origen_interno', true);
+          $('#form_origen_externo').hide();
+          $('#form_origen_interno').show();
+        }
+        else{
+          enable_form('#form_origen_externo');
+          enable_form('#form_origen_interno');
+          $('#form_origen_externo').hide();
+          $('#form_origen_interno').hide();
+        }
+    })
+
+    $(document).ready(function(){
+        enable_form('#form_origen_externo');
+        enable_form('#form_origen_interno');
+        $('#form_origen_externo').hide();
+        $('#form_origen_interno').hide();
+    })
+  </script>
+
+</html>

@@ -2,8 +2,6 @@
   {% include '_head.html' %}
   {% load static %}
   <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
   <body>
     <div id="wrapper">
         {% include '_sidebar.html' %}
@@ -17,8 +15,43 @@
                   {% include 'gestion_animales/movimientos/nav_bar.html' %}
 
                   <!-- Content Row -->
-                  <div class="row">
-                    
+                  <div class="row bg-gray-300">
+                    <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-6 col-sm text-black h4">
+                            {{ form.id_animal.errors }}
+                            {{ form.id_animal.label_tag }} 
+                            {{ form.id_animal }}
+                          </div>
+                          <div class="col-6 col-sm text-black h4">
+                            {{ form.fecha.errors }}
+                            {{ form.fecha.label_tag }}
+                            {{ form.fecha }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-6 text-black h4">
+                            {{ form.area_origen.errors }}
+                            {{ form.area_origen.label_tag }}
+                            {{ form.area_origen }}
+                          </div>
+                          <div class="col-6 text-black h4">
+                            {{ form.area_destino.errors }}
+                            {{ form.area_destino.label_tag }}
+                            {{ form.area_destino }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                          </div>
+                        </div>
+                      </div>
+                      {% csrf_token %}
+                    </form>
                   </div>
 
                 </div>

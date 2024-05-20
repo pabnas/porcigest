@@ -12,44 +12,55 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'control_sanitario/tratamientos/nav_bar.html' %}
+                  {% include 'gestion_animales/precebos/nav_bar.html' %}
 
                   <!-- Content Row -->
-                  
                   <div class="row bg-gray-300">
                     <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
                       <div class="container">
                         <div class="row">
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.tipo_tratamiento.errors }}
-                            {{ form.tipo_tratamiento.label_tag }} 
-                            {{ form.tipo_tratamiento }}
+                            {{ form.id_lote.errors }}
+                            {{ form.id_lote.label_tag }} 
+                            {{ form.id_lote }}
                           </div>
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.detalle_tratamiento.errors }}
-                            {{ form.detalle_tratamiento.label_tag }}
-                            {{ form.detalle_tratamiento }}
+                            {{ form.fecha_venta.errors }}
+                            {{ form.fecha_venta.label_tag }}
+                            {{ form.fecha_venta }}
                           </div>
                           <div class="col-4 col-sm text-black h4">
-                            {{ form.id_medicamento.errors }}
-                            {{ form.id_medicamento.label_tag }}
-                            {{ form.id_medicamento }}
+                            {{ form.peso_promedio.errors }}
+                            {{ form.peso_promedio.label_tag }}
+                            {{ form.peso_promedio }}
                           </div>
                         </div>
 
                         <div class="row">
-                          <div class="col-6 text-black h4">
-                            {{ form.dosis.errors }}
-                            {{ form.dosis.label_tag }}
-                            {{ form.dosis }}
+                          <div class="col-4 text-black h4">
+                            {{ form.precio_lote.errors }}
+                            {{ form.precio_lote.label_tag }}
+                            {{ form.precio_lote }}
                           </div>
-                          <div class="col-6 text-black h4">
+                          <div class="col-4 text-black h4">
+                            {{ form.destino.errors }}
+                            {{ form.destino.label_tag }}
+                            {{ form.destino }}
+                          </div>
+                          <div class="col-4 text-black h4">
+                            {{ form.comprador.errors }}
+                            {{ form.comprador.label_tag }}
+                            {{ form.comprador }}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-12 text-black h4">
                             {{ form.observaciones.errors }}
                             {{ form.observaciones.label_tag }}
                             {{ form.observaciones }}
                           </div>
                         </div>
-
                         <div class="row">
                           <div class="col">
                             <button type="submit" class="btn btn-primary">Registrar</button>
@@ -64,7 +75,7 @@
 
                 {% include '_footer.html' %}
             </div>
-
+            
         </div>
         <!-- End of Content Wrapper -->
 

@@ -3,11 +3,13 @@
 
 <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <a class="sidebar-brand flex-column align-items-center justify-content-center" href="#">
+    <a class="sidebar-brand flex-column align-items-center justify-content-center text-white">
         <div class="sidebar-brand-icon">
             <i class="fas fa-user-circle"></i>
         </div>
-        <div class="sidebar-brand-text">User</div>
+        <div class="sidebar-brand-text">
+            {{ user.first_name|default:user.username }} {{ user.last_name|default:'' }}
+        </div>
     </a>
 
     <div class="flex-grow-1">
@@ -30,7 +32,6 @@
                     <a class="collapse-item" href="{% url 'gestion_animales:precebos' %}">Precebos</a>
                     <a class="collapse-item" href="{% url 'gestion_animales:movimientos' %}">Movimientos</a>
                     <a class="collapse-item" href="{% url 'gestion_animales:inventario' %}">Inventario</a>
-                    <a class="collapse-item" href="{% url 'gestion_animales:ficha_cerdos' %}">Ficha cerdos</a>
                 </div>
             </div>
         </li>
@@ -58,7 +59,7 @@
             </a>
             <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{% url 'bioseguridad:ingreso_personas' %}">Ingreso de Personas</a>
+                    <a class="collapse-item" href="{% url 'bioseguridad:ingreso_vehiculos' %}">Ingreso de Vehiculos</a>
                 </div>
             </div>
         </li>
