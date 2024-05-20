@@ -19,10 +19,11 @@ class Areas(models.Model):
 
 
 class Corrales(models.Model):
-    num_corral = models.IntegerField(primary_key=True)
+    corral_id = models.AutoField(primary_key=True)
+    num_corral = models.IntegerField()
     id_area = models.ForeignKey(Areas, models.DO_NOTHING, db_column='id_area', blank=True, null=True)
     aforo = models.IntegerField()
-    cantidad_dentro = models.IntegerField()
+    estado = models.CharField(max_length=15)
 
     class Meta:
         app_label = 'gestion_animales'
@@ -36,11 +37,12 @@ class IngresoVehiculos(models.Model):
     hora_ingreso = models.TimeField()
     placa_vehiculo = models.CharField(unique=True, max_length=20)
     nombre_conductor = models.CharField(max_length=50)
+    nombres_acompanantes = models.CharField(max_length=255, blank=True, null=True)
     telefono_conductor = models.CharField(max_length=20, blank=True, null=True)
-    empresa_transportista = models.CharField(max_length=50)
+    empresa_transportista = models.CharField(max_length=100, blank=True, null=True)
     tipo_vehiculo = models.CharField(max_length=50)
     motivo_ingreso = models.CharField(max_length=255)
-    ultimo_predio_visitado = models.CharField(max_length=50, blank=True, null=True)
+    ultimo_predio_visitado = models.CharField(max_length=100, blank=True, null=True)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -51,6 +53,7 @@ class IngresoVehiculos(models.Model):
 
 class InventarioAnimales(models.Model):
     id_animal = models.AutoField(primary_key=True)
+    numero_identificacion_animal = models.CharField(max_length=50)
     id_corral = models.ForeignKey(Corrales, models.DO_NOTHING, db_column='id_corral')
     raza = models.CharField(max_length=50)
     sexo = models.CharField(max_length=1)
@@ -70,7 +73,6 @@ class LotesLechones(models.Model):
     id_corral = models.ForeignKey(Corrales, models.DO_NOTHING, db_column='id_corral')
     cantidad_lechones = models.IntegerField()
     fecha_ingreso_lote = models.DateField()
-    dias_precebo = models.IntegerField(blank=True, null=True)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -81,14 +83,14 @@ class LotesLechones(models.Model):
 
 class Medicamentos(models.Model):
     id_medicamento = models.AutoField(primary_key=True)
-    nombre_medicamento = models.CharField(max_length=50)
-    principio_activo = models.CharField(max_length=50)
-    laboratorio = models.CharField(max_length=50)
-    presentacion = models.CharField(max_length=50)
+    nombre_medicamento = models.CharField(max_length=100)
+    principio_activo = models.CharField(max_length=100)
+    laboratorio = models.CharField(max_length=100)
+    presentacion = models.CharField(max_length=200)
     fecha_vencimiento = models.DateField()
     stock = models.IntegerField()
     lote_medicamento = models.CharField(max_length=50, blank=True, null=True)
-    vendedor_medicamento = models.CharField(max_length=50, blank=True, null=True)
+    vendedor_medicamento = models.CharField(max_length=255, blank=True, null=True)
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2)
     fecha_compra = models.DateField(blank=True, null=True)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
@@ -131,7 +133,7 @@ class OrigenExterno(models.Model):
     fecha_ingreso = models.DateField()
     finalidad_compra = models.CharField(max_length=50)
     etapa_productiva_ingreso = models.CharField(max_length=50)
-    vendedor = models.CharField(max_length=255, blank=True, null=True)
+    vendedor = models.CharField(max_length=255)
     peso_compra = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
@@ -176,8 +178,8 @@ class RegistroPartos(models.Model):
     fecha_parto = models.DateField()
     nacidos_vivos = models.IntegerField()
     nacidos_muertos = models.IntegerField()
-    vivos_48h = models.IntegerField()
-    vivos_destete = models.IntegerField()
+    vivos_48h = models.IntegerField(blank=True, null=True)
+    vivos_destete = models.IntegerField(blank=True, null=True)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -233,8 +235,8 @@ class VentaLotes(models.Model):
     id_lote = models.ForeignKey(LotesLechones, models.DO_NOTHING, db_column='id_lote')
     peso_promedio = models.DecimalField(max_digits=5, decimal_places=2)
     precio_lote = models.DecimalField(max_digits=10, decimal_places=2)
-    destino = models.CharField(max_length=50)
-    comprador = models.CharField(max_length=50)
+    destino = models.CharField(max_length=50, blank=True, null=True)
+    comprador = models.CharField(max_length=255)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -246,12 +248,12 @@ class VentaLotes(models.Model):
 class VentaUnidad(models.Model):
     id_venta_unidad = models.AutoField(primary_key=True)
     fecha_venta = models.DateField()
-    id_lote = models.ForeignKey(LotesLechones, models.DO_NOTHING, db_column='id_lote')
-    id_animal = models.ForeignKey(InventarioAnimales, models.DO_NOTHING, db_column='id_animal')
+    id_lote = models.ForeignKey(LotesLechones, models.DO_NOTHING, db_column='id_lote', blank=True, null=True)
+    id_animal = models.ForeignKey(InventarioAnimales, models.DO_NOTHING, db_column='id_animal', blank=True, null=True)
     peso = models.DecimalField(max_digits=5, decimal_places=2)
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2)
-    destino = models.CharField(max_length=50)
-    comprador = models.CharField(max_length=50)
+    destino = models.CharField(max_length=50, blank=True, null=True)
+    comprador = models.CharField(max_length=255)
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:

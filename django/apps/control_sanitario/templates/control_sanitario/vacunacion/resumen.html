@@ -2,8 +2,6 @@
   {% include '_head.html' %}
   {% load static %}
   <script src="{% static 'js/sb-admin-2.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-area-demo.js' %}" defer></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}" defer></script>
   <body>
     <div id="wrapper">
         {% include '_sidebar.html' %}
@@ -19,9 +17,23 @@
 
                     <!-- Content Row -->
                     <div class="row">
-
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table">
+                              <thead>
+                                <tr>
+                                  <th class="centered">Id tratamiento</th>
+                                  <th class="centered">Id animal</th>
+                                  <th class="centered">Fecha de vacunación</th>
+                                  <th class="centered">Tipo de tratamiento</th>
+                                  <th class="centered">Observaciones</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody_vacunacion"></tbody>
+                            </table>
+                        </div>
+                      </div>
                     </div>
-
                 </div>
 
                 {% include '_footer.html' %}
@@ -31,6 +43,61 @@
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+
+    <script>
+    let dataTable;
+    let dataTableIsInitialized = false;
+
+    const dataTableOptions = {
+        columnDefs: [
+          {className: "centered", targets: "_all"},
+          {orderable: false, targets: [0] },
+          {searchable: false, targets: [0] }
+        ],
+        pageLength: 10,
+        destroy: true,
+        order: [[3, 'asc']],
+    };
+
+    const initDataTable = async()=>{
+        if(dataTableIsInitialized){
+            dataTable.destroy();
+        }
+        await listvacunacion();
+
+    dataTable=$('#dataTable').DataTable(dataTableOptions);
+    dataTableIsInitialized = true;
+    };
+
+    const listvacunacion=async()=>{
+        try{
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const response=await fetch(`http://${hostname}:${port}/control_sanitario/vacunacion/list_vacunacion`);
+            const data=await response.json();
+            console.log(data);
+            let content = ``;
+            data.vacunacion.forEach((vacunacion, index) => {
+                content += `
+                <tr>
+                    <td>${vacunacion.id_tratamiento_animal}</td>
+                    <td>${vacunacion.id_animal}</td>
+                    <td>${vacunacion.fecha_tratamiento_animal}</td>
+                    <td>${vacunacion.id_tratamiento__tipo_tratamiento}</td>
+                    <td>${vacunacion.observaciones_animal}</td>
+                </tr>
+                `;
+            });
+            tableBody_vacunacion.innerHTML = content;
+        } catch(ex) {
+          alert(ex);
+        }
+    };
+
+    window.addEventListener('load',async()=>{
+        await initDataTable();
+    });
+    </script>
   </body>
 </html>
+

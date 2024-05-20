@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.http import JsonResponse
+from models import Medicamentos
+from models import Tratamientos
+from models import TratamientosAnimales
 
 # index
 @login_required(login_url='/login', redirect_field_name=None)
@@ -12,6 +16,11 @@ def index(request):
 def inventario_index(request):
     return redirect('control_sanitario:inventario_resumen')
 
+@login_required(login_url='/login', redirect_field_name=None)
+def list_medicamentos(_request):
+    medicamentos = list(Medicamentos.objects.values())
+    data = {'medicamentos': medicamentos}
+    return JsonResponse(data)
 
 @login_required(login_url='/login', redirect_field_name=None)
 def inventario_resumen(request, **kwargs):
@@ -33,6 +42,11 @@ def inventario_salida(request, **kwargs):
 def tratamientos_index(request):
     return redirect('control_sanitario:tratamientos_resumen')
 
+@login_required(login_url='/login', redirect_field_name=None)
+def list_tratamientos(_request):
+    tratamientos = list(Tratamientos.objects.values())
+    data = {'tratamientos': tratamientos}
+    return JsonResponse(data)
 
 @login_required(login_url='/login', redirect_field_name=None)
 def tratamientos_resumen(request, **kwargs):
@@ -49,6 +63,20 @@ def tratamientos_register(request, **kwargs):
 def vacunacion_index(request):
     return redirect('control_sanitario:vacunacion_resumen')
 
+
+@login_required(login_url='/login', redirect_field_name=None)
+def list_vacunacion(_request):
+    vacunacion = list(
+        TratamientosAnimales.objects.filter(id_tratamiento__tipo_tratamiento='Vacunación').values(
+            'id_tratamiento_animal',
+            'id_animal',
+            'fecha_tratamiento_animal',
+            'observaciones_animal',
+            'id_tratamiento__tipo_tratamiento'
+        )
+    )
+    data = {'vacunacion': vacunacion}
+    return JsonResponse(data)
 
 @login_required(login_url='/login', redirect_field_name=None)
 def vacunacion_resumen(request, **kwargs):
