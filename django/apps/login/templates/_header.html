@@ -2,12 +2,10 @@
     <div class="d-flex flex-column flex-md-row py-3 px-5 bg-primary border-bottom shadow-sm">
         <h1 class="my-0 font-weight-normal text-white font-weight-bold">PorciGest</h1>
         <nav class="ml-auto mr-0 px-3 container">
-            <div class="row">
-                <a class="col-sm text-uppercase p-2 text-white" href={% url 'index'%}>Home</a>
-                <a class="col-sm text-uppercase p-2 text-white" href="#">Sobre Nosotros</a>
-                <a class="col-sm text-uppercase p-2 text-white" href="#">Servicios</a>
-                <a class="col-sm text-uppercase p-2 text-white" href={% url 'contactenos'%}>Contactanos</a>
-                <div class="col-sm">
+            <div class="row justify-content-end">
+                <a class="col-auto text-uppercase p-2 text-white" href={% url 'index'%}>Home</a>
+                <a class="col-auto text-uppercase p-2 text-white" href={% url 'contactenos'%}>Contactanos</a>
+                <div class="col-auto">
                     <a class="bg-info btn btn-outline-info text-uppercase p-2 text-white" href={% url 'login'%}>Ingresar</a>
                 </div>
             </div>
