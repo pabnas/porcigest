@@ -69,7 +69,7 @@ class RegistroInseminacionesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RegistroInseminacionesForm, self).__init__(*args, **kwargs)
 
-    id_madre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='F'))
+    id_madre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='H'))
     id_padre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='M'), required=False)
     fecha_inseminacion = forms.DateField(widget = DatePickerInput)
     tipo_inseminacion = forms.ChoiceField(choices=TIPO_INSEMINACION)
@@ -92,7 +92,7 @@ class RegistroPartosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RegistroPartosForm, self).__init__(*args, **kwargs)
     
-    id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='F'))
+    id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='H'))
     fecha_parto = forms.DateField(widget = DatePickerInput)
     nacidos_vivos = forms.IntegerField()
     nacidos_muertos = forms.IntegerField()
@@ -181,7 +181,7 @@ class OrigenInternoForm(forms.ModelForm):
     fecha_cambio_etapa = forms.DateField(widget = DatePickerInput)
     finalidad = forms.CharField(max_length=50)
     etapa_productiva_ingreso = forms.CharField(max_length=50)
-    id_madre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='F'))
+    id_madre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='H'))
     id_padre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='M'), required=False)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
     
