@@ -70,7 +70,7 @@ class RegistroInseminacionesForm(forms.ModelForm):
         super(RegistroInseminacionesForm, self).__init__(*args, **kwargs)
 
     id_madre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='H'))
-    id_padre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='M'), required=False)
+    id_padre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='M'), required=False, blank=True)
     fecha_inseminacion = forms.DateField(widget = DatePickerInput)
     tipo_inseminacion = forms.ChoiceField(choices=TIPO_INSEMINACION)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False) 
@@ -182,7 +182,7 @@ class OrigenInternoForm(forms.ModelForm):
     finalidad = forms.CharField(max_length=50)
     etapa_productiva_ingreso = forms.CharField(max_length=50)
     id_madre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='H'))
-    id_padre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='M'), required=False)
+    id_padre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='M'), required=False, blank=True)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
     
     
