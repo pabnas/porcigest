@@ -96,8 +96,8 @@ class RegistroPartosForm(forms.ModelForm):
     fecha_parto = forms.DateField(widget = DatePickerInput)
     nacidos_vivos = forms.IntegerField()
     nacidos_muertos = forms.IntegerField()
-    vivos_48h = forms.IntegerField()
-    vivos_destete = forms.IntegerField()
+    vivos_48h = forms.IntegerField(required=False)
+    vivos_destete = forms.IntegerField(required=False)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 class LotesLechonesForm(forms.ModelForm):
