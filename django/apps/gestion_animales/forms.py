@@ -139,7 +139,7 @@ class VentaLotesForm(forms.ModelForm):
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
     peso_promedio = forms.DecimalField(max_digits=5, decimal_places=2)
     precio_lote = forms.DecimalField(max_digits=10, decimal_places=2)
-    destino = forms.CharField(max_length=255)
+    destino = forms.CharField(max_length=50, required=False)
     comprador = forms.CharField(max_length=255)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
