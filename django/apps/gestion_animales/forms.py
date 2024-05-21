@@ -262,11 +262,11 @@ class VentaUnidadForm(forms.ModelForm):
         super(VentaUnidadForm, self).__init__(*args, **kwargs)
     
     fecha_venta = forms.DateField(widget = DatePickerInput)
-    id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
-    id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all())
+    id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all(), required=False)
+    id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all(), required=False)
     peso = forms.DecimalField(max_digits=5, decimal_places=2)
     precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2)
-    destino = forms.CharField(max_length=50)
-    comprador = forms.CharField(max_length=50)
+    destino = forms.CharField(max_length=50, required=False)
+    comprador = forms.CharField(max_length=255)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
     
