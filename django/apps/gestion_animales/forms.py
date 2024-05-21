@@ -13,7 +13,7 @@ class InventarioAnimalesChoiceField(ModelChoiceField):
 
 class CorralesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"Corral id:{obj.num_corral}"
+        return f"Corral #{obj.num_corral}"
     
 class LotesLechonesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
