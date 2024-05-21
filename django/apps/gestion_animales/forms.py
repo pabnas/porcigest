@@ -107,7 +107,6 @@ class LotesLechonesForm(forms.ModelForm):
             'id_corral',
             'cantidad_lechones',
             'fecha_ingreso_lote',
-            'dias_precebo',
             'observaciones',
         ]
         
@@ -117,7 +116,6 @@ class LotesLechonesForm(forms.ModelForm):
     id_corral = CorralesChoiceField(queryset=Corrales.objects.all())
     cantidad_lechones = forms.IntegerField()
     fecha_ingreso_lote = forms.DateField(widget = DatePickerInput)
-    dias_precebo = forms.IntegerField()
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 
