@@ -2,7 +2,7 @@
 <div>
     <div class="d-sm-flex mb-4 bg-green">
         <h1 class="flex-grow-1 h3 my-3 text-white font-weight-bold text-center">
-            Area de Precebos
+            Área de Precebos
         </h1>
     </div>
 
@@ -17,13 +17,13 @@
             <div class="my-3 mx-4">
                 Reg. Ingreso
             </div>
-        </a>        
+        </a>
 
         <a class="nav-link h3 my-0 text-center text-white {% if request.resolver_match.kwargs.navbar == 'precebos_registrar_salida' %}active{% endif %}" href={% url 'gestion_animales:precebos_registrar_salida' %}>
             <div class="my-3 mx-4">
                 Reg. Salida
             </div>
-        </a>        
+        </a> 
     </div>
 
 </div>

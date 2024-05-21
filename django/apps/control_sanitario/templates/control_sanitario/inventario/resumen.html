@@ -12,13 +12,35 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'control_sanitario/inventario/nav_bar.html' %}
 
-                  <!-- Content Row -->
-                  <div class="row">
+                    {% include 'control_sanitario/inventario/nav_bar.html' %}
 
-                  </div>
-
+                    <!-- Content Row -->
+                    <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table">
+                              <thead>
+                                <tr>
+                                  <th class="centered">Id del medicamento</th>
+                                  <th class="centered">Nombre del medicamento</th>
+                                  <th class="centered">Principio Activo</th>
+                                  <th class="centered">Laboratorio</th>
+                                  <th class="centered">Presentacion</th>
+                                  <th class="centered">Fecha de vencimiento</th>
+                                  <th class="centered">Stock</th>
+                                  <th class="centered">Lote del medicamento</th>
+                                  <th class="centered">Vendedor del medicamento</th>
+                                  <th class="centered">Precio unidad del medicamento</th>
+                                  <th class="centered">Fecha de compra</th>
+                                  <th class="centered">Observaciones</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody_medicamentos"></tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
                 </div>
 
                 {% include '_footer.html' %}
@@ -28,6 +50,69 @@
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+
+    <script>
+    let dataTable;
+    let dataTableIsInitialized = false;
+
+    const dataTableOptions = {
+        columnDefs: [
+          {className: "centered", targets: "_all"},
+          {orderable: false, targets: [0] },
+          {searchable: false, targets: [0] }
+        ],
+        pageLength: 10,
+        destroy: true,
+        order: [[3, 'asc']],
+    };
+
+    const initDataTable = async()=>{
+        if(dataTableIsInitialized){
+            dataTable.destroy();
+        }
+        await listmedicamentos();
+
+    dataTable=$('#dataTable').DataTable(dataTableOptions);
+    dataTableIsInitialized = true;
+    };
+
+    const listmedicamentos=async()=>{
+        try{
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const response=await fetch(`http://${hostname}:${port}/control_sanitario/inventario/list_medicamentos`);
+            const data=await response.json();
+            console.log(data);
+            let content = ``;
+            data.medicamentos.forEach((medicamentos, index) => {
+                const formattedPrice = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(medicamentos.precio_unidad);
+                content += `
+                <tr>
+                    <td>${medicamentos.id_medicamento}</td>
+                    <td>${medicamentos.nombre_medicamento}</td>
+                    <td>${medicamentos.principio_activo}</td>
+                    <td>${medicamentos.laboratorio}</td>
+                    <td>${medicamentos.presentacion}</td>
+                    <td>${medicamentos.fecha_vencimiento}</td>
+                    <td>${medicamentos.stock}</td>
+                    <td>${medicamentos.lote_medicamento}</td>
+                    <td>${medicamentos.vendedor_medicamento}</td>
+                    <td>${formattedPrice}</td>
+                    <td>${medicamentos.fecha_compra}</td>
+                    <td>${medicamentos.observaciones}</td>
+                </tr>
+                `;
+            });
+            tableBody_medicamentos.innerHTML = content;
+        } catch(ex) {
+          alert(ex);
+        }
+    };
+
+    window.addEventListener('load',async()=>{
+        await initDataTable();
+    });
+    </script>
   </body>
 </html>
+

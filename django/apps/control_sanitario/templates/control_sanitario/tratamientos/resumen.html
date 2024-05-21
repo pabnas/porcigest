@@ -12,13 +12,29 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'control_sanitario/tratamientos/nav_bar.html' %}
 
-                  <!-- Content Row -->
-                  <div class="row">
+                    {% include 'control_sanitario/tratamientos/nav_bar.html' %}
 
-                  </div>
-
+                    <!-- Content Row -->
+                    <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table">
+                              <thead>
+                                <tr>
+                                  <th class="centered">Id del tratamiento</th>
+                                  <th class="centered">Tipo de tratamiento</th>
+                                  <th class="centered">Detalle del tratamiento</th>
+                                  <th class="centered">Id del medicamento</th>
+                                  <th class="centered">Docis</th>
+                                  <th class="centered">Observaciones</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody_tratamientos"></tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
                 </div>
 
                 {% include '_footer.html' %}
@@ -28,6 +44,62 @@
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+
+    <script>
+    let dataTable;
+    let dataTableIsInitialized = false;
+
+    const dataTableOptions = {
+        columnDefs: [
+          {className: "centered", targets: "_all"},
+          {orderable: false, targets: [0] },
+          {searchable: false, targets: [0] }
+        ],
+        pageLength: 10,
+        destroy: true,
+        order: [[3, 'asc']],
+    };
+
+    const initDataTable = async()=>{
+        if(dataTableIsInitialized){
+            dataTable.destroy();
+        }
+        await listtratamientos();
+
+    dataTable=$('#dataTable').DataTable(dataTableOptions);
+    dataTableIsInitialized = true;
+    };
+
+    const listtratamientos=async()=>{
+        try{
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const response=await fetch(`http://${hostname}:${port}/control_sanitario/tratamientos/list_tratamientos`);
+            const data=await response.json();
+            console.log(data);
+            let content = ``;
+            data.tratamientos.forEach((tratamientos, index) => {
+                content += `
+                <tr>
+                    <td>${tratamientos.id_tratamiento}</td>
+                    <td>${tratamientos.tipo_tratamiento}</td>
+                    <td>${tratamientos.detalle_tratamiento}</td>
+                    <td>${tratamientos.id_medicamento_id}</td>
+                    <td>${tratamientos.dosis}</td>
+                    <td>${tratamientos.observaciones}</td>
+                </tr>
+                `;
+            });
+            tableBody_tratamientos.innerHTML = content;
+        } catch(ex) {
+          alert(ex);
+        }
+    };
+
+    window.addEventListener('load',async()=>{
+        await initDataTable();
+    });
+    </script>
   </body>
 </html>
+

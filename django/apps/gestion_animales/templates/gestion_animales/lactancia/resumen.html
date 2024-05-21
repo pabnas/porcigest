@@ -12,22 +12,98 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
-                  {% include 'gestion_animales/lactancia/nav_bar.html' %}
 
-                  <!-- Content Row -->
-                  <div class="row">
-                    
-                  </div>
+                    {% include 'gestion_animales/lactancia/nav_bar.html' %}
 
+                    <!-- Content Row -->
+                    <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table">
+                              <thead>
+                                <tr>
+                                  <th class="centered">Id parto</th>
+                                  <th class="centered">Id animal</th>
+                                  <th class="centered">Fecha de parto</th>
+                                  <th class="centered">Nacidos vivos</th>
+                                  <th class="centered">Nacidos muertos</th>
+                                  <th class="centered">Vivos a las 48 horas</th>
+                                  <th class="centered">Vivos al destete</th>
+                                  <th class="centered">Observaciones</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody_lactancia"></tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
                 </div>
 
                 {% include '_footer.html' %}
             </div>
-            
+
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+
+    <script>
+    let dataTable;
+    let dataTableIsInitialized = false;
+
+    const dataTableOptions = {
+        columnDefs: [
+          {className: "centered", targets: "_all"},
+          {orderable: false, targets: [0] },
+          {searchable: false, targets: [0] }
+        ],
+        pageLength: 10,
+        destroy: true,
+        order: [[3, 'asc']],
+    };
+
+    const initDataTable = async()=>{
+        if(dataTableIsInitialized){
+            dataTable.destroy();
+        }
+        await listlactancias();
+
+    dataTable=$('#dataTable').DataTable(dataTableOptions);
+    dataTableIsInitialized = true;
+    };
+
+    const listlactancias=async()=>{
+        try{
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const response=await fetch(`http://${hostname}:${port}/gestion_animales/lactancia/list_partos`);
+            const data=await response.json();
+            console.log(data);
+            let content = ``;
+            data.partos.forEach((partos, index) => {
+                content += `
+                <tr>
+                    <td>${partos.id_parto}</td>
+                    <td>${partos.id_animal_id}</td>
+                    <td>${partos.fecha_parto}</td>
+                    <td>${partos.nacidos_vivos}</td>
+                    <td>${partos.nacidos_muertos}</td>
+                    <td>${partos.vivos_48h}</td>
+                    <td>${partos.vivos_destete}</td>
+                    <td>${partos.observaciones}</td>
+                </tr>
+                `;
+            });
+            tableBody_lactancia.innerHTML = content;
+        } catch(ex) {
+          alert(ex);
+        }
+    };
+
+    window.addEventListener('load',async()=>{
+        await initDataTable();
+    });
+    </script>
   </body>
 </html>
+

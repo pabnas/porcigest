@@ -39,16 +39,16 @@ class MedicamentosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(MedicamentosForm, self).__init__(*args, **kwargs)
         
-    nombre_medicamento = forms.CharField(max_length=50)
-    principio_activo = forms.CharField(max_length=50)
-    laboratorio = forms.CharField(max_length=50)
-    presentacion = forms.CharField(max_length=50)
+    nombre_medicamento = forms.CharField(max_length=100)
+    principio_activo = forms.CharField(max_length=100)
+    laboratorio = forms.CharField(max_length=100)
+    presentacion = forms.CharField(max_length=200)
     fecha_vencimiento = forms.DateField(widget = DatePickerInput)
     stock = forms.IntegerField()
-    lote_medicamento = forms.CharField(max_length=50)
-    vendedor_medicamento = forms.CharField(max_length=50)
+    lote_medicamento = forms.CharField(max_length=50, required=False)
+    vendedor_medicamento = forms.CharField(max_length=255, required=False)
     precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2)
-    fecha_compra = forms.DateField(widget = DatePickerInput)
+    fecha_compra = forms.DateField(widget = DatePickerInput, required=False)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 class MedicamentosSalidaForm(forms.ModelForm):
@@ -124,7 +124,7 @@ class TratamientoLotesForm(forms.ModelForm):
     id_tratamiento = TratamientosChoiceField(queryset=valid_tratamientos)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
     fecha_aplicacion_lote = forms.DateField(widget = DatePickerInput)
-    dosis_lote = forms.IntegerField()
+    dosis_lote = forms.IntegerField(required=False)
     observaciones_lote = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 class TratamientosForm(forms.ModelForm):
@@ -146,5 +146,5 @@ class TratamientosForm(forms.ModelForm):
     tipo_tratamiento = forms.CharField(max_length=50)
     detalle_tratamiento = forms.CharField(max_length=255)
     id_medicamento = MedicamentosChoiceField(queryset=Medicamentos.objects.filter(fecha_vencimiento__gte=current_date))
-    dosis = forms.DecimalField(max_digits=10, decimal_places=2)
+    dosis = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)

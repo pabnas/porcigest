@@ -19,28 +19,23 @@
                     <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
                       <div class="container">
                         <div class="row">
-                          <div class="col-4 col-sm text-black h4">
+                          <div class="col-6 col-sm text-black h4">
                             {{ form.id_corral.errors }}
                             {{ form.id_corral.label_tag }} 
                             {{ form.id_corral }}
                           </div>
-                          <div class="col-4 col-sm text-black h4">
+                          <div class="col-6 col-sm text-black h4">
                             {{ form.cantidad_lechones.errors }}
                             {{ form.cantidad_lechones.label_tag }}
                             {{ form.cantidad_lechones }}
                           </div>
-                          <div class="col-4 col-sm text-black h4">
-                            {{ form.fecha_ingreso_lote.errors }}
-                            {{ form.fecha_ingreso_lote.label_tag }}
-                            {{ form.fecha_ingreso_lote }}
-                          </div>
                         </div>
 
                         <div class="row">
-                          <div class="col-6 text-black h4">
-                            {{ form.dias_precebo.errors }}
-                            {{ form.dias_precebo.label_tag }}
-                            {{ form.dias_precebo }}
+                          <div class="col-6 col-sm text-black h4">
+                            {{ form.fecha_ingreso_lote.errors }}
+                            {{ form.fecha_ingreso_lote.label_tag }}
+                            {{ form.fecha_ingreso_lote }}
                           </div>
                           <div class="col-6 text-black h4">
                             {{ form.observaciones.errors }}
