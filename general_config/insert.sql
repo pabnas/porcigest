@@ -336,6 +336,21 @@ INSERT INTO medicamentos (nombre_medicamento, principio_activo, laboratorio, pre
 ('Colistina', 'Colistina', 'Nicosia', 'Suspensión Oral 50 mg/mL', '2025-01-31', 80, 'QRS345', 'Distribuidora de Productos Agropecuarios y Veterinarios', 90000.00, '2024-02-20', 'Antibiótico para infecciones gastrointestinales'),
 ('Neomicina', 'Neomicina', 'Merial', 'Solución Inyectable 10%', '2024-12-31', 90, 'TUV678', 'Distribuidora Veterinaria Porcina', 75000.00, '2024-07-10', 'Antibiótico para infecciones gastrointestinales');
 
+--medicamentos
+INSERT INTO medicamentos (nombre_medicamento, principio_activo, laboratorio, presentacion, fecha_vencimiento, stock, lote_medicamento, vendedor_medicamento, precio_unidad, fecha_compra, observaciones) VALUES
+('Vacuna Peste Porcina Clásica', 'Virus atenuado', 'Zoetis', 'Frasco 50 ml', '2025-12-31', 50, 'Lote001', 'Distribuidora Veterinaria S.A.', 150000.00, '2024-05-01', 'Vacuna contra la peste porcina clásica'),
+('Vacuna Circovirus Porcino Tipo 2', 'Circovirus tipo 2 inactivado', 'Boehringer Ingelheim', 'Frasco 100 ml', '2025-11-30', 60, 'Lote002', 'VetCorp S.A.S.', 170000.00, '2024-04-15', 'Vacuna contra el circovirus porcino tipo 2'),
+('Vacuna Mycoplasma Hyopneumoniae', 'Mycoplasma hyopneumoniae inactivado', 'MSD Animal Health', 'Frasco 50 ml', '2025-02-28', 70, 'Lote003', 'Veterinaria San José', 120000.00, '2024-06-10', 'Vacuna contra Mycoplasma hyopneumoniae'),
+('Vacuna Parvovirosis Porcina', 'Virus atenuado', 'Elanco', 'Frasco 50 ml', '2025-10-31', 80, 'Lote004', 'Distribuidora Agropecuaria Ltda.', 130000.00, '2024-03-20', 'Vacuna contra la parvovirosis porcina'),
+('Vacuna PRRS', 'Virus atenuado', 'Virbac', 'Frasco 100 ml', '2025-09-30', 90, 'Lote005', 'VetFarma S.A.', 140000.00, '2024-07-05', 'Vacuna contra el síndrome disgenésico y respiratorio porcino (PRRS)'),
+('Vacuna Fiebre Aftosa', 'Virus inactivado', 'Ceva', 'Frasco 100 ml', '2025-08-31', 100, 'Lote006', 'Distribuidora Veterinaria San Marcos', 160000.00, '2024-02-18', 'Vacuna contra el virus de la fiebre aftosa'),
+('Vacuna Enfermedad de Glässer', 'Haemophilus parasuis inactivado', 'Intervet', 'Frasco 50 ml', '2025-07-31', 50, 'Lote007', 'Veterinaria El Ganadero', 150000.00, '2024-01-10', 'Vacuna contra la enfermedad de Glässer'),
+('Vacuna Erisipela Porcina', 'Erysipelothrix rhusiopathiae inactivado', 'Vetoquinol', 'Frasco 100 ml', '2025-01-31', 70, 'Lote008', 'Distribuidora Agroveterinaria Ltda.', 170000.00, '2024-08-15', 'Vacuna contra la erisipela porcina'),
+('Vacuna Leptospirosis Porcina', 'Leptospira inactivado', 'Syntex', 'Frasco 50 ml', '2024-12-31', 90, 'Lote009', 'Veterinaria El Porcino', 160000.00, '2024-05-25', 'Vacuna contra la leptospirosis porcina'),
+('Vacuna Rotavirus Porcino', 'Rotavirus inactivado', 'Vetanco', 'Frasco 100 ml', '2024-11-30', 80, 'Lote010', 'Distribuidora de Productos Veterinarios S.A.S.', 180000.00, '2024-03-28', 'Vacuna contra el rotavirus porcino');
+
+
+
 
 --13
 INSERT INTO tratamientos (tipo_tratamiento, detalle_tratamiento, id_medicamento, dosis, observaciones) VALUES
@@ -364,6 +379,20 @@ INSERT INTO tratamientos (tipo_tratamiento, detalle_tratamiento, id_medicamento,
 ('Antiparasitario', 'Tratamiento para gusanos redondos', 3, 0.285, 'Administrar 0.285 ml por cada kg de peso, una vez por día durante 3 días'),
 ('Antibiótico', 'Tratamiento para infecciones bacterianas', 6, 0.225, 'Administrar 0.225 ml por cada kg de peso, cada 12 horas durante 7 días');
 
+--vacunacion
+INSERT INTO tratamientos (tipo_tratamiento, detalle_tratamiento, id_medicamento, dosis, observaciones) VALUES
+('Vacunación', 'Vacunación contra el virus de la peste porcina clásica', 17, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a los lechones de 6 semanas'),
+('Vacunación', 'Vacunación contra el circovirus porcino tipo 2', 18, 1.0, 'Administrar 1 ml intramuscularmente, una sola dosis a los lechones de 3 semanas'),
+('Vacunación', 'Vacunación contra el Mycoplasma hyopneumoniae', 19, 2.0, 'Administrar 2 ml intramuscularmente, dos dosis con un intervalo de 3 semanas'),
+('Vacunación', 'Vacunación contra la parvovirosis porcina', 20, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a las cerdas reproductoras antes de la gestación'),
+('Vacunación', 'Vacunación contra el síndrome disgenésico y respiratorio porcino (PRRS)', 21, 1.0, 'Administrar 1 ml intramuscularmente, una sola dosis a los lechones de 4 semanas'),
+('Vacunación', 'Vacunación contra el virus de la fiebre aftosa', 22, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a los lechones de 8 semanas'),
+('Vacunación', 'Vacunación contra la enfermedad de Glässer', 23, 2.0, 'Administrar 2 ml intramuscularmente, dos dosis con un intervalo de 2 semanas'),
+('Vacunación', 'Vacunación contra la erisipela porcina', 24, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a los lechones de 10 semanas'),
+('Vacunación', 'Vacunación contra la leptospirosis porcina', 25, 2.0, 'Administrar 2 ml intramuscularmente, dos dosis con un intervalo de 4 semanas'),
+('Vacunación', 'Vacunación contra el rotavirus porcino', 26, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a los lechones de 5 semanas');
+
+
 --14
 INSERT INTO tratamiento_lotes (id_tratamiento, id_lote, fecha_aplicacion_lote, dosis_lote, observaciones_lote)
 VALUES
@@ -389,6 +418,22 @@ VALUES
 (10, 51, '2024-03-15', 'Tratamiento antiparasitario para gusanos redondos, sin efectos secundarios detectados'),
 (11, 3, '2024-04-01', 'Antibiótico aplicado para enfermedades gastrointestinales, sin recaídas observadas'),
 (12, 27, '2024-04-05', 'Aplicado antibiótico para infecciones respiratorias, seguimiento programado');
+
+--vacunacuon
+INSERT INTO tratamientos_animales (id_tratamiento, id_animal, fecha_tratamiento_animal, observaciones_animal)
+VALUES
+(35, 1, '2024-05-01', 'Vacunación contra el virus de la peste porcina clásica, seguimiento anual recomendado'),
+(36, 5, '2024-05-05', 'Vacunación contra el circovirus porcino tipo 2, sin reacciones adversas'),
+(37, 10, '2024-05-10', 'Vacunación contra el Mycoplasma hyopneumoniae, lechón en buen estado de salud'),
+(38, 15, '2024-05-15', 'Vacunación contra la parvovirosis porcina, sin complicaciones reportadas'),
+(39, 20, '2024-05-20', 'Vacunación contra el síndrome disgenésico y respiratorio porcino (PRRS), lechón mostrando buena respuesta'),
+(40, 25, '2024-05-25', 'Vacunación contra el virus de la fiebre aftosa, sin efectos secundarios'),
+(41, 30, '2024-05-30', 'Vacunación contra la enfermedad de Glässer, monitoreo continuo recomendado'),
+(42, 35, '2024-06-05', 'Vacunación contra la erisipela porcina, sin reacciones adversas observadas'),
+(43, 40, '2024-06-10', 'Vacunación contra la leptospirosis porcina, lechón en buen estado post-vacunación'),
+(44, 18, '2024-06-15', 'Vacunación contra el rotavirus porcino, lechón mostrando buena salud post-vacunación');
+
+
 
 
 --16

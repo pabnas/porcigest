@@ -12,13 +12,35 @@
                 {% include '_topbar.html' %}
 
                 <div class="container-fluid mt-5">
+
                     {% include 'bioseguridad/ingreso_vehiculos/nav_bar.html' %}
 
                     <!-- Content Row -->
                     <div class="row">
-
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table">
+                              <thead>
+                                <tr>
+                                  <th class="centered">Id ingreso de vehículo</th>
+                                  <th class="centered">Fecha de ingreso</th>
+                                  <th class="centered">Hora de ingreso</th>
+                                  <th class="centered">Placa del vehículo</th>
+                                  <th class="centered">Nombre del conductor</th>
+                                  <th class="centered">Nombres acompañantes</th>
+                                  <th class="centered">Teléfono del conductor</th>
+                                  <th class="centered">Empresa transportista</th>
+                                  <th class="centered">Tipo de vehículo</th>
+                                  <th class="centered">Motivo de ingreso</th>
+                                  <th class="centered">Ultimo predio visitado</th>
+                                  <th class="centered">Observaciones</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody_vehiculo"></tbody>
+                            </table>
+                        </div>
+                      </div>
                     </div>
-
                 </div>
 
                 {% include '_footer.html' %}
@@ -28,6 +50,67 @@
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+
+    <script>
+    let dataTable;
+    let dataTableIsInitialized = false;
+
+    const dataTableOptions = {
+        columnDefs: [
+          {className: "centered", targets: "_all"},
+          {orderable: false, targets: [0] },
+          {searchable: false, targets: [0] }
+        ],
+        pageLength: 10,
+        destroy: true,
+        order: [[3, 'asc']],
+    };
+
+    const initDataTable = async()=>{
+        if(dataTableIsInitialized){
+            dataTable.destroy();
+        }
+        await listvehiculo();
+
+    dataTable=$('#dataTable').DataTable(dataTableOptions);
+    dataTableIsInitialized = true;
+    };
+
+    const listvehiculo=async()=>{
+        try{
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const response=await fetch(`http://${hostname}:${port}/bioseguridad/ingreso_vehiculos/list_vehiculos`);
+            const data=await response.json();
+            console.log(data);
+            let content = ``;
+            data.vehiculos.forEach((vehiculos, index) => {
+                content += `
+                <tr>
+                    <td>${vehiculos.id_ingreso_vehiculo}</td>
+                    <td>${vehiculos.fecha_ingreso}</td>
+                    <td>${vehiculos.hora_ingreso}</td>
+                    <td>${vehiculos.placa_vehiculo}</td>
+                    <td>${vehiculos.nombre_conductor}</td>
+                    <td>${vehiculos.nombres_acompanantes}</td>
+                    <td>${vehiculos.telefono_conductor}</td>
+                    <td>${vehiculos.empresa_transportista}</td>
+                    <td>${vehiculos.tipo_vehiculo}</td>
+                    <td>${vehiculos.motivo_ingreso}</td>
+                    <td>${vehiculos.ultimo_predio_visitado}</td>
+                    <td>${vehiculos.observaciones}</td>
+                </tr>
+                `;
+            });
+            tableBody_vehiculo.innerHTML = content;
+        } catch(ex) {
+          alert(ex);
+        }
+    };
+
+    window.addEventListener('load',async()=>{
+        await initDataTable();
+    });
+    </script>
   </body>
 </html>
