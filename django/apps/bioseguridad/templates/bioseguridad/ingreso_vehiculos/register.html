@@ -44,18 +44,23 @@
                             {{ form.nombre_conductor }}
                           </div>
                           <div class="col-4 text-black h4">
+                            {{ form.nombres_acompanantes.errors }}
+                            {{ form.nombres_acompanantes.label_tag }}
+                            {{ form.nombres_acompanantes }}
+                          </div>
+                          <div class="col-4 text-black h4">
                             {{ form.telefono_conductor.errors }}
                             {{ form.telefono_conductor.label_tag }}
                             {{ form.telefono_conductor }}
                           </div>
+                        </div>
+
+                        <div class="row">
                           <div class="col-4 text-black h4">
                             {{ form.empresa_transportista.errors }}
                             {{ form.empresa_transportista.label_tag }}
                             {{ form.empresa_transportista }}
                           </div>
-                        </div>
-
-                        <div class="row">
                           <div class="col-4 text-black h4">
                             {{ form.tipo_vehiculo.errors }}
                             {{ form.tipo_vehiculo.label_tag }}
@@ -66,15 +71,15 @@
                             {{ form.motivo_ingreso.label_tag }}
                             {{ form.motivo_ingreso }}
                           </div>
+                        </div>
+
+                        <div class="row">
                           <div class="col-4 text-black h4">
                             {{ form.ultimo_predio_visitado.errors }}
                             {{ form.ultimo_predio_visitado.label_tag }}
                             {{ form.ultimo_predio_visitado }}
                           </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-12 text-black h4">
+                          <div class="col-7 text-black h4">
                             {{ form.observaciones.errors }}
                             {{ form.observaciones.label_tag }}
                             {{ form.observaciones }}
