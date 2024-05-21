@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelChoiceField
+from apps.utils import snake_case_to_title
 from models import IngresoVehiculos
 
 class TimePickerInput(forms.TimeInput):
@@ -28,6 +29,9 @@ class IngresoVehiculosForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(IngresoVehiculosForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     fecha_ingreso = forms.DateField(widget = DatePickerInput)
     hora_ingreso = forms.TimeField(widget = TimePickerInput)

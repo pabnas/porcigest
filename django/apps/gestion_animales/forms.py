@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelChoiceField
 
+from apps.utils import snake_case_to_title
 from models import Areas, Corrales, InventarioAnimales, LotesLechones, Movimientos, OrigenExterno, OrigenInterno, VentaUnidad
 from models import RegistroInseminaciones, RegistroPartos, VentaLotes
 
@@ -68,6 +69,9 @@ class RegistroInseminacionesForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(RegistroInseminacionesForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
 
     id_madre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='H'))
     id_padre = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='M'), required=False, blank=True)
@@ -91,6 +95,9 @@ class RegistroPartosForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(RegistroPartosForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='H'))
     fecha_parto = forms.DateField(widget = DatePickerInput)
@@ -112,6 +119,9 @@ class LotesLechonesForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(LotesLechonesForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     id_corral = CorralesChoiceField(queryset=Corrales.objects.filter(corral_id__range=(45, 49)))
     cantidad_lechones = forms.IntegerField(min_value=0)
@@ -134,6 +144,9 @@ class VentaLotesForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(VentaLotesForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     fecha_venta = forms.DateField(widget = DatePickerInput)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
@@ -156,6 +169,9 @@ class MovimientosForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(MovimientosForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
 
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all())
     fecha = forms.DateField(widget = DatePickerInput)
@@ -177,6 +193,9 @@ class OrigenInternoForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(OrigenInternoForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     fecha_cambio_etapa = forms.DateField(widget = DatePickerInput)
     finalidad = forms.CharField(max_length=50)
@@ -201,6 +220,9 @@ class OrigenExternoForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(OrigenExternoForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     fecha_compra = forms.DateField(widget = DatePickerInput)
     fecha_ingreso = forms.DateField(widget = DatePickerInput)
@@ -227,6 +249,9 @@ class InventarioAnimalesForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(InventarioAnimalesForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     def customSave(self):
         lv = self.save(commit=False)
@@ -260,6 +285,9 @@ class VentaUnidadForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(VentaUnidadForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     fecha_venta = forms.DateField(widget = DatePickerInput)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all(), required=False, blank=True)

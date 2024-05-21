@@ -3,6 +3,7 @@ from django.forms import ModelChoiceField
 from django.utils import timezone
 from django.db.models import Q
 
+from apps.utils import snake_case_to_title
 from apps.gestion_animales.forms import InventarioAnimalesChoiceField, LotesLechonesChoiceField
 from models import InventarioAnimales, LotesLechones, Medicamentos, TratamientoLotes, Tratamientos, TratamientosAnimales
 
@@ -38,6 +39,9 @@ class MedicamentosForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(MedicamentosForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
         
     nombre_medicamento = forms.CharField(max_length=100)
     principio_activo = forms.CharField(max_length=100)
@@ -61,6 +65,9 @@ class MedicamentosSalidaForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(MedicamentosSalidaForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
         
     def clean(self):
         cleaned_data = super().clean()
@@ -90,6 +97,9 @@ class TratamientosAnimalesForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(TratamientosAnimalesForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     current_date = timezone.now().date()
     valid_tratamientos = Tratamientos.objects.filter(
@@ -115,6 +125,9 @@ class TratamientoLotesForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(TratamientoLotesForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
         
     current_date = timezone.now().date()
     valid_tratamientos = Tratamientos.objects.filter(
@@ -140,6 +153,9 @@ class TratamientosForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(TratamientosForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.label = snake_case_to_title(field_name)
     
     current_date = timezone.now().date()
     
