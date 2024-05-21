@@ -269,4 +269,17 @@ class VentaUnidadForm(forms.ModelForm):
     destino = forms.CharField(max_length=50, required=False)
     comprador = forms.CharField(max_length=255)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
+
+
+    def clean(self):
+        cleaned_data = super().clean()
+        id_lote = cleaned_data.get('id_lote')
+        id_animal = cleaned_data.get('id_animal')
+        
+        if not id_lote and not id_animal:
+            raise forms.ValidationError("Se debe proporcionar al menos uno de los campos 'id_lote' o 'id_animal'.")
+        elif id_lote and id_animal:
+            raise forms.ValidationError("Solo se puede proporcionar uno de los campos 'id_lote' o 'id_animal', no ambos.")
+
+        return cleaned_data
     
