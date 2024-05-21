@@ -94,8 +94,8 @@ class RegistroPartosForm(forms.ModelForm):
     
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.filter(sexo='H'))
     fecha_parto = forms.DateField(widget = DatePickerInput)
-    nacidos_vivos = forms.IntegerField()
-    nacidos_muertos = forms.IntegerField()
+    nacidos_vivos = forms.IntegerField(min_value=0)
+    nacidos_muertos = forms.IntegerField(min_value=0)
     vivos_48h = forms.IntegerField(required=False)
     vivos_destete = forms.IntegerField(required=False)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
@@ -113,8 +113,8 @@ class LotesLechonesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(LotesLechonesForm, self).__init__(*args, **kwargs)
     
-    id_corral = CorralesChoiceField(queryset=Corrales.objects.all())
-    cantidad_lechones = forms.IntegerField()
+    id_corral = CorralesChoiceField(queryset=Corrales.objects.filter(corral_id__range=(45, 49)))
+    cantidad_lechones = forms.IntegerField(min_value=0)
     fecha_ingreso_lote = forms.DateField(widget = DatePickerInput)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
@@ -137,8 +137,8 @@ class VentaLotesForm(forms.ModelForm):
     
     fecha_venta = forms.DateField(widget = DatePickerInput)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
-    peso_promedio = forms.DecimalField(max_digits=5, decimal_places=2)
-    precio_lote = forms.DecimalField(max_digits=10, decimal_places=2)
+    peso_promedio = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0)
+    precio_lote = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0)
     destino = forms.CharField(max_length=50, required=False)
     comprador = forms.CharField(max_length=255)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
@@ -207,7 +207,7 @@ class OrigenExternoForm(forms.ModelForm):
     finalidad_compra = forms.CharField(max_length=50)
     etapa_productiva_ingreso = forms.CharField(max_length=50)
     vendedor = forms.CharField(max_length=255)
-    peso_compra = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
+    peso_compra = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, required=False)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 
@@ -237,8 +237,8 @@ class InventarioAnimalesForm(forms.ModelForm):
     id_corral = CorralesChoiceField(queryset=Corrales.objects.all())
     raza = forms.CharField(max_length=50)
     sexo = forms.ChoiceField(choices=TIPO_SEXO)
-    edad = forms.IntegerField()
-    peso = forms.DecimalField(max_digits=10, decimal_places=2)
+    edad = forms.IntegerField(min_value=0)
+    peso = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0)
     estado_productivo = forms.ChoiceField(choices=TIPO_ESTADO_PRODUCTIVO)
     origen = forms.ChoiceField(choices=TIPO_ORIGEN)
     origen_interno = OrigenInternoForm(prefix="origen_interno")
@@ -264,8 +264,8 @@ class VentaUnidadForm(forms.ModelForm):
     fecha_venta = forms.DateField(widget = DatePickerInput)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all(), required=False)
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all(), required=False)
-    peso = forms.DecimalField(max_digits=5, decimal_places=2)
-    precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2)
+    peso = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0)
+    precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0)
     destino = forms.CharField(max_length=50, required=False)
     comprador = forms.CharField(max_length=255)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
