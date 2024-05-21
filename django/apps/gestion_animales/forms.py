@@ -34,7 +34,7 @@ TIPO_INSEMINACION = [
 TIPO_SEXO = [
     # TEXT, VALUE
     ('M', 'Macho'),
-    ('F', 'Hembra'),
+    ('H', 'Hembra'),
 ]
 
 
