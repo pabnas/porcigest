@@ -124,7 +124,7 @@ class TratamientoLotesForm(forms.ModelForm):
     id_tratamiento = TratamientosChoiceField(queryset=valid_tratamientos)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
     fecha_aplicacion_lote = forms.DateField(widget = DatePickerInput)
-    dosis_lote = forms.IntegerField()
+    dosis_lote = forms.IntegerField(required=False)
     observaciones_lote = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 class TratamientosForm(forms.ModelForm):
