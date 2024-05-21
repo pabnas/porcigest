@@ -146,5 +146,5 @@ class TratamientosForm(forms.ModelForm):
     tipo_tratamiento = forms.CharField(max_length=50)
     detalle_tratamiento = forms.CharField(max_length=255)
     id_medicamento = MedicamentosChoiceField(queryset=Medicamentos.objects.filter(fecha_vencimiento__gte=current_date))
-    dosis = forms.DecimalField(max_digits=10, decimal_places=2)
+    dosis = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
