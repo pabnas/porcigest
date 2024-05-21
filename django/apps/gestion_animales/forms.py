@@ -9,7 +9,7 @@ class DatePickerInput(forms.DateInput):
 
 class InventarioAnimalesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"Animal id:{obj.id_animal}"
+        return f"Animal #:{obj.numero_identificacion_animal}"
 
 class CorralesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
@@ -217,6 +217,7 @@ class InventarioAnimalesForm(forms.ModelForm):
     class Meta:
         model = InventarioAnimales
         fields =[
+            'numero_identificacion_animal',
             'id_corral',
             'raza',
             'sexo',
@@ -234,6 +235,7 @@ class InventarioAnimalesForm(forms.ModelForm):
         lv.save()
         return lv
     
+    numero_identificacion_animal = forms.CharField(max_length=50)
     id_corral = CorralesChoiceField(queryset=Corrales.objects.all())
     raza = forms.CharField(max_length=50)
     sexo = forms.ChoiceField(choices=TIPO_SEXO)
