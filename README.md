@@ -6,3 +6,7 @@ python3 manage.py inspectdb > models.py
 python3 manage.py migrate
 ## create superuser
 python3 manage.py createsuperuser
+
+## create veterinario and administrador permissions
+python3 manage.py create_veterinario
+python3 manage.py create_administrador

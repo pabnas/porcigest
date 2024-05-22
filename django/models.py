@@ -13,7 +13,7 @@ class Areas(models.Model):
     nombre_area = models.CharField(max_length=50)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'areas'
 
@@ -26,7 +26,7 @@ class Corrales(models.Model):
     estado = models.CharField(max_length=15)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'corrales'
 
@@ -46,7 +46,7 @@ class IngresoVehiculos(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'ingreso_vehiculos'
 
@@ -63,7 +63,7 @@ class InventarioAnimales(models.Model):
     origen = models.CharField(max_length=1)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'inventario_animales'
 
@@ -76,7 +76,7 @@ class LotesLechones(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'lotes_lechones'
 
@@ -97,7 +97,7 @@ class Medicamentos(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'medicamentos'
 
@@ -109,7 +109,7 @@ class MonitoreoAgua(models.Model):
     flujo_agua_litros_hora = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'monitoreo_agua'
 
@@ -122,7 +122,7 @@ class Movimientos(models.Model):
     area_destino = models.ForeignKey(Areas, models.DO_NOTHING, db_column='area_destino', related_name='movimientos_area_destino_set')
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'movimientos'
 
@@ -139,7 +139,7 @@ class OrigenExterno(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'origen_externo'
 
@@ -154,7 +154,7 @@ class OrigenInterno(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'origen_interno'
 
@@ -168,7 +168,7 @@ class RegistroInseminaciones(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'registro_inseminaciones'
 
@@ -183,7 +183,7 @@ class RegistroPartos(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'registro_partos'
 
@@ -197,7 +197,7 @@ class TratamientoLotes(models.Model):
     observaciones_lote = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'tratamiento_lotes'
 
@@ -211,7 +211,7 @@ class Tratamientos(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'tratamientos'
 
@@ -224,7 +224,7 @@ class TratamientosAnimales(models.Model):
     observaciones_animal = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'tratamientos_animales'
 
@@ -240,7 +240,7 @@ class VentaLotes(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'venta_lotes'
 
@@ -257,6 +257,6 @@ class VentaUnidad(models.Model):
     observaciones = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        app_label = 'gestion_animales'
+        app_label = 'porcigest'
         managed = False
         db_table = 'venta_unidad'
