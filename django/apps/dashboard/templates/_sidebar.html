@@ -10,6 +10,9 @@
         <div class="sidebar-brand-text">
             {{ user.first_name|default:user.username }} {{ user.last_name|default:'' }}
         </div>
+        <div class="sidebar-brand-text d-block">
+            {{ user.groups.all.0 }}
+        </div>
     </a>
 
     <div class="flex-grow-1">
@@ -19,23 +22,26 @@
                 <span>Dashboard</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Gestión de Animales</span>
-            </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{% url 'gestion_animales:gestacion' %}">Gestación</a>
-                    <a class="collapse-item" href="{% url 'gestion_animales:lactancia' %}">Lactancia</a>
-                    <a class="collapse-item" href="{% url 'gestion_animales:precebos' %}">Precebos</a>
-                    <a class="collapse-item" href="{% url 'gestion_animales:movimientos' %}">Movimientos</a>
-                    <a class="collapse-item" href="{% url 'gestion_animales:inventario' %}">Inventario</a>
+        {% if user.groups.all.0.name == 'administrador' %}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Gestión de Animales</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'gestion_animales:gestacion' %}">Gestación</a>
+                        <a class="collapse-item" href="{% url 'gestion_animales:lactancia' %}">Lactancia</a>
+                        <a class="collapse-item" href="{% url 'gestion_animales:precebos' %}">Precebos</a>
+                        <a class="collapse-item" href="{% url 'gestion_animales:movimientos' %}">Movimientos</a>
+                        <a class="collapse-item" href="{% url 'gestion_animales:inventario' %}">Inventario</a>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
+        {% endif %}
 
+        {% if user.groups.all.0.name == 'administrador' or user.groups.all.0.name == 'veterinario' %}
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
                 aria-expanded="true" aria-controls="collapsePages3">
@@ -50,7 +56,9 @@
                 </div>
             </div>
         </li>
+        {% endif %}
 
+        {% if user.groups.all.0.name == 'administrador' %}
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4"
                 aria-expanded="true" aria-controls="collapsePages4">
@@ -63,15 +71,17 @@
                 </div>
             </div>
         </li>
-
+        {% endif %}
     </div>
 
     <div>
+        {% if user.is_staff %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'admin:index' %}">
                 <i class="fas fa-fw fa-users-cog"></i>
                 <span>Administrar Usuarios</span></a>
         </li>
+        {% endif %}
 
 
         <li class="nav-item">

@@ -63,6 +63,7 @@ class MedicamentosSalidaForm(forms.ModelForm):
         fields =[
             'nombre_medicamento',
             'stock',
+            'unidad_medida'
         ]
         
     def __init__(self, *args, **kwargs):
@@ -85,6 +86,7 @@ class MedicamentosSalidaForm(forms.ModelForm):
     current_date = timezone.now().date()
     nombre_medicamento = MedicamentosChoiceField(queryset=Medicamentos.objects.filter(fecha_vencimiento__gte=current_date))
     stock = forms.IntegerField(label='Cantidad')
+    unidad_medida = forms.CharField(max_length=50, required=False)
 
 
 class TratamientosAnimalesForm(forms.ModelForm):
