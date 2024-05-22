@@ -1,0 +1,10 @@
+Django==3.2.25
+psycopg2==2.9.9
+python-decouple==3.8
+sqlparse==0.4.4
+# psycopg[binary]
+django-tailwind==2.2.2
+whitenoise==6.5.0
+pytz==2024.1
+asgiref==3.7.2
+sendgrid==6.11.0
