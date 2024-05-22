@@ -318,36 +318,37 @@ INSERT INTO venta_unidad (fecha_venta, id_lote, id_animal, peso, precio_unidad, 
 
 
 --12
-INSERT INTO medicamentos (nombre_medicamento, principio_activo, laboratorio, presentacion, fecha_vencimiento, stock, lote_medicamento, vendedor_medicamento, precio_unidad, fecha_compra, observaciones) VALUES
-('Amoxicilina', 'Amoxicilina', 'Bayer', 'Suspensión Oral 250 mg', '2024-12-31', 100, 'ABC123', 'Distribuidora Veterinaria S.A.', 55000.00, '2024-05-01', 'Antibiótico de amplio espectro'),
-('Eritromicina', 'Eritromicina', 'Pfizer', 'Polvo Oral 100 mg', '2024-11-30', 80, 'DEF456', 'VetCorp S.A.S.', 48000.00, '2024-04-15', 'Antibiótico para infecciones bacterianas'),
-('Ivermectina', 'Ivermectina', 'Zoetis', 'Solución Inyectable 1%', '2025-02-28', 120, 'GHI789', 'Veterinaria San José', 80000.00, '2024-06-10', 'Antiparasitario interno y externo'),
-('Enrofloxacina', 'Enrofloxacina', 'MSD Animal Health', 'Tabletas 50 mg', '2024-10-31', 90, 'JKL012', 'Distribuidora Agropecuaria Ltda.', 61000.00, '2024-03-20', 'Antibiótico de amplio espectro'),
-('Ceftiofur', 'Ceftiofur', 'Boehringer Ingelheim', 'Solución Inyectable 5%', '2024-09-30', 70, 'MNO345', 'VetFarma S.A.', 75000.00, '2024-07-05', 'Antibiótico para enfermedades respiratorias'),
-('Tilmicosina', 'Tilmicosina', 'Elanco', 'Solución Inyectable 300 mg/mL', '2024-08-31', 60, 'PQR678', 'Distribuidora Veterinaria San Marcos', 91000.00, '2024-02-18', 'Antibiótico para enfermedades respiratorias'),
-('Oxitetraciclina', 'Oxitetraciclina', 'Virbac', 'Polvo Oral 100 g', '2024-07-31', 110, 'STU901', 'Veterinaria El Ganadero', 70000.00, '2024-01-10', 'Antibiótico de amplio espectro'),
-('Florfenicol', 'Florfenicol', 'Ceva', 'Suspensión Oral 50 mg/mL', '2025-01-31', 85, 'VWX234', 'Distribuidora Agroveterinaria Ltda.', 85000.00, '2024-08-15', 'Antibiótico para infecciones respiratorias'),
-('Fenbendazol', 'Fenbendazol', 'Intervet', 'Suspensión Oral 10%', '2024-12-31', 100, 'YZA567', 'Veterinaria El Porcino', 55000.00, '2024-05-25', 'Antiparasitario interno'),
-('Sulfadimetoxina', 'Sulfadimetoxina', 'Vetoquinol', 'Polvo Oral 20%', '2024-11-30', 75, 'BCD890', 'Distribuidora de Productos Veterinarios S.A.S.', 70000.00, '2024-03-28', 'Antibiótico para coccidiosis'),
-('Tetraciclina', 'Tetraciclina', 'Syntex', 'Polvo Oral 50 g', '2024-10-31', 95, 'EFG123', 'Distribuidora de Insumos Agropecuarios', 60000.00, '2024-09-12', 'Antibiótico de amplio espectro'),
-('Doxiciclina', 'Doxiciclina', 'Vetanco', 'Tabletas 100 mg', '2024-09-30', 65, 'HIJ456', 'Distribuidora de Medicamentos Veterinarios S.A.', 69000.00, '2024-04-05', 'Antibiótico para infecciones respiratorias'),
-('Lincomicina', 'Lincomicina', 'Labiana', 'Solución Inyectable 300 mg/mL', '2024-08-31', 85, 'KLM789', 'Laboratorio Veterinario ABC', 95000.00, '2024-01-30', 'Antibiótico para infecciones gastrointestinales'),
-('Tiamulina', 'Tiamulina', 'Huvepharma', 'Polvo Oral 50 g', '2024-07-31', 105, 'NOP012', 'VetSupply S.A.S.', 80000.00, '2024-06-08', 'Antibiótico para infecciones respiratorias'),
-('Colistina', 'Colistina', 'Nicosia', 'Suspensión Oral 50 mg/mL', '2025-01-31', 80, 'QRS345', 'Distribuidora de Productos Agropecuarios y Veterinarios', 90000.00, '2024-02-20', 'Antibiótico para infecciones gastrointestinales'),
-('Neomicina', 'Neomicina', 'Merial', 'Solución Inyectable 10%', '2024-12-31', 90, 'TUV678', 'Distribuidora Veterinaria Porcina', 75000.00, '2024-07-10', 'Antibiótico para infecciones gastrointestinales');
+INSERT INTO medicamentos (nombre_medicamento, principio_activo, laboratorio, presentacion, fecha_vencimiento, stock, unidad_medida, lote_medicamento, vendedor_medicamento, precio_unidad, fecha_compra, observaciones) VALUES
+('Amoxicilina', 'Amoxicilina', 'Bayer', 'Suspensión Oral 250 mg', '2024-12-31', 100, 'ml', 'ABC123', 'Distribuidora Veterinaria S.A.', 55000.00, '2024-05-01', 'Antibiótico de amplio espectro'),
+('Eritromicina', 'Eritromicina', 'Pfizer', 'Polvo Oral 100 mg', '2024-11-30', 80, 'g', 'DEF456', 'VetCorp S.A.S.', 48000.00, '2024-04-15', 'Antibiótico para infecciones bacterianas'),
+('Ivermectina', 'Ivermectina', 'Zoetis', 'Solución Inyectable 1%', '2025-02-28', 120, 'ml', 'GHI789', 'Veterinaria San José', 80000.00, '2024-06-10', 'Antiparasitario interno y externo'),
+('Enrofloxacina', 'Enrofloxacina', 'MSD Animal Health', 'Tabletas 50 mg', '2024-10-31', 90, 'tabletas', 'JKL012', 'Distribuidora Agropecuaria Ltda.', 61000.00, '2024-03-20', 'Antibiótico de amplio espectro'),
+('Ceftiofur', 'Ceftiofur', 'Boehringer Ingelheim', 'Solución Inyectable 5%', '2024-09-30', 70, 'ml', 'MNO345', 'VetFarma S.A.', 75000.00, '2024-07-05', 'Antibiótico para enfermedades respiratorias'),
+('Tilmicosina', 'Tilmicosina', 'Elanco', 'Solución Inyectable 300 mg/mL', '2024-08-31', 60, 'ml', 'PQR678', 'Distribuidora Veterinaria San Marcos', 91000.00, '2024-02-18', 'Antibiótico para enfermedades respiratorias'),
+('Oxitetraciclina', 'Oxitetraciclina', 'Virbac', 'Polvo Oral 100 g', '2024-07-31', 110, 'g', 'STU901', 'Veterinaria El Ganadero', 70000.00, '2024-01-10', 'Antibiótico de amplio espectro'),
+('Florfenicol', 'Florfenicol', 'Ceva', 'Suspensión Oral 50 mg/mL', '2025-01-31', 85, 'ml', 'VWX234', 'Distribuidora Agroveterinaria Ltda.', 85000.00, '2024-08-15', 'Antibiótico para infecciones respiratorias'),
+('Fenbendazol', 'Fenbendazol', 'Intervet', 'Suspensión Oral 10%', '2024-12-31', 100, 'ml', 'YZA567', 'Veterinaria El Porcino', 55000.00, '2024-05-25', 'Antiparasitario interno'),
+('Sulfadimetoxina', 'Sulfadimetoxina', 'Vetoquinol', 'Polvo Oral 20%', '2024-11-30', 75, 'g', 'BCD890', 'Distribuidora de Productos Veterinarios S.A.S.', 70000.00, '2024-03-28', 'Antibiótico para coccidiosis'),
+('Tetraciclina', 'Tetraciclina', 'Syntex', 'Polvo Oral 50 g', '2024-10-31', 95, 'g', 'EFG123', 'Distribuidora de Insumos Agropecuarios', 60000.00, '2024-09-12', 'Antibiótico de amplio espectro'),
+('Doxiciclina', 'Doxiciclina', 'Vetanco', 'Tabletas 100 mg', '2024-09-30', 65, 'tabletas', 'HIJ456', 'Distribuidora de Medicamentos Veterinarios S.A.', 69000.00, '2024-04-05', 'Antibiótico para infecciones respiratorias'),
+('Lincomicina', 'Lincomicina', 'Labiana', 'Solución Inyectable 300 mg/mL', '2024-08-31', 85, 'ml', 'KLM789', 'Laboratorio Veterinario ABC', 95000.00, '2024-01-30', 'Antibiótico para infecciones gastrointestinales'),
+('Tiamulina', 'Tiamulina', 'Huvepharma', 'Polvo Oral 50 g', '2024-07-31', 105, 'g', 'NOP012', 'VetSupply S.A.S.', 80000.00, '2024-06-08', 'Antibiótico para infecciones respiratorias'),
+('Colistina', 'Colistina', 'Nicosia', 'Suspensión Oral 50 mg/mL', '2025-01-31', 80, 'ml', 'QRS345', 'Distribuidora de Productos Agropecuarios y Veterinarios', 90000.00, '2024-02-20', 'Antibiótico para infecciones gastrointestinales'),
+('Neomicina', 'Neomicina', 'Merial', 'Solución Inyectable 10%', '2024-12-31', 90, 'ml', 'TUV678', 'Distribuidora Veterinaria Porcina', 75000.00, '2024-07-10', 'Antibiótico para infecciones gastrointestinales');
+
 
 --medicamentos
-INSERT INTO medicamentos (nombre_medicamento, principio_activo, laboratorio, presentacion, fecha_vencimiento, stock, lote_medicamento, vendedor_medicamento, precio_unidad, fecha_compra, observaciones) VALUES
-('Vacuna Peste Porcina Clásica', 'Virus atenuado', 'Zoetis', 'Frasco 50 ml', '2025-12-31', 50, 'Lote001', 'Distribuidora Veterinaria S.A.', 150000.00, '2024-05-01', 'Vacuna contra la peste porcina clásica'),
-('Vacuna Circovirus Porcino Tipo 2', 'Circovirus tipo 2 inactivado', 'Boehringer Ingelheim', 'Frasco 100 ml', '2025-11-30', 60, 'Lote002', 'VetCorp S.A.S.', 170000.00, '2024-04-15', 'Vacuna contra el circovirus porcino tipo 2'),
-('Vacuna Mycoplasma Hyopneumoniae', 'Mycoplasma hyopneumoniae inactivado', 'MSD Animal Health', 'Frasco 50 ml', '2025-02-28', 70, 'Lote003', 'Veterinaria San José', 120000.00, '2024-06-10', 'Vacuna contra Mycoplasma hyopneumoniae'),
-('Vacuna Parvovirosis Porcina', 'Virus atenuado', 'Elanco', 'Frasco 50 ml', '2025-10-31', 80, 'Lote004', 'Distribuidora Agropecuaria Ltda.', 130000.00, '2024-03-20', 'Vacuna contra la parvovirosis porcina'),
-('Vacuna PRRS', 'Virus atenuado', 'Virbac', 'Frasco 100 ml', '2025-09-30', 90, 'Lote005', 'VetFarma S.A.', 140000.00, '2024-07-05', 'Vacuna contra el síndrome disgenésico y respiratorio porcino (PRRS)'),
-('Vacuna Fiebre Aftosa', 'Virus inactivado', 'Ceva', 'Frasco 100 ml', '2025-08-31', 100, 'Lote006', 'Distribuidora Veterinaria San Marcos', 160000.00, '2024-02-18', 'Vacuna contra el virus de la fiebre aftosa'),
-('Vacuna Enfermedad de Glässer', 'Haemophilus parasuis inactivado', 'Intervet', 'Frasco 50 ml', '2025-07-31', 50, 'Lote007', 'Veterinaria El Ganadero', 150000.00, '2024-01-10', 'Vacuna contra la enfermedad de Glässer'),
-('Vacuna Erisipela Porcina', 'Erysipelothrix rhusiopathiae inactivado', 'Vetoquinol', 'Frasco 100 ml', '2025-01-31', 70, 'Lote008', 'Distribuidora Agroveterinaria Ltda.', 170000.00, '2024-08-15', 'Vacuna contra la erisipela porcina'),
-('Vacuna Leptospirosis Porcina', 'Leptospira inactivado', 'Syntex', 'Frasco 50 ml', '2024-12-31', 90, 'Lote009', 'Veterinaria El Porcino', 160000.00, '2024-05-25', 'Vacuna contra la leptospirosis porcina'),
-('Vacuna Rotavirus Porcino', 'Rotavirus inactivado', 'Vetanco', 'Frasco 100 ml', '2024-11-30', 80, 'Lote010', 'Distribuidora de Productos Veterinarios S.A.S.', 180000.00, '2024-03-28', 'Vacuna contra el rotavirus porcino');
+INSERT INTO medicamentos (nombre_medicamento, principio_activo, laboratorio, presentacion, fecha_vencimiento, stock, unidad_medida, lote_medicamento, vendedor_medicamento, precio_unidad, fecha_compra, observaciones) VALUES
+('Vacuna Peste Porcina Clásica', 'Virus atenuado', 'Zoetis', 'Frasco 50 ml', '2025-12-31', 50 , 'ml', 'Lote001', 'Distribuidora Veterinaria S.A.', 150000.00, '2024-05-01', 'Vacuna contra la peste porcina clásica'),
+('Vacuna Circovirus Porcino Tipo 2', 'Circovirus tipo 2 inactivado', 'Boehringer Ingelheim', 'Frasco 100 ml', '2025-11-30', 60, 'ml', 'Lote002', 'VetCorp S.A.S.', 170000.00, '2024-04-15', 'Vacuna contra el circovirus porcino tipo 2'),
+('Vacuna Mycoplasma Hyopneumoniae', 'Mycoplasma hyopneumoniae inactivado', 'MSD Animal Health', 'Frasco 50 ml', '2025-02-28', 70, 'ml', 'Lote003', 'Veterinaria San José', 120000.00, '2024-06-10', 'Vacuna contra Mycoplasma hyopneumoniae'),
+('Vacuna Parvovirosis Porcina', 'Virus atenuado', 'Elanco', 'Frasco 50 ml', '2025-10-31', 80, 'ml', 'Lote004', 'Distribuidora Agropecuaria Ltda.', 130000.00, '2024-03-20', 'Vacuna contra la parvovirosis porcina'),
+('Vacuna PRRS', 'Virus atenuado', 'Virbac', 'Frasco 100 ml', '2025-09-30', 90, 'ml', 'Lote005', 'VetFarma S.A.', 140000.00, '2024-07-05', 'Vacuna contra el síndrome disgenésico y respiratorio porcino (PRRS)'),
+('Vacuna Fiebre Aftosa', 'Virus inactivado', 'Ceva', 'Frasco 100 ml', '2025-08-31', 100, 'ml', 'Lote006', 'Distribuidora Veterinaria San Marcos', 160000.00, '2024-02-18', 'Vacuna contra el virus de la fiebre aftosa'),
+('Vacuna Enfermedad de Glässer', 'Haemophilus parasuis inactivado', 'Intervet', 'Frasco 50 ml', '2025-07-31', 50, 'ml', 'Lote007', 'Veterinaria El Ganadero', 150000.00, '2024-01-10', 'Vacuna contra la enfermedad de Glässer'),
+('Vacuna Erisipela Porcina', 'Erysipelothrix rhusiopathiae inactivado', 'Vetoquinol', 'Frasco 100 ml', '2025-01-31', 70, 'ml', 'Lote008', 'Distribuidora Agroveterinaria Ltda.', 170000.00, '2024-08-15', 'Vacuna contra la erisipela porcina'),
+('Vacuna Leptospirosis Porcina', 'Leptospira inactivado', 'Syntex', 'Frasco 50 ml', '2024-12-31', 90, 'ml', 'Lote009', 'Veterinaria El Porcino', 160000.00, '2024-05-25', 'Vacuna contra la leptospirosis porcina'),
+('Vacuna Rotavirus Porcino', 'Rotavirus inactivado', 'Vetanco', 'Frasco 100 ml', '2024-11-30', 80, 'ml', 'Lote010', 'Distribuidora de Productos Veterinarios S.A.S.', 180000.00, '2024-03-28', 'Vacuna contra el rotavirus porcino');
 
 
 

@@ -141,6 +141,7 @@ CREATE TABLE medicamentos (
   presentacion VARCHAR(200) NOT NULL,
   fecha_vencimiento DATE NOT NULL,
   stock INTEGER NOT NULL,
+  unidad_medida VARCHAR(50) NOT NULL,
   lote_medicamento VARCHAR(50),
   vendedor_medicamento VARCHAR(255),
   precio_unidad NUMERIC(10,2) NOT NULL,
