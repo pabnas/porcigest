@@ -30,6 +30,7 @@ class MedicamentosForm(forms.ModelForm):
             'presentacion',
             'fecha_vencimiento',
             'stock',
+            'unidad_medida',
             'lote_medicamento',
             'vendedor_medicamento',
             'precio_unidad',
@@ -49,6 +50,7 @@ class MedicamentosForm(forms.ModelForm):
     presentacion = forms.CharField(max_length=200)
     fecha_vencimiento = forms.DateField(widget = DatePickerInput)
     stock = forms.IntegerField(min_value=0)
+    unidad_medida = forms.CharField(max_length=50)
     lote_medicamento = forms.CharField(max_length=50, required=False)
     vendedor_medicamento = forms.CharField(max_length=255, required=False)
     precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0)

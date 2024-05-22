@@ -57,6 +57,11 @@
 
                         <div class="row">
                           <div class="col-4 text-black h4">
+                            {{ form.unidad_medida.errors }}
+                            {{ form.unidad_medida.label_tag }}
+                            {{ form.unidad_medida }}
+                          </div>
+                          <div class="col-4 text-black h4">
                             {{ form.lote_medicamento.errors }}
                             {{ form.lote_medicamento.label_tag }}
                             {{ form.lote_medicamento }}
@@ -66,20 +71,20 @@
                             {{ form.vendedor_medicamento.label_tag }}
                             {{ form.vendedor_medicamento }}
                           </div>
+                        </div>
+
+                        <div class="row">
                           <div class="col-4 text-black h4">
                             {{ form.precio_unidad.errors }}
                             {{ form.precio_unidad.label_tag }}
                             {{ form.precio_unidad }}
                           </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-6 text-black h4">
+                          <div class="col-4 text-black h4">
                             {{ form.fecha_compra.errors }}
                             {{ form.fecha_compra.label_tag }}
                             {{ form.fecha_compra }}
                           </div>
-                          <div class="col-6 text-black h4">
+                          <div class="col-4 text-black h4">
                             {{ form.observaciones.errors }}
                             {{ form.observaciones.label_tag }}
                             {{ form.observaciones }}

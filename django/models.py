@@ -89,6 +89,7 @@ class Medicamentos(models.Model):
     presentacion = models.CharField(max_length=200)
     fecha_vencimiento = models.DateField()
     stock = models.IntegerField()
+    unidad_medida = models.CharField(max_length=50)
     lote_medicamento = models.CharField(max_length=50, blank=True, null=True)
     vendedor_medicamento = models.CharField(max_length=255, blank=True, null=True)
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2)
