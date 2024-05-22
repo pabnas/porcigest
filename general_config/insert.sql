@@ -381,17 +381,18 @@ INSERT INTO tratamientos (tipo_tratamiento, detalle_tratamiento, id_medicamento,
 ('Antibiótico', 'Tratamiento para infecciones bacterianas', 6, 0.225, 'Administrar 0.225 ml por cada kg de peso, cada 12 horas durante 7 días');
 
 --vacunacion
-INSERT INTO tratamientos (tipo_tratamiento, detalle_tratamiento, id_medicamento, dosis, observaciones) VALUES
-('Vacunación', 'Vacunación contra el virus de la peste porcina clásica', 17, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a los lechones de 6 semanas'),
-('Vacunación', 'Vacunación contra el circovirus porcino tipo 2', 18, 1.0, 'Administrar 1 ml intramuscularmente, una sola dosis a los lechones de 3 semanas'),
-('Vacunación', 'Vacunación contra el Mycoplasma hyopneumoniae', 19, 2.0, 'Administrar 2 ml intramuscularmente, dos dosis con un intervalo de 3 semanas'),
-('Vacunación', 'Vacunación contra la parvovirosis porcina', 20, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a las cerdas reproductoras antes de la gestación'),
-('Vacunación', 'Vacunación contra el síndrome disgenésico y respiratorio porcino (PRRS)', 21, 1.0, 'Administrar 1 ml intramuscularmente, una sola dosis a los lechones de 4 semanas'),
-('Vacunación', 'Vacunación contra el virus de la fiebre aftosa', 22, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a los lechones de 8 semanas'),
-('Vacunación', 'Vacunación contra la enfermedad de Glässer', 23, 2.0, 'Administrar 2 ml intramuscularmente, dos dosis con un intervalo de 2 semanas'),
-('Vacunación', 'Vacunación contra la erisipela porcina', 24, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a los lechones de 10 semanas'),
-('Vacunación', 'Vacunación contra la leptospirosis porcina', 25, 2.0, 'Administrar 2 ml intramuscularmente, dos dosis con un intervalo de 4 semanas'),
-('Vacunación', 'Vacunación contra el rotavirus porcino', 26, 2.0, 'Administrar 2 ml intramuscularmente, una sola dosis a los lechones de 5 semanas');
+INSERT INTO tratamientos_animales (id_tratamiento, id_animal, fecha_tratamiento_animal, observaciones_animal)
+VALUES
+(25, 1, '2024-05-01', 'Vacunación contra el virus de la peste porcina clásica, seguimiento anual recomendado'),
+(26, 5, '2024-05-05', 'Vacunación contra el circovirus porcino tipo 2, sin reacciones adversas'),
+(27, 10, '2024-05-10', 'Vacunación contra el Mycoplasma hyopneumoniae, lechón en buen estado de salud'),
+(28, 15, '2024-05-15', 'Vacunación contra la parvovirosis porcina, sin complicaciones reportadas'),
+(29, 20, '2024-05-20', 'Vacunación contra el síndrome disgenésico y respiratorio porcino (PRRS), lechón mostrando buena respuesta'),
+(30, 25, '2024-05-25', 'Vacunación contra el virus de la fiebre aftosa, sin efectos secundarios'),
+(31, 30, '2024-05-30', 'Vacunación contra la enfermedad de Glässer, monitoreo continuo recomendado'),
+(32, 35, '2024-06-05', 'Vacunación contra la erisipela porcina, sin reacciones adversas observadas'),
+(33, 40, '2024-06-10', 'Vacunación contra la leptospirosis porcina, lechón en buen estado post-vacunación'),
+(34, 18, '2024-06-15', 'Vacunación contra el rotavirus porcino, lechón mostrando buena salud post-vacunación');
 
 
 --14
