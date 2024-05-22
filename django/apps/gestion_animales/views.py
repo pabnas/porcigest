@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.http import JsonResponse, HttpResponseBadRequest
 
+from apps.utils import allowed_users
 from models import InventarioAnimales
 from models import RegistroInseminaciones
 from models import RegistroPartos
@@ -19,15 +20,18 @@ from apps.gestion_animales.forms import RegistroPartosForm, VentaLotesForm
 
 # index
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def index(request):
     return redirect('gestion_animales:gestacion_resumen')
 
 # gestacion
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def gestacion_index(request):
     return redirect('gestion_animales:gestacion_resumen')
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def list_gestacion(_request):
     gestacion_all_rows = RegistroInseminaciones.objects.values()
     for row in gestacion_all_rows:
@@ -37,10 +41,12 @@ def list_gestacion(_request):
     return JsonResponse(data)
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def gestacion_resumen(request, **kwargs):
     return render(request, 'gestion_animales/gestacion/resumen.html')
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def gestacion_register(request, **kwargs):
     mydict={}
     if request.method == 'POST':
@@ -55,21 +61,25 @@ def gestacion_register(request, **kwargs):
 
 # inventario
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def inventario_index(request):
     return redirect('gestion_animales:inventario_resumen')
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def list_inventario(_request):
     inventario = list(InventarioAnimales.objects.values())
     data = {'inventario': inventario}
     return JsonResponse(data)
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def inventario_resumen(request, **kwargs):
     return render(request, 'gestion_animales/inventario/resumen.html')
 
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def inventario_register_ingreso(request, **kwargs):
     mydict={}
     if request.method == 'POST':
@@ -121,6 +131,7 @@ def inventario_register_ingreso(request, **kwargs):
 
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def inventario_register_salida(request, **kwargs):
     mydict={}
     if request.method == 'POST':
@@ -135,21 +146,25 @@ def inventario_register_salida(request, **kwargs):
 
 # lactancia
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def lactancia_index(request):
     return redirect('gestion_animales:lactancia_resumen')
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def list_partos(_request):
     partos = list(RegistroPartos.objects.values())
     data = {'partos': partos}
     return JsonResponse(data)
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def lactancia_resumen(request, **kwargs):
     return render(request, 'gestion_animales/lactancia/resumen.html')
 
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def lactancia_register(request, **kwargs):
     mydict={}
     if request.method == 'POST':
@@ -164,21 +179,25 @@ def lactancia_register(request, **kwargs):
 
 # movimientos
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def movimientos_index(request):
     return redirect('gestion_animales:movimientos_resumen')
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def list_movimientos(_request):
     movimientos = list(Movimientos.objects.values())
     data = {'movimientos': movimientos}
     return JsonResponse(data)
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def movimientos_resumen(request, **kwargs):
     return render(request, 'gestion_animales/movimientos/resumen.html')
 
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def movimientos_register(request, **kwargs):
     mydict={}
     if request.method == 'POST':
@@ -193,21 +212,25 @@ def movimientos_register(request, **kwargs):
 
 # precebos
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def precebos_index(request):
     return redirect('gestion_animales:precebos_resumen')
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def list_lotes_lechones(_request):
     lotes_lechones = list(LotesLechones.objects.values())
     data = {'lotes_lechones': lotes_lechones}
     return JsonResponse(data)
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def precebos_resumen(request, **kwargs):
     return render(request, 'gestion_animales/precebos/resumen.html')
 
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def precebos_register_ingreso(request, **kwargs):
     mydict={}
     if request.method == 'POST':
@@ -221,6 +244,7 @@ def precebos_register_ingreso(request, **kwargs):
     return render(request, 'gestion_animales/precebos/register_ingreso.html', mydict)
 
 @login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador'])
 def precebos_register_salida(request, **kwargs):
     mydict={}
     if request.method == 'POST':
