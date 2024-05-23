@@ -1,3 +1,4 @@
+-----------------------------------------------------------------------------------------------------------------------1
 --1
 INSERT INTO areas (nombre_area)
 VALUES
@@ -87,7 +88,7 @@ INSERT INTO corrales (num_corral, id_area, aforo, estado) VALUES
 (52, 6, 1,'ocupado'),
 (53, 6, 1,'ocupado');
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------2
 --3
 -- Gestación: 35 jaulas individuales
 INSERT INTO inventario_animales (numero_identificacion_animal, id_corral, raza, sexo, edad, peso, estado_productivo, origen) VALUES
@@ -196,6 +197,7 @@ INSERT INTO movimientos (id_animal, fecha, area_origen, area_destino) VALUES
 (53, '2024-02-01', 6, 6),  -- Dentro del área de reproductores
 (54, '2024-02-15', 6, 6);
 
+------------------------------------------------------------------------------------------------------------------------------3
 
 --5
 INSERT INTO registro_partos (id_animal, fecha_parto, nacidos_vivos, nacidos_muertos, vivos_48h, vivos_destete, observaciones) VALUES
@@ -278,7 +280,7 @@ INSERT INTO origen_interno (fecha_cambio_etapa, finalidad, etapa_productiva_ingr
 ('2024-02-17', 'reemplazo', 'gestacion', 43, 54, 'Madre con buen comportamiento'),
 ('2024-02-18', 'reemplazo', 'lactancia', 44, NULL, 'Lactancia exitosa, sin observaciones negativas');
 
-
+-----------------------------------------------------------------------------------------------------------------4
 --9
 INSERT INTO lotes_lechones (id_corral, cantidad_lechones, fecha_ingreso_lote, observaciones) VALUES
 (45, 15, '2024-01-15', 'Ingreso de lechones en buen estado'),
@@ -294,6 +296,7 @@ INSERT INTO lotes_lechones (id_corral, cantidad_lechones, fecha_ingreso_lote, ob
 (47, 25, '2023-11-09', 'Corral vacío, lechones vendidos anteriormente'),
 (48, 14, '2023-12-15', 'Reemplazo de lechones por nuevos de mejor estado'),
 (49, 25, '2023-12-25', 'Ingreso de lechones adicionales para mantener el corral lleno');
+-----------------------------------------------------------------------------------------------------------------5
 
 --10
 INSERT INTO venta_lotes (fecha_venta, id_lote, peso_promedio, precio_lote, destino, comprador, observaciones) VALUES
@@ -351,7 +354,7 @@ INSERT INTO medicamentos (nombre_medicamento, principio_activo, laboratorio, pre
 ('Vacuna Rotavirus Porcino', 'Rotavirus inactivado', 'Vetanco', 'Frasco 100 ml', '2024-11-30', 80, 'ml', 'Lote010', 'Distribuidora de Productos Veterinarios S.A.S.', 180000.00, '2024-03-28', 'Vacuna contra el rotavirus porcino');
 
 
-
+-----------------------------------------------------------------------------------------------------------6
 
 --13
 INSERT INTO tratamientos (tipo_tratamiento, detalle_tratamiento, id_medicamento, dosis, observaciones) VALUES
@@ -380,21 +383,7 @@ INSERT INTO tratamientos (tipo_tratamiento, detalle_tratamiento, id_medicamento,
 ('Antiparasitario', 'Tratamiento para gusanos redondos', 3, 0.285, 'Administrar 0.285 ml por cada kg de peso, una vez por día durante 3 días'),
 ('Antibiótico', 'Tratamiento para infecciones bacterianas', 6, 0.225, 'Administrar 0.225 ml por cada kg de peso, cada 12 horas durante 7 días');
 
---vacunacion
-INSERT INTO tratamientos_animales (id_tratamiento, id_animal, fecha_tratamiento_animal, observaciones_animal)
-VALUES
-(25, 1, '2024-05-01', 'Vacunación contra el virus de la peste porcina clásica, seguimiento anual recomendado'),
-(26, 5, '2024-05-05', 'Vacunación contra el circovirus porcino tipo 2, sin reacciones adversas'),
-(27, 10, '2024-05-10', 'Vacunación contra el Mycoplasma hyopneumoniae, lechón en buen estado de salud'),
-(28, 15, '2024-05-15', 'Vacunación contra la parvovirosis porcina, sin complicaciones reportadas'),
-(29, 20, '2024-05-20', 'Vacunación contra el síndrome disgenésico y respiratorio porcino (PRRS), lechón mostrando buena respuesta'),
-(30, 25, '2024-05-25', 'Vacunación contra el virus de la fiebre aftosa, sin efectos secundarios'),
-(31, 30, '2024-05-30', 'Vacunación contra la enfermedad de Glässer, monitoreo continuo recomendado'),
-(32, 35, '2024-06-05', 'Vacunación contra la erisipela porcina, sin reacciones adversas observadas'),
-(33, 40, '2024-06-10', 'Vacunación contra la leptospirosis porcina, lechón en buen estado post-vacunación'),
-(34, 18, '2024-06-15', 'Vacunación contra el rotavirus porcino, lechón mostrando buena salud post-vacunación');
-
-
+--------------------------------------------------------------------------------------------------------------7
 --14
 INSERT INTO tratamiento_lotes (id_tratamiento, id_lote, fecha_aplicacion_lote, dosis_lote, observaciones_lote)
 VALUES
@@ -435,7 +424,19 @@ VALUES
 (43, 40, '2024-06-10', 'Vacunación contra la leptospirosis porcina, lechón en buen estado post-vacunación'),
 (44, 18, '2024-06-15', 'Vacunación contra el rotavirus porcino, lechón mostrando buena salud post-vacunación');
 
-
+--vacunacion
+INSERT INTO tratamientos_animales (id_tratamiento, id_animal, fecha_tratamiento_animal, observaciones_animal)
+VALUES
+(25, 1, '2024-05-01', 'Vacunación contra el virus de la peste porcina clásica, seguimiento anual recomendado'),
+(26, 5, '2024-05-05', 'Vacunación contra el circovirus porcino tipo 2, sin reacciones adversas'),
+(27, 10, '2024-05-10', 'Vacunación contra el Mycoplasma hyopneumoniae, lechón en buen estado de salud'),
+(28, 15, '2024-05-15', 'Vacunación contra la parvovirosis porcina, sin complicaciones reportadas'),
+(29, 20, '2024-05-20', 'Vacunación contra el síndrome disgenésico y respiratorio porcino (PRRS), lechón mostrando buena respuesta'),
+(30, 25, '2024-05-25', 'Vacunación contra el virus de la fiebre aftosa, sin efectos secundarios'),
+(31, 30, '2024-05-30', 'Vacunación contra la enfermedad de Glässer, monitoreo continuo recomendado'),
+(32, 35, '2024-06-05', 'Vacunación contra la erisipela porcina, sin reacciones adversas observadas'),
+(33, 40, '2024-06-10', 'Vacunación contra la leptospirosis porcina, lechón en buen estado post-vacunación'),
+(34, 18, '2024-06-15', 'Vacunación contra el rotavirus porcino, lechón mostrando buena salud post-vacunación');
 
 
 --16
