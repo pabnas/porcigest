@@ -6,13 +6,24 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    command: python manage.py runserver 0.0.0.0:8000
+    command:  python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./django:/django
     ports:
       - "8000:8000"
     depends_on:
       - db
+
+  notifier:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command:  python /notify.py
+    volumes:
+      - ./django:/django
+    depends_on:
+      - django
 
   django-rpi:
     build:
@@ -26,6 +37,17 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    
+  notifier-rpi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command:  python /notify.py
+    volumes:
+      - ./django:/django
+    depends_on:
+      - django-rpi
 
   db:
     image: postgres
@@ -40,4 +62,5 @@ services:
       - ./db.sql:/docker-entrypoint-initdb.d/db.sql
     ports:
       - "5432:5432"
+    hostname: db
     # command: ["postgres", "-c", "log_statement=all"]

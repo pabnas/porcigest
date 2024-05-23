@@ -9,6 +9,11 @@ RUN python3 -m pip install --upgrade pip
 # Set the working directory in the container
 WORKDIR /django
 
+COPY ./notify.py /
+COPY ./requirements_notify.txt /django/
+RUN pip install -r requirements_notify.txt
+COPY ./notify.py /django/
+
 RUN echo "Construyendo para python"
 COPY ./requirements.txt /django/
 RUN pip install -r requirements.txt

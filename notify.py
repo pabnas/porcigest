@@ -5,11 +5,13 @@ import os
 import time
 from multiprocessing import Process
 from datetime import datetime, timedelta
+from os.path import join, dirname
 from twilio.rest import Client
 
-dotenv.load_dotenv()
+dotenv_path = join('/django/porcigest/.env')
+dotenv.load_dotenv(dotenv_path)
 
-host = "localhost"
+host = "db"
 database = os.getenv("POSTGRES_DB")
 user = os.getenv("POSTGRES_USER")
 password = os.getenv("POSTGRES_PASSWORD")
@@ -24,6 +26,8 @@ sensor_agua = os.getenv("SENSOR_AGUA")
 
 
 def insert_records():
+    cursor = None
+    connection = None
     try:
         print("Conectando a la base de datos para inserciones...")
         connection = psycopg2.connect(
@@ -53,10 +57,11 @@ def insert_records():
         print(f"Error al conectar a la base de datos para inserciones: {error}")
 
     finally:
-        if cursor:
+        if cursor is not None:
             cursor.close()
-        if connection:
+        if connection is not None:
             connection.close()
+
 
 def notificar_proximos_partos(id_partos, cursor, client, Cellphones):
     query = """
@@ -114,6 +119,8 @@ def notificar_nivel_agua(id_nivel, cursor, client, Cellphones):
 
 
 def read_records():
+    cursor = None
+    connection = None
     try:
         print("Conectando a la base de datos para lecturas...")
         connection = psycopg2.connect(
@@ -140,9 +147,9 @@ def read_records():
         print(f"Error al conectar a la base de datos para lecturas: {error}")
 
     finally:
-        if cursor:
+        if cursor is not None:
             cursor.close()
-        if connection:
+        if connection is not None:
             connection.close()
 
 
