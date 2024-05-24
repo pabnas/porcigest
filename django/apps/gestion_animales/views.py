@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.http import JsonResponse, HttpResponseBadRequest
 
 from apps.utils import allowed_users
-from models import InventarioAnimales
+from models import Corrales, InventarioAnimales
 from models import RegistroInseminaciones
 from models import RegistroPartos
 from models import Movimientos
@@ -211,6 +211,25 @@ def movimientos_register(request, **kwargs):
         form=MovimientosForm()
     mydict['form']=form
     return render(request, 'gestion_animales/movimientos/register.html', mydict)
+
+
+def get_animals_from_corral(request, **kwargs):
+    corral_id = request.POST.get('corral_id')
+    if corral_id:
+        animals = InventarioAnimales.objects.filter(id_corral=corral_id)
+        data = {'animal_ids': list(animals.values_list('id_animal', flat=True))}
+        return JsonResponse(data)
+    else:
+        return HttpResponseBadRequest("Invalid corral")
+    
+def get_corrals_from_area(request, **kwargs):
+    area_id = request.POST.get('area_id')
+    if area_id:
+        corrales = Corrales.objects.filter(id_area=area_id)
+        data = {'corrals_ids': list(corrales.values_list('corral_id', flat=True))}
+        return JsonResponse(data)
+    else:
+        return HttpResponseBadRequest("Invalid Area")
 
 # precebos
 @login_required(login_url='/login', redirect_field_name=None)

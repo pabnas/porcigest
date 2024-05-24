@@ -29,6 +29,8 @@ urlpatterns = [
     path('movimientos/resumen', views.movimientos_resumen, name='movimientos_resumen', kwargs={'navbar': 'movimientos_resumen'}),
     path('movimientos/registrar', views.movimientos_register, name='movimientos_registrar', kwargs={'navbar': 'movimientos_registrar'}),
     path('movimientos/list_movimientos', views.list_movimientos, name='list_movimientos'),
+    path('movimientos/get_animals_from_corral', views.get_animals_from_corral),
+    path('movimientos/get_corrals_from_area', views.get_corrals_from_area),
 
     # precebos
     path('precebos/', views.precebos_index, name='precebos'),

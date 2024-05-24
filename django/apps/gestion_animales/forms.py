@@ -1,3 +1,4 @@
+from typing import Any
 from django import forms
 from django.forms import ModelChoiceField
 
@@ -166,22 +167,34 @@ class MovimientosForm(forms.ModelForm):
     class Meta:
         model = Movimientos
         fields =[
+            'id_corral',
             'id_animal',
             'fecha',
-            'area_origen',
             'area_destino',
+            'corral_destino'
         ]
         
     def __init__(self, *args, **kwargs):
         super(MovimientosForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
+            if field.label:
+                field.label = snake_case_to_title(field.label, decorator='')
+            else:
+                field.label = snake_case_to_title(field_name, decorator='')
             if field.required:
-                field.label = snake_case_to_title(field_name)
+                field.label = snake_case_to_title(field.label)
 
-    id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all())
+    corrales_ocupados = Corrales.objects.filter(estado='ocupado').filter(id_area__nombre_area='Precebos')
+    corrales_destion_validos = Corrales.objects.filter(estado='vacio')
+    animales_validos = InventarioAnimales.objects.all()
+
+    id_corral = CorralesChoiceField(queryset=corrales_ocupados)
+    id_animal = InventarioAnimalesChoiceField(queryset=animales_validos, label="Animal")
+    
     fecha = forms.DateField(widget = DatePickerInput)
     area_origen = AreasChoiceField(queryset=Areas.objects.all())
     area_destino = AreasChoiceField(queryset=Areas.objects.all())
+    corral_destino = CorralesChoiceField(queryset=corrales_destion_validos)
 
 
 class OrigenInternoForm(forms.ModelForm):

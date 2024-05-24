@@ -19,7 +19,12 @@
                     <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
                       <div class="container">
                         <div class="row">
-                          <div class="col-6 col-sm text-black h4">
+                          <div class="col-4 col-sm text-black h4">
+                            {{ form.id_corral.errors }}
+                            {{ form.id_corral.label_tag }} 
+                            {{ form.id_corral }}
+                          </div>
+                          <div class="col-4 col-sm text-black h4">
                             {{ form.id_animal.errors }}
                             {{ form.id_animal.label_tag }} 
                             {{ form.id_animal }}
@@ -33,14 +38,14 @@
 
                         <div class="row">
                           <div class="col-6 text-black h4">
-                            {{ form.area_origen.errors }}
-                            {{ form.area_origen.label_tag }}
-                            {{ form.area_origen }}
-                          </div>
-                          <div class="col-6 text-black h4">
                             {{ form.area_destino.errors }}
                             {{ form.area_destino.label_tag }}
                             {{ form.area_destino }}
+                          </div>
+                          <div class="col-6 text-black h4">
+                            {{ form.corral_destino.errors }}
+                            {{ form.corral_destino.label_tag }}
+                            {{ form.corral_destino }}
                           </div>
                         </div>
 
@@ -65,4 +70,25 @@
     </div>
     <!-- End of Page Wrapper -->
   </body>
+
+  <script>
+
+  $(document).ready(function(){
+    chainedSelect(
+      selector_object='select#id_corral_destino', 
+      data_key='corral_id',
+      data_key_recieve='animal_ids',
+      url='/gestion_animales/movimientos/get_animals_from_corral', 
+      target_object='id_id_animal'
+    );
+
+    chainedSelect(
+      selector_object='select#id_area_destino', 
+      data_key='area_id',
+      data_key_recieve='corrals_ids',
+      url='/gestion_animales/movimientos/get_corrals_from_area', 
+      target_object='id_corral_destino'
+    );
+  });
+  </script>
 </html>
