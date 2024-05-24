@@ -10,7 +10,7 @@ class DatePickerInput(forms.DateInput):
 
 class InventarioAnimalesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"Animal #:{obj.numero_identificacion_animal}"
+        return f"Animal #{obj.numero_identificacion_animal}"
 
 class CorralesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
@@ -18,11 +18,11 @@ class CorralesChoiceField(ModelChoiceField):
     
 class LotesLechonesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"Lote lechones id:{obj.id_lote}"
+        return f"Lote #{obj.id_lote}"
 
 class AreasChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"Area id:{obj.id_area}"
+        return obj.nombre_area
     
 TIPO_INSEMINACION = [
     # TEXT, VALUE
