@@ -41,8 +41,13 @@ class MedicamentosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(MedicamentosForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
+            if field.label:
+                field.label = snake_case_to_title(field.label, decorator='')
+            else:
+                field.label = snake_case_to_title(field_name, decorator='')
+            
             if field.required:
-                field.label = snake_case_to_title(field_name)
+                field.label = snake_case_to_title(field.label)
         
     nombre_medicamento = forms.CharField(max_length=100)
     principio_activo = forms.CharField(max_length=100)
@@ -53,7 +58,7 @@ class MedicamentosForm(forms.ModelForm):
     unidad_medida = forms.CharField(max_length=50)
     lote_medicamento = forms.CharField(max_length=50, required=False)
     vendedor_medicamento = forms.CharField(max_length=255, required=False)
-    precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0)
+    precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, label='Precio unidad (cop)')
     fecha_compra = forms.DateField(widget = DatePickerInput, required=False)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
