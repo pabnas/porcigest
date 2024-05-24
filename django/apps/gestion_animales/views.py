@@ -116,6 +116,8 @@ def inventario_register_ingreso(request, **kwargs):
             elif form.cleaned_data['origen'] == 'E':
                 form_origen_externo = OrigenExternoForm(origen_externo_dict)
                 form_origen_externo.instance.id_animal = animal
+                form_origen_externo.instance.peso_compra = animal.peso
+                form_origen_externo.instance.etapa_productiva_ingreso = animal.estado_productivo
                 if form_origen_externo.is_valid():
                     form_origen_externo.save()
                 else:

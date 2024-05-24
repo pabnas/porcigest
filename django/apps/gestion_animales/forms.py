@@ -217,9 +217,7 @@ class OrigenExternoForm(forms.ModelForm):
             'fecha_compra',
             'fecha_ingreso',
             'finalidad_compra',
-            'etapa_productiva_ingreso',
             'vendedor',
-            'peso_compra',
             'observaciones',
         ]
         
@@ -237,9 +235,7 @@ class OrigenExternoForm(forms.ModelForm):
     fecha_compra = forms.DateField(widget = DatePickerInput)
     fecha_ingreso = forms.DateField(widget = DatePickerInput)
     finalidad_compra = forms.CharField(max_length=50)
-    etapa_productiva_ingreso = forms.CharField(max_length=50)
     vendedor = forms.CharField(max_length=255)
-    peso_compra = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, required=False, label="Peso de compra (kg)")
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 
