@@ -22,9 +22,9 @@
                             <table id="dataTable" class="table">
                               <thead>
                                 <tr>
-                                  <th class="centered">Id tratamiento</th>
-                                  <th class="centered">Número del animal</th>
-                                  <th class="centered">Fecha de tratamiento</th>
+                                  <th class="centered">Id tratamiento del lote</th>
+                                  <th class="centered">Número del lote</th>
+                                  <th class="centered">Fecha de tratamiento del lote</th>
                                   <th class="centered">Tipo de tratamiento</th>
                                   <th class="centered">Observaciones</th>
                                 </tr>
@@ -73,18 +73,18 @@
         try{
             const hostname = window.location.hostname;
             const port = window.location.port;
-            const response=await fetch(`http://${hostname}:${port}/control_sanitario/vacunacion/list_vacunacion`);
+            const response=await fetch(`http://${hostname}:${port}/control_sanitario/vacunacion/list_lotes`);
             const data=await response.json();
             console.log(data);
             let content = ``;
             data.vacunacion.forEach((vacunacion, index) => {
                 content += `
                 <tr>
-                    <td>${vacunacion.id_tratamiento_animal}</td>
-                    <td>${vacunacion.id_animal__numero_identificacion_animal}</td>
-                    <td>${vacunacion.fecha_tratamiento_animal}</td>
-                    <td>${vacunacion.id_tratamiento__tipo_tratamiento}</td>
-                    <td>${vacunacion.observaciones_animal}</td>
+                    <td>${lotes.id_lote_tratamiento}</td>
+                    <td>${lotes.id_lote}</td>
+                    <td>${lotes.fecha_aplicacion_lote}</td>
+                    <td>${lotes.id_tratamiento__tipo_tratamiento}</td>
+                    <td>${lotes.observaciones_lote}</td>
                 </tr>
                 `;
             });

@@ -6,6 +6,7 @@ from apps.utils import allowed_users
 from models import Medicamentos
 from models import Tratamientos
 from models import TratamientosAnimales
+from models import TratamientoLotes
 
 from apps.control_sanitario.forms import MedicamentosForm, MedicamentosSalidaForm, TratamientoLotesForm, TratamientosAnimalesForm, TratamientosForm
 
@@ -104,14 +105,27 @@ def tratamientos_register(request, **kwargs):
 def vacunacion_index(request):
     return redirect('control_sanitario:vacunacion_resumen')
 
-
+# @login_required(login_url='/login', redirect_field_name=None)
+# @allowed_users(allowed_roles=['administrador'])
+# def list_movimientos(_request):
+#     movimientos = list(
+#         Movimientos.objects.values(
+#             'id_movimiento',
+#             'id_animal__numero_identificacion_animal',
+#             'fecha',
+#             'area_origen__nombre_area',
+#             'area_destino__nombre_area',
+#         )
+#     )
+#     data = {'movimientos': movimientos}
+#     return JsonResponse(data)
 @login_required(login_url='/login', redirect_field_name=None)
 @allowed_users(allowed_roles=['administrador', 'veterinario'])
 def list_vacunacion(_request):
     vacunacion = list(
-        TratamientosAnimales.objects.filter(id_tratamiento__tipo_tratamiento='Vacunación').values(
+        TratamientosAnimales.objects.values(
             'id_tratamiento_animal',
-            'id_animal',
+            'id_animal__numero_identificacion_animal',
             'fecha_tratamiento_animal',
             'observaciones_animal',
             'id_tratamiento__tipo_tratamiento'
@@ -122,8 +136,29 @@ def list_vacunacion(_request):
 
 @login_required(login_url='/login', redirect_field_name=None)
 @allowed_users(allowed_roles=['administrador', 'veterinario'])
+def list_lotes(_request):
+    lotes = list(
+        TratamientoLotes.objects.values(
+            'id_lote_tratamiento',
+            'id_lote',
+            'fecha_aplicacion_lote',
+            'dosis_lote',
+            'observaciones_lote',
+            'id_tratamiento__tipo_tratamiento'
+        )
+    )
+    data = {'lotes': lotes}
+    return JsonResponse(data)
+
+@login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador', 'veterinario'])
 def vacunacion_resumen(request, **kwargs):
     return render(request, 'control_sanitario/vacunacion/resumen.html')
+
+@login_required(login_url='/login', redirect_field_name=None)
+@allowed_users(allowed_roles=['administrador', 'veterinario'])
+def lotes_resumen(request, **kwargs):
+    return render(request, 'control_sanitario/vacunacion/resumen_lotes.html')
 
 @login_required(login_url='/login', redirect_field_name=None)
 @allowed_users(allowed_roles=['administrador', 'veterinario'])
