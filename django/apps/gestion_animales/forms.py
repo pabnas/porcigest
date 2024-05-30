@@ -288,7 +288,7 @@ class VentaUnidadForm(forms.ModelForm):
             'id_lote',
             'id_animal',
             'peso',
-            'precio_unidad',
+            'precio',
             'destino',
             'comprador',
             'observaciones',
@@ -305,11 +305,16 @@ class VentaUnidadForm(forms.ModelForm):
             if field.required:
                 field.label = snake_case_to_title(field.label)
     
+    lotes_vendidos = VentaLotes.objects.values_list('id_lote_id', flat=True)
+    lotes_validos = LotesLechones.objects.exclude(id_lote__in=lotes_vendidos)
+    animales_vendidos = VentaUnidad.objects.values_list('id_animal_id', flat=True)
+    animales_validos = InventarioAnimales.objects.exclude(id_animal__in=animales_vendidos)
+    
     fecha_venta = forms.DateField(widget = DatePickerInput)
-    id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all(), required=False, blank=True)
-    id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all(), required=False, blank=True)
+    id_lote = LotesLechonesChoiceField(queryset=lotes_validos, required=False, blank=True)
+    id_animal = InventarioAnimalesChoiceField(queryset=animales_validos, required=False, blank=True)
     peso = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0, label="Peso (kg)")
-    precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, label="Precio por unidad (COP)")
+    precio = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, label="Precio (COP)")
     destino = forms.CharField(max_length=50, required=False)
     comprador = forms.CharField(max_length=255)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)

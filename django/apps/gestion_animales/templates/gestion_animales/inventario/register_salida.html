@@ -18,6 +18,7 @@
                   <div class="row bg-gray-300">
                     <form method="post" enctype="multipart/form-data" class="col align-self-center py-5 px-3">
                       <div class="container">
+                        {{ form.non_field_errors }}
                         <div class="row">
                           <div class="col-4 col-sm text-black h4">
                             {{ form.id_lote.errors }}
@@ -43,9 +44,9 @@
                             {{ form.peso }}
                           </div>
                           <div class="col-6 text-black h4">
-                            {{ form.precio_unidad.errors }}
-                            {{ form.precio_unidad.label_tag }}
-                            {{ form.precio_unidad }}
+                            {{ form.precio.errors }}
+                            {{ form.precio.label_tag }}
+                            {{ form.precio }}
                           </div>
                         </div>
 

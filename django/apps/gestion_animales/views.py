@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.http import JsonResponse, HttpResponseBadRequest
 
 from apps.utils import allowed_users
-from models import InventarioAnimales
+from models import InventarioAnimales, VentaLotes, VentaUnidad
 from models import RegistroInseminaciones
 from models import RegistroPartos
 from models import Movimientos
@@ -139,7 +139,28 @@ def inventario_register_salida(request, **kwargs):
     if request.method == 'POST':
         form=VentaUnidadForm(request.POST or None , request.FILES or None)
         if form.is_valid():
-            form.save()
+            if form.cleaned_data['id_lote'] is not None:
+                venta_lote = VentaLotes(
+                    fecha_venta = form.cleaned_data['fecha_venta'],
+                    id_lote = form.cleaned_data['id_lote'],
+                    peso_promedio = form.cleaned_data['peso'],
+                    precio_lote = form.cleaned_data['precio'],
+                    destino = form.cleaned_data['destino'],
+                    comprador = form.cleaned_data['comprador'],
+                    observaciones = form.cleaned_data['observaciones']
+                )
+                venta_lote.save()
+            elif form.cleaned_data['id_animal'] is not None:
+                venta_unidad = VentaUnidad(
+                    fecha_venta = form.cleaned_data['fecha_venta'],
+                    id_animal = form.cleaned_data['id_animal'],
+                    peso = form.cleaned_data['peso'],
+                    precio_unidad = form.cleaned_data['precio'],
+                    destino = form.cleaned_data['destino'],
+                    comprador = form.cleaned_data['comprador'],
+                    observaciones = form.cleaned_data['observaciones']
+                )
+                venta_unidad.save()
             return redirect('gestion_animales:inventario_registrar_salida')
     else:
         form=VentaUnidadForm()
