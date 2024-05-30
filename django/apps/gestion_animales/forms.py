@@ -10,7 +10,7 @@ class DatePickerInput(forms.DateInput):
 
 class InventarioAnimalesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"Animal #:{obj.numero_identificacion_animal}"
+        return f"Animal #{obj.numero_identificacion_animal}"
 
 class CorralesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
@@ -18,11 +18,11 @@ class CorralesChoiceField(ModelChoiceField):
     
 class LotesLechonesChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"Lote lechones id:{obj.id_lote}"
+        return f"Lote #{obj.id_lote}"
 
 class AreasChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"Area id:{obj.id_area}"
+        return obj.nombre_area
     
 TIPO_INSEMINACION = [
     # TEXT, VALUE
@@ -145,13 +145,18 @@ class VentaLotesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(VentaLotesForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
+            if field.label:
+                field.label = snake_case_to_title(field.label, decorator='')
+            else:
+                field.label = snake_case_to_title(field_name, decorator='')
+            
             if field.required:
-                field.label = snake_case_to_title(field_name)
+                field.label = snake_case_to_title(field.label)
     
     fecha_venta = forms.DateField(widget = DatePickerInput)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all())
-    peso_promedio = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0)
-    precio_lote = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0)
+    peso_promedio = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0, label="Peso promedio (kg)")
+    precio_lote = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, label="Precio del lote (COP)")
     destino = forms.CharField(max_length=50, required=False)
     comprador = forms.CharField(max_length=255)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
@@ -212,24 +217,25 @@ class OrigenExternoForm(forms.ModelForm):
             'fecha_compra',
             'fecha_ingreso',
             'finalidad_compra',
-            'etapa_productiva_ingreso',
             'vendedor',
-            'peso_compra',
             'observaciones',
         ]
         
     def __init__(self, *args, **kwargs):
         super(OrigenExternoForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
+            if field.label:
+                field.label = snake_case_to_title(field.label, decorator='')
+            else:
+                field.label = snake_case_to_title(field_name, decorator='')
+            
             if field.required:
-                field.label = snake_case_to_title(field_name)
+                field.label = snake_case_to_title(field.label)
     
     fecha_compra = forms.DateField(widget = DatePickerInput)
     fecha_ingreso = forms.DateField(widget = DatePickerInput)
     finalidad_compra = forms.CharField(max_length=50)
-    etapa_productiva_ingreso = forms.CharField(max_length=50)
     vendedor = forms.CharField(max_length=255)
-    peso_compra = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, required=False)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
 
 
@@ -250,8 +256,13 @@ class InventarioAnimalesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(InventarioAnimalesForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
+            if field.label:
+                field.label = snake_case_to_title(field.label, decorator='')
+            else:
+                field.label = snake_case_to_title(field_name, decorator='')
+            
             if field.required:
-                field.label = snake_case_to_title(field_name)
+                field.label = snake_case_to_title(field.label)
     
     def customSave(self):
         lv = self.save(commit=False)
@@ -262,8 +273,8 @@ class InventarioAnimalesForm(forms.ModelForm):
     id_corral = CorralesChoiceField(queryset=Corrales.objects.all())
     raza = forms.CharField(max_length=50)
     sexo = forms.ChoiceField(choices=TIPO_SEXO)
-    edad = forms.IntegerField(min_value=0)
-    peso = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0)
+    edad = forms.IntegerField(min_value=0, label="Edad (meses)")
+    peso = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, label="Peso (kg)")
     estado_productivo = forms.ChoiceField(choices=TIPO_ESTADO_PRODUCTIVO)
     origen = forms.ChoiceField(choices=TIPO_ORIGEN)
     origen_interno = OrigenInternoForm(prefix="origen_interno")
@@ -286,14 +297,19 @@ class VentaUnidadForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(VentaUnidadForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
+            if field.label:
+                field.label = snake_case_to_title(field.label, decorator='')
+            else:
+                field.label = snake_case_to_title(field_name, decorator='')
+            
             if field.required:
-                field.label = snake_case_to_title(field_name)
+                field.label = snake_case_to_title(field.label)
     
     fecha_venta = forms.DateField(widget = DatePickerInput)
     id_lote = LotesLechonesChoiceField(queryset=LotesLechones.objects.all(), required=False, blank=True)
     id_animal = InventarioAnimalesChoiceField(queryset=InventarioAnimales.objects.all(), required=False, blank=True)
-    peso = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0)
-    precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0)
+    peso = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0, label="Peso (kg)")
+    precio_unidad = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, label="Precio por unidad (COP)")
     destino = forms.CharField(max_length=50, required=False)
     comprador = forms.CharField(max_length=255)
     observaciones = forms.CharField(widget=forms.Textarea, max_length=255, required=False)
