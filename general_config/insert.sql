@@ -383,6 +383,32 @@ INSERT INTO tratamientos (tipo_tratamiento, detalle_tratamiento, id_medicamento,
 ('Antiparasitario', 'Tratamiento para gusanos redondos', 3, 0.285, 'Administrar 0.285 ml por cada kg de peso, una vez por día durante 3 días'),
 ('Antibiótico', 'Tratamiento para infecciones bacterianas', 6, 0.225, 'Administrar 0.225 ml por cada kg de peso, cada 12 horas durante 7 días');
 
+
+--- vacunacion en tratamientos
+INSERT INTO tratamientos (tipo_tratamiento, detalle_tratamiento, id_medicamento, dosis, observaciones) VALUES
+('vacunación', 'Vacunación contra la peste porcina clásica en lechones', 17, 5.00, 'Aplicar una vez a las 3 semanas de vida'),
+('vacunación', 'Vacunación contra el circovirus porcino tipo 2 en cerdas', 18, 2.50, 'Aplicar en cerdas gestantes'),
+('vacunación', 'Vacunación contra Mycoplasma hyopneumoniae en lechones', 19, 1.00, 'Requiere refuerzo a las 4 semanas'),
+('vacunación', 'Vacunación contra la parvovirosis porcina en reproductoras', 20, 2.00, 'Aplicar antes del servicio'),
+('vacunación', 'Vacunación contra el PRRS en lechones', 21, 1.50, 'Requiere monitoreo post-vacunación'),
+('vacunación', 'Vacunación contra la fiebre aftosa en cerdos adultos', 22, 3.00, 'Aplicar cada 6 meses'),
+('vacunación', 'Vacunación contra la enfermedad de Glässer en lechones', 23, 1.20, 'Primera dosis a las 2 semanas'),
+('vacunación', 'Vacunación contra la erisipela porcina en cerdas', 24, 1.80, 'Refuerzo anual requerido'),
+('vacunación', 'Vacunación contra la leptospirosis porcina en reproductores', 25, 2.20, 'Aplicar cada 6 meses'),
+('vacunación', 'Vacunación contra el rotavirus porcino en lechones', 26, 1.00, 'Aplicar a las 2 semanas de vida'),
+('vacunación', 'Vacunación contra la peste porcina clásica en cerdas', 17, 5.00, 'Aplicar antes del parto'),
+('vacunación', 'Vacunación contra el circovirus porcino tipo 2 en lechones', 18, 2.50, 'Primera dosis a las 3 semanas'),
+('vacunación', 'Vacunación contra Mycoplasma hyopneumoniae en cerdos adultos', 19, 1.00, 'Requiere refuerzo anual'),
+('vacunación', 'Vacunación contra la parvovirosis porcina en lechones', 20, 2.00, 'Aplicar a las 4 semanas de vida'),
+('vacunación', 'Vacunación contra el PRRS en cerdas', 21, 1.50, 'Aplicar antes del servicio'),
+('vacunación', 'Vacunación contra la fiebre aftosa en lechones', 22, 3.00, 'Aplicar a las 6 semanas de vida'),
+('vacunación', 'Vacunación contra la enfermedad de Glässer en cerdas', 23, 1.20, 'Primera dosis a las 3 semanas'),
+('vacunación', 'Vacunación contra la erisipela porcina en lechones', 24, 1.80, 'Requiere refuerzo a las 8 semanas'),
+('vacunación', 'Vacunación contra la leptospirosis porcina en lechones', 25, 2.20, 'Aplicar a las 2 semanas de vida'),
+('vacunación', 'Vacunación contra el rotavirus porcino en cerdas', 26, 1.00, 'Aplicar antes del parto');
+
+
+
 --------------------------------------------------------------------------------------------------------------7
 --14
 INSERT INTO tratamiento_lotes (id_tratamiento, id_lote, fecha_aplicacion_lote, dosis_lote, observaciones_lote)

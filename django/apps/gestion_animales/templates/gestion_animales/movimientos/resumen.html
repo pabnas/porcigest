@@ -25,8 +25,8 @@
                                   <th class="centered">Id movimiento</th>
                                   <th class="centered">Id animal</th>
                                   <th class="centered">Fecha movimiento</th>
-                                  <th class="centered">Id area de origen</th>
-                                  <th class="centered">Id area destino</th>
+                                  <th class="centered">Área de origen</th>
+                                  <th class="centered">Área de destino</th>
                                 </tr>
                               </thead>
                               <tbody id="tableBody_movimientos"></tbody>
@@ -81,10 +81,10 @@
                 content += `
                 <tr>
                     <td>${movimientos.id_movimiento}</td>
-                    <td>${movimientos.id_animal_id}</td>
+                    <td>${movimientos.id_animal__numero_identificacion_animal}</td>
                     <td>${movimientos.fecha}</td>
-                    <td>${movimientos.area_origen_id}</td>
-                    <td>${movimientos.area_destino_id}</td>
+                    <td>${movimientos.area_origen__nombre_area}</td>
+                    <td>${movimientos.area_destino__nombre_area}</td>
                 </tr>
                 `;
             });

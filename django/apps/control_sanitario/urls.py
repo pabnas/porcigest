@@ -22,7 +22,9 @@ urlpatterns = [
     # vacunaciones
     path('vacunacion/', views.vacunacion_index, name='vacunacion'),
     path('vacunacion/resumen', views.vacunacion_resumen, name='vacunacion_resumen', kwargs={'navbar': 'vacunacion_resumen'}),
+    path('vacunacion/resumen_lotes', views.lotes_resumen, name='lotes_resumen', kwargs={'navbar': 'lotes_resumen'}),
     path('vacunacion/registrar_tratamiento_animal', views.vacunacion_register_tratamiento_animal, name='vacunacion_registrar_tratamiento_animal', kwargs={'navbar': 'vacunacion_registrar_tratamiento_animal'}),
     path('vacunacion/registrar_tratamiento_lotes', views.vacunacion_register_tratamiento_lotes, name='vacunacion_registrar_tratamiento_lotes', kwargs={'navbar': 'vacunacion_registrar_tratamiento_lotes'}),
     path('vacunacion/list_vacunacion', views.list_vacunacion, name='list_vacunaciones'),
+    path('vacunacion/list_lotes', views.list_lotes, name='list_lotes'),
 ]
