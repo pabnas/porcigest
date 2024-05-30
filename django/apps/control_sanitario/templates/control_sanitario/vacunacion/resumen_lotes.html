@@ -29,7 +29,7 @@
                                   <th class="centered">Observaciones</th>
                                 </tr>
                               </thead>
-                              <tbody id="tableBody_vacunacion"></tbody>
+                              <tbody id="tableBody_lotes"></tbody>
                             </table>
                         </div>
                       </div>
@@ -63,13 +63,13 @@
         if(dataTableIsInitialized){
             dataTable.destroy();
         }
-        await listvacunacion();
+        await listlotes();
 
     dataTable=$('#dataTable').DataTable(dataTableOptions);
     dataTableIsInitialized = true;
     };
 
-    const listvacunacion=async()=>{
+    const listlotes=async()=>{
         try{
             const hostname = window.location.hostname;
             const port = window.location.port;
@@ -77,7 +77,7 @@
             const data=await response.json();
             console.log(data);
             let content = ``;
-            data.vacunacion.forEach((vacunacion, index) => {
+            data.lotes.forEach((lotes, index) => {
                 content += `
                 <tr>
                     <td>${lotes.id_lote_tratamiento}</td>
@@ -88,7 +88,7 @@
                 </tr>
                 `;
             });
-            tableBody_vacunacion.innerHTML = content;
+            tableBody_lotes.innerHTML = content;
         } catch(ex) {
           alert(ex);
         }
