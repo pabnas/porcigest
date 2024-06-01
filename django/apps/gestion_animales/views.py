@@ -36,6 +36,12 @@ def list_gestacion(_request):
     gestacion_all_rows = RegistroInseminaciones.objects.values()
     for row in gestacion_all_rows:
         row['fecha_parto_estimada'] = row['fecha_inseminacion'] + datetime.timedelta(days=114)
+        fecha_actual = datetime.datetime.now().date()
+        diferencia = (row['fecha_parto_estimada'] - fecha_actual).days
+        if diferencia < 0:
+            row['dias_para_parto'] = 'Ya cumplió'
+        else:
+            row['dias_para_parto'] = diferencia
     gestacion = list(gestacion_all_rows)
     data = {'gestacion': gestacion}
     return JsonResponse(data)
