@@ -27,10 +27,10 @@ def index(request):
     data_last_24_hours = MonitoreoAgua.objects.filter(fecha_hora__gte=twenty_four_hours_ago)
     
     datetimes = [entry.fecha_hora.strftime('%Y-%m-%dT%H:%M:%S') for entry in data_last_24_hours]
-    flujo_agua_litros_hora_values = [float(entry.flujo_agua_litros_hora) for entry in data_last_24_hours]
+    nivel_agua_litros_hora_values = [float(entry.nivel_agua_porcentaje) for entry in data_last_24_hours]
     chart_flujo_agua_data = {
         'labels': datetimes,
-        'data': flujo_agua_litros_hora_values
+        'data': nivel_agua_litros_hora_values
     }
     
     # Get nacimientos data

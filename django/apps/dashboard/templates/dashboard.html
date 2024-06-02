@@ -128,7 +128,7 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Flujo de agua L/H</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Nivel de agua en las ultimas 24 Horas</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -253,7 +253,7 @@
         labels: {{ chart_flujo_agua_data.labels | safe }},
         datasets: [{
             data: {{ chart_flujo_agua_data.data | safe }},
-            label: "Flujo de agua L/H",
+            label: "Nivel de agua",
             lineTension: 0.3,
             backgroundColor: "rgba(78, 115, 223, 0.05)",
             borderColor: "rgba(78, 115, 223, 1)",
